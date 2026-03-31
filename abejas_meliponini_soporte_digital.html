@@ -1,0 +1,492 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --verde: #3B6D11;
+    --verde-claro: #639922;
+    --verde-bg: #EAF3DE;
+    --amarillo: #EF9F27;
+    --amarillo-claro: #FAEEDA;
+    --texto: #2C2C2A;
+    --texto-sec: #5F5E5A;
+    --blanco: #fff;
+    --radio: 16px;
+  }
+  .app {
+    max-width: 390px;
+    margin: 0 auto;
+    font-family: var(--font-sans, sans-serif);
+    background: #1a1a0e;
+    min-height: 600px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+  .screen { display: none; flex-direction: column; min-height: 600px; }
+  .screen.active { display: flex; }
+
+  /* SPLASH */
+  #splash {
+    background: linear-gradient(180deg, #1a2e06 0%, #2d4a0e 60%, #3B6D11 100%);
+    align-items: center; justify-content: center; text-align: center; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .bee-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(239,159,39,0.15) 0%, transparent 60%);
+  }
+  .splash-title { color: #EF9F27; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 1.1; margin-bottom: 6px; position: relative; }
+  .splash-sub { color: #C0DD97; font-size: 13px; margin-bottom: 48px; position: relative; }
+  .splash-img {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, #EF9F27 0%, #3B6D11 70%);
+    margin: 0 auto 40px; display: flex; align-items: center; justify-content: center;
+    font-size: 72px; position: relative;
+    box-shadow: 0 0 0 8px rgba(239,159,39,0.15), 0 0 0 16px rgba(239,159,39,0.07);
+  }
+  .btn-main {
+    background: #EF9F27; color: #1a1a0e; border: none; border-radius: 50px;
+    padding: 14px 36px; font-size: 15px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; position: relative;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .btn-main:hover { background: #FAC775; transform: scale(1.03); }
+  .arrow { font-size: 18px; }
+
+  /* BIENVENIDA */
+  #bienvenida {
+    background: #fff;
+    padding: 0;
+  }
+  .card-header {
+    background: #3B6D11; padding: 20px 20px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .logo-small { width: 40px; height: 40px; border-radius: 50%; background: #EF9F27; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .logo-text { color: #C0DD97; font-size: 13px; font-weight: 600; letter-spacing: 1px; }
+  .card-body { padding: 28px 24px; flex: 1; }
+  .card-body h2 { font-size: 22px; font-weight: 700; color: #3B6D11; margin-bottom: 14px; }
+  .card-body p { font-size: 14px; color: #444441; line-height: 1.7; margin-bottom: 12px; }
+  .highlight { font-style: italic; font-weight: 600; color: #3B6D11; }
+  .card-footer { padding: 16px 24px 28px; }
+  .note-box {
+    background: #EAF3DE; border-left: 3px solid #3B6D11;
+    border-radius: 0 8px 8px 0; padding: 12px 14px;
+    font-size: 12px; color: #27500A; line-height: 1.6; margin-bottom: 20px;
+  }
+  .btn-verde {
+    background: #3B6D11; color: #fff; border: none; border-radius: 50px;
+    padding: 13px 28px; font-size: 14px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-verde:hover { background: #27500A; transform: scale(1.02); }
+
+  /* ADVERTENCIA */
+  #advertencia { background: #fff; }
+  .warn-header {
+    background: #EF9F27; padding: 24px 20px 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .warn-icon { font-size: 32px; }
+  .warn-title { color: #1a1a0e; font-size: 16px; font-weight: 700; }
+  .warn-body { padding: 28px 24px; flex: 1; }
+  .warn-body .big-text { font-size: 20px; font-weight: 700; color: #3B6D11; line-height: 1.3; margin-bottom: 16px; }
+  .warn-body p { font-size: 14px; color: #444441; line-height: 1.7; margin-bottom: 10px; }
+  .bee-fact { background: #FAEEDA; border-radius: 12px; padding: 14px 16px; margin-top: 16px; display: flex; gap: 10px; align-items: flex-start; }
+  .bee-fact-icon { font-size: 24px; flex-shrink: 0; }
+  .bee-fact-text { font-size: 13px; color: #633806; line-height: 1.6; }
+
+  /* SELECTOR DE MODO */
+  #selector { background: #f8f6f0; }
+  .sel-header { background: #3B6D11; padding: 20px 20px 16px; text-align: center; }
+  .sel-header h2 { color: #EAF3DE; font-size: 18px; font-weight: 700; }
+  .sel-header p { color: #C0DD97; font-size: 13px; margin-top: 4px; }
+  .sel-body { padding: 24px 20px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+  .modo-card {
+    background: #fff; border-radius: 16px; border: 2px solid transparent;
+    padding: 20px 18px; cursor: pointer; transition: border-color 0.2s, transform 0.15s;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .modo-card:hover { border-color: #3B6D11; transform: translateY(-2px); }
+  .modo-icon { font-size: 36px; flex-shrink: 0; }
+  .modo-info h3 { font-size: 16px; font-weight: 700; color: #3B6D11; margin-bottom: 4px; }
+  .modo-info p { font-size: 13px; color: #5F5E5A; line-height: 1.6; }
+  .modo-badge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 50px; margin-top: 8px;
+  }
+  .badge-sec { background: #EAF3DE; color: #27500A; }
+  .badge-lib { background: #FAEEDA; color: #633806; }
+
+  /* MODO SECUENCIAL - pantallas */
+  .seq-screen { background: #fff; }
+  .seq-header {
+    background: #3B6D11; padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn-back { background: none; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 32px; height: 32px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .btn-back:hover { background: rgba(255,255,255,0.15); }
+  .seq-header-title { color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; flex: 1; text-align: center; }
+  .seq-nav { display: flex; gap: 4px; align-items: center; }
+  .seq-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .seq-dot.active { background: #EF9F27; width: 18px; border-radius: 3px; }
+  .seq-content { flex: 1; overflow-y: auto; }
+  .hero-img {
+    height: 180px; background: #2d4a0e; display: flex; align-items: center; justify-content: center;
+    font-size: 64px; position: relative; overflow: hidden;
+  }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.5) 100%); }
+  .hero-label { position: absolute; bottom: 12px; left: 16px; color: #fff; font-weight: 700; font-size: 18px; }
+  .content-section { padding: 20px; }
+  .content-section h3 { font-size: 17px; font-weight: 700; color: #3B6D11; margin-bottom: 10px; }
+  .content-section p { font-size: 14px; color: #444441; line-height: 1.7; margin-bottom: 10px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .stat-card { background: #EAF3DE; border-radius: 10px; padding: 12px; text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 700; color: #3B6D11; }
+  .stat-label { font-size: 11px; color: #5F5E5A; margin-top: 2px; }
+  .seq-footer { padding: 14px 20px 24px; }
+  .btn-sig {
+    background: #3B6D11; color: #fff; border: none; border-radius: 50px;
+    padding: 13px 28px; font-size: 14px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+    transition: background 0.15s;
+  }
+  .btn-sig:hover { background: #27500A; }
+  .cultivo-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid #EAF3DE; }
+  .cultivo-emoji { font-size: 28px; width: 44px; height: 44px; background: #EAF3DE; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cultivo-name { font-size: 14px; font-weight: 600; color: #3B6D11; }
+  .cultivo-desc { font-size: 12px; color: #5F5E5A; }
+
+  /* MODO LIBRE */
+  #libre { background: #f8f6f0; }
+  .libre-header { background: #3B6D11; padding: 16px 16px 0; }
+  .libre-header-top { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .libre-header-top h2 { color: #EAF3DE; font-size: 15px; font-weight: 700; flex: 1; }
+  .tab-nav { display: flex; gap: 2px; }
+  .tab-btn {
+    flex: 1; background: rgba(255,255,255,0.1); border: none; color: rgba(255,255,255,0.6);
+    padding: 10px 6px; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 8px 8px 0 0;
+    transition: background 0.15s, color 0.15s;
+  }
+  .tab-btn.active { background: #f8f6f0; color: #3B6D11; }
+  .tab-content { display: none; padding: 18px 16px; flex: 1; overflow-y: auto; }
+  .tab-content.active { display: block; }
+  .libre-footer { padding: 10px 16px 18px; }
+</style>
+
+<div class="app">
+
+  <!-- SPLASH -->
+  <div class="screen active" id="splash">
+    <div class="bee-bg"></div>
+    <div class="splash-img">🐝</div>
+    <div class="splash-title">ABEJAS<br>MELIPONINI</div>
+    <div class="splash-sub">Impacto, Descripción y Cuidados</div>
+    <button class="btn-main" onclick="go('bienvenida')">
+      Click para Comenzar <span class="arrow">▶</span>
+    </button>
+  </div>
+
+  <!-- BIENVENIDA -->
+  <div class="screen" id="bienvenida">
+    <div class="card-header">
+      <div class="logo-small">🐝</div>
+      <div class="logo-text">ABEJAS MELIPONINI</div>
+    </div>
+    <div class="card-body">
+      <h2>¡Bienvenido!</h2>
+      <p>Hola, somos las <strong>abejas meliponinas</strong>. No tenemos aguijón, pero ayudamos a que <span class="highlight">las flores y los frutos crezcan.</span></p>
+      <p>Cuidarnos es proteger <span class="highlight">'la vida que te rodea'.</span></p>
+    </div>
+    <div class="card-footer">
+      <div class="note-box">
+        Este trabajo forma parte de un proyecto que busca lograr un manejo adecuado y sostenible de las abejas meliponinas, maximizando su importancia en los procinistramos.
+      </div>
+      <button class="btn-verde" onclick="go('advertencia')">
+        Empieza a explorar <span class="arrow">▶</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ADVERTENCIA -->
+  <div class="screen" id="advertencia">
+    <div class="warn-header">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-title">Un momento antes de continuar</div>
+    </div>
+    <div class="warn-body">
+      <div class="big-text">"Ey, no somos peligrosas. Solo hacemos nuestro trabajo para la naturaleza."</div>
+      <p>Las abejas meliponinas son <strong>completamente inofensivas</strong> para los humanos. A diferencia de otras abejas, no poseen aguijón funcional.</p>
+      <p>Su presencia cerca de ti es una señal de un ecosistema saludable. ¡No te asustes si las ves!</p>
+      <div class="bee-fact">
+        <div class="bee-fact-icon">🌿</div>
+        <div class="bee-fact-text">Son nativas de latinoamérica y resultan <strong>altamente eficientes</strong> para la polinización de cultivos nativos.</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn-verde" onclick="go('selector')">
+        Entendido, ¡continuemos! <span class="arrow">▶</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SELECTOR DE MODO -->
+  <div class="screen" id="selector">
+    <div class="sel-header">
+      <h2>¿Cómo quieres explorar?</h2>
+      <p>Elige tu camino de aprendizaje</p>
+    </div>
+    <div class="sel-body">
+      <div class="modo-card" onclick="go('seq-impacto')">
+        <div class="modo-icon">🔒</div>
+        <div class="modo-info">
+          <h3>Modo Secuencial</h3>
+          <p>Sigue una ruta guiada. Descubre el contenido paso a paso, como desbloquear niveles de conocimiento.</p>
+          <span class="modo-badge badge-sec">Recomendado para empezar</span>
+        </div>
+      </div>
+      <div class="modo-card" onclick="go('libre')">
+        <div class="modo-icon">🗺️</div>
+        <div class="modo-info">
+          <h3>Modo Libre</h3>
+          <p>Explora a tu ritmo. Accede directamente a cualquier sección desde el menú.</p>
+          <span class="modo-badge badge-lib">Para quienes ya conocen el tema</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECUENCIAL: IMPACTO -->
+  <div class="screen seq-screen" id="seq-impacto">
+    <div class="seq-header">
+      <button class="btn-back" onclick="go('selector')">←</button>
+      <div class="seq-header-title">IMPACTO</div>
+      <div class="seq-nav">
+        <div class="seq-dot active"></div>
+        <div class="seq-dot"></div>
+        <div class="seq-dot"></div>
+        <div class="seq-dot"></div>
+      </div>
+    </div>
+    <div class="seq-content">
+      <div class="hero-img">
+        🐝
+        <div class="hero-overlay"></div>
+        <div class="hero-label">¿Cuál es mi impacto?</div>
+      </div>
+      <div class="content-section">
+        <p>De los <strong>100 cultivos</strong> que constituyen el 90% de los suministros alimentarios de todo el mundo, <strong>71 dependen totalmente de la polinización.</strong></p>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-num">100</div><div class="stat-label">cultivos principales</div></div>
+          <div class="stat-card"><div class="stat-num">71%</div><div class="stat-label">dependen de abejas</div></div>
+        </div>
+        <div class="bee-fact" style="margin-top:12px">
+          <div class="bee-fact-icon">🌎</div>
+          <div class="bee-fact-text">¿Sabías que existe una tribu de abejas nativas de latinoamérica? Al ser nativas, resultan <strong>altamente eficientes</strong> para la polinización de cultivos nativos.</div>
+        </div>
+        <p style="margin-top:14px">Su rol de polinización <strong>impacta directamente</strong> el desarrollo de las cosechas y en consecuencia el <strong>costo de los alimentos.</strong></p>
+        <p>Además de ser <strong>indispensables</strong> para el equilibrio ecosistémico de nuestros hábitats.</p>
+      </div>
+    </div>
+    <div class="seq-footer">
+      <button class="btn-sig" onclick="go('seq-cultivos')">Siguiente <span class="arrow">▶</span></button>
+    </div>
+  </div>
+
+  <!-- SECUENCIAL: CULTIVOS -->
+  <div class="screen seq-screen" id="seq-cultivos">
+    <div class="seq-header">
+      <button class="btn-back" onclick="go('seq-impacto')">←</button>
+      <div class="seq-header-title">CULTIVOS BENEFICIADOS</div>
+      <div class="seq-nav">
+        <div class="seq-dot"></div>
+        <div class="seq-dot active"></div>
+        <div class="seq-dot"></div>
+        <div class="seq-dot"></div>
+      </div>
+    </div>
+    <div class="seq-content">
+      <div class="content-section">
+        <h3>Cultivos que polinizamos</h3>
+        <p>Estos son algunos de los cultivos que las abejas Meliponinas benefician con su trabajo:</p>
+        <div class="cultivo-item"><div class="cultivo-emoji">🍓</div><div><div class="cultivo-name">Fresas</div><div class="cultivo-desc">70% de las fresas son polinizadas por abejas</div></div></div>
+        <div class="cultivo-item"><div class="cultivo-emoji">☕</div><div><div class="cultivo-name">Café</div><div class="cultivo-desc">Las abejas aumentan la fructificación del café del 60% al 90%</div></div></div>
+        <div class="cultivo-item"><div class="cultivo-emoji">🥑</div><div><div class="cultivo-name">Aguacate</div><div class="cultivo-desc">Las abejas mejoran la producción de aguacate en un 96%</div></div></div>
+        <div class="cultivo-item"><div class="cultivo-emoji">🍌</div><div><div class="cultivo-name">Banano</div><div class="cultivo-desc">La polinización hace más eficiente su producción</div></div></div>
+        <div class="cultivo-item"><div class="cultivo-emoji">🍑</div><div><div class="cultivo-name">Durazno</div><div class="cultivo-desc">La incidencia de Meliponinas aumenta su calidad</div></div></div>
+        <div class="cultivo-item"><div class="cultivo-emoji">🍐</div><div><div class="cultivo-name">Pera</div><div class="cultivo-desc">Más del 65% de estos cultivos los polinizan Meliponinas</div></div></div>
+        <div class="cultivo-item"><div class="cultivo-emoji">🥭</div><div><div class="cultivo-name">Mango</div><div class="cultivo-desc">La diversidad de abejas aumenta su calidad en un 60%</div></div></div>
+      </div>
+    </div>
+    <div class="seq-footer">
+      <button class="btn-sig" onclick="go('seq-descripcion')">Siguiente <span class="arrow">▶</span></button>
+    </div>
+  </div>
+
+  <!-- SECUENCIAL: DESCRIPCIÓN -->
+  <div class="screen seq-screen" id="seq-descripcion">
+    <div class="seq-header">
+      <button class="btn-back" onclick="go('seq-cultivos')">←</button>
+      <div class="seq-header-title">DESCRIPCIÓN</div>
+      <div class="seq-nav">
+        <div class="seq-dot"></div>
+        <div class="seq-dot"></div>
+        <div class="seq-dot active"></div>
+        <div class="seq-dot"></div>
+      </div>
+    </div>
+    <div class="seq-content">
+      <div class="content-section">
+        <h3>¿Quién soy?</h3>
+        <p>¿Qué me hace diferente de las otras abejas? ¡A diferencia de mis primas, <strong>no poseo un aguijón</strong>, entonces llegar a ser peligrosa para las personas es prácticamente imposible!</p>
+        <p>Son conectibles por varios nombres: Abeja Melipora, Abeja Sin Aguijón, Angelitas, Abejoncitos.</p>
+        <h3 style="margin-top:18px">¿Cómo identificarme?</h3>
+        <div class="bee-fact" style="margin-bottom:10px">
+          <div class="bee-fact-icon">🔍</div>
+          <div class="bee-fact-text"><strong>Mi forma de mi caza</strong> (las patas), siempre tengo una apariencia perfecta y siempre consideran <em>siempre tienen cuerpo</em> que les da entrada a la cueva.</div>
+        </div>
+        <div class="bee-fact" style="margin-bottom:10px">
+          <div class="bee-fact-icon">🏠</div>
+          <div class="bee-fact-text"><strong>Siempre vive esta casa:</strong> El espacio de una ni mas mas pequeña que la palma de mi mano, siempre suele tener esta forma.</div>
+        </div>
+        <div class="bee-fact">
+          <div class="bee-fact-icon">🎨</div>
+          <div class="bee-fact-text"><strong>Mis colores varían,</strong> en algunos casos soy de un solo color. Dentro de nuestra familia existen más de <strong>gran variedad de colores y formas</strong>, diferentes cultivos.</div>
+        </div>
+      </div>
+    </div>
+    <div class="seq-footer">
+      <button class="btn-sig" onclick="go('seq-cuidados')">Siguiente <span class="arrow">▶</span></button>
+    </div>
+  </div>
+
+  <!-- SECUENCIAL: CUIDADOS -->
+  <div class="screen seq-screen" id="seq-cuidados">
+    <div class="seq-header">
+      <button class="btn-back" onclick="go('seq-descripcion')">←</button>
+      <div class="seq-header-title">CUIDADOS</div>
+      <div class="seq-nav">
+        <div class="seq-dot"></div>
+        <div class="seq-dot"></div>
+        <div class="seq-dot"></div>
+        <div class="seq-dot active"></div>
+      </div>
+    </div>
+    <div class="seq-content">
+      <div class="content-section">
+        <h3>¿Podemos convivir juntos?</h3>
+        <p>Dedicado a ciertas facultades y tácticas, y florecen en su ambiente de una manera <strong>sumamente independientes</strong>, en particular durante la temporada.</p>
+        <div style="margin-top:14px">
+          <p style="font-size:13px; color:#5F5E5A; margin-bottom:8px"><strong>Si las ves en tu entorno:</strong></p>
+          <div class="bee-fact" style="margin-bottom:8px; padding: 10px 12px;">
+            <div class="bee-fact-icon" style="font-size:18px">1.</div>
+            <div class="bee-fact-text">Puedes <strong>sembrar flores nativas</strong> en tu espacio — las que son polinizadas por ellas — que le <strong>facilite su rol de recolección</strong> de "Carrizo florales".</div>
+          </div>
+          <div class="bee-fact" style="margin-bottom:8px; padding: 10px 12px;">
+            <div class="bee-fact-icon" style="font-size:18px">2.</div>
+            <div class="bee-fact-text">Si ves un <strong>abejo atrapado</strong> ayúdalo si lo necesita en lugar de aplastarlo.</div>
+          </div>
+          <div class="bee-fact" style="margin-bottom:8px; padding: 10px 12px;">
+            <div class="bee-fact-icon" style="font-size:18px">3.</div>
+            <div class="bee-fact-text">Si la ves en el piso <strong>probablemente</strong> es que no necesita ayuda recusal. Si la ves necesitar ayuda, <strong>bríndala agua suavemente.</strong></div>
+          </div>
+          <div class="bee-fact" style="padding: 10px 12px;">
+            <div class="bee-fact-icon" style="font-size:18px">4.</div>
+            <div class="bee-fact-text">Si ves una <strong>colmena</strong> en un biólogo para ayudar dependiendo el lugar de aislamiento.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="seq-footer">
+      <button class="btn-sig" style="background:#EF9F27; color:#1a1a0e;" onclick="go('splash')">¡Vuelve al inicio! 🏠</button>
+    </div>
+  </div>
+
+  <!-- MODO LIBRE -->
+  <div class="screen" id="libre">
+    <div class="libre-header">
+      <div class="libre-header-top">
+        <div class="logo-small">🐝</div>
+        <h2>ABEJAS MELIPONINI</h2>
+        <button class="btn-back" onclick="go('selector')">←</button>
+      </div>
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('t-impacto', this)">Impacto</button>
+        <button class="tab-btn" onclick="showTab('t-cultivos', this)">Cultivos</button>
+        <button class="tab-btn" onclick="showTab('t-desc', this)">Descripción</button>
+        <button class="tab-btn" onclick="showTab('t-cuidados', this)">Cuidados</button>
+      </div>
+    </div>
+
+    <div id="t-impacto" class="tab-content active">
+      <h3 style="color:#3B6D11; font-size:17px; margin-bottom:10px">¿Cuál es mi impacto?</h3>
+      <p style="font-size:14px; color:#444441; line-height:1.7; margin-bottom:12px">De los <strong>100 cultivos</strong> que constituyen el 90% de los suministros alimentarios de todo el mundo, <strong>71 dependen totalmente de la polinización.</strong></p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num">100</div><div class="stat-label">cultivos principales</div></div>
+        <div class="stat-card"><div class="stat-num">71%</div><div class="stat-label">dependen de abejas</div></div>
+      </div>
+      <div class="bee-fact" style="margin-top:14px">
+        <div class="bee-fact-icon">🌎</div>
+        <div class="bee-fact-text">Al ser nativas de latinoamérica resultan <strong>altamente eficientes</strong> para la polinización de cultivos nativos.</div>
+      </div>
+      <p style="font-size:14px; color:#444441; line-height:1.7; margin-top:14px">Su rol de polinización <strong>impacta directamente</strong> el costo de los alimentos y el equilibrio ecosistémico.</p>
+    </div>
+
+    <div id="t-cultivos" class="tab-content">
+      <h3 style="color:#3B6D11; font-size:17px; margin-bottom:10px">Cultivos que polinizamos</h3>
+      <div class="cultivo-item"><div class="cultivo-emoji">🍓</div><div><div class="cultivo-name">Fresas</div><div class="cultivo-desc">70% son polinizadas por abejas</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">☕</div><div><div class="cultivo-name">Café</div><div class="cultivo-desc">Aumenta fructificación del 60% al 90%</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">🥑</div><div><div class="cultivo-name">Aguacate</div><div class="cultivo-desc">Mejora la producción en un 96%</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">🍌</div><div><div class="cultivo-name">Banano</div><div class="cultivo-desc">Hace más eficiente su producción</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">🍑</div><div><div class="cultivo-name">Durazno</div><div class="cultivo-desc">Aumenta su calidad</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">🍐</div><div><div class="cultivo-name">Pera</div><div class="cultivo-desc">Más del 65% los polinizan Meliponinas</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">🥭</div><div><div class="cultivo-name">Mango</div><div class="cultivo-desc">Aumenta su calidad en un 60%</div></div></div>
+      <div class="cultivo-item"><div class="cultivo-emoji">🌰</div><div><div class="cultivo-name">Macadamia</div><div class="cultivo-desc">Las abejas son las principales polinizadoras</div></div></div>
+    </div>
+
+    <div id="t-desc" class="tab-content">
+      <h3 style="color:#3B6D11; font-size:17px; margin-bottom:10px">¿Quién soy?</h3>
+      <p style="font-size:14px; color:#444441; line-height:1.7; margin-bottom:12px">A diferencia de otras abejas, <strong>no poseo un aguijón</strong>. Llegar a ser peligrosa para las personas es prácticamente imposible.</p>
+      <p style="font-size:13px; color:#5F5E5A; margin-bottom:8px">También me conocen como:</p>
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px">
+        <span style="background:#EAF3DE; color:#27500A; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600">Abeja Melipora</span>
+        <span style="background:#EAF3DE; color:#27500A; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600">Sin Aguijón</span>
+        <span style="background:#EAF3DE; color:#27500A; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600">Angelitas</span>
+        <span style="background:#EAF3DE; color:#27500A; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600">Abejoncitos</span>
+      </div>
+      <h3 style="color:#3B6D11; font-size:15px; margin-bottom:8px">¿Cómo identificarme?</h3>
+      <div class="bee-fact" style="margin-bottom:8px"><div class="bee-fact-icon">🔍</div><div class="bee-fact-text">Siempre tengo una <strong>forma característica</strong> que me da entrada a la colmena.</div></div>
+      <div class="bee-fact" style="margin-bottom:8px"><div class="bee-fact-icon">🎨</div><div class="bee-fact-text">Mis colores varían — existe <strong>gran variedad de colores y formas</strong> dentro de nuestra familia.</div></div>
+      <div class="bee-fact"><div class="bee-fact-icon">📏</div><div class="bee-fact-text">Suelo ser <strong>más pequeña</strong> que otras abejas comunes.</div></div>
+    </div>
+
+    <div id="t-cuidados" class="tab-content">
+      <h3 style="color:#3B6D11; font-size:17px; margin-bottom:10px">¿Podemos convivir?</h3>
+      <p style="font-size:14px; color:#444441; line-height:1.7; margin-bottom:14px">Las abejas meliponinas son <strong>sumamente independientes.</strong> Pero hay cosas que puedes hacer para ayudarlas:</p>
+      <div class="bee-fact" style="margin-bottom:8px; padding:10px 12px"><div class="bee-fact-icon" style="font-size:18px">1.</div><div class="bee-fact-text">Siembra <strong>flores nativas</strong> que faciliten su rol de recolección.</div></div>
+      <div class="bee-fact" style="margin-bottom:8px; padding:10px 12px"><div class="bee-fact-icon" style="font-size:18px">2.</div><div class="bee-fact-text">Si ves una abeja atrapada, <strong>ayúdala</strong> en lugar de aplastarla.</div></div>
+      <div class="bee-fact" style="margin-bottom:8px; padding:10px 12px"><div class="bee-fact-icon" style="font-size:18px">3.</div><div class="bee-fact-text">Si la ves en el piso, <strong>bríndala agua suavemente.</strong></div></div>
+      <div class="bee-fact" style="margin-bottom:8px; padding:10px 12px"><div class="bee-fact-icon" style="font-size:18px">4.</div><div class="bee-fact-text">Si encuentras una colmena, contacta un <strong>biólogo o especialista.</strong></div></div>
+      <div class="bee-fact" style="padding:10px 12px"><div class="bee-fact-icon" style="font-size:18px">5.</div><div class="bee-fact-text">Si alguien pregunta, <strong>respeta sus colmenas</strong> y no las destruyas.</div></div>
+    </div>
+
+    <div class="libre-footer">
+      <button class="btn-verde" onclick="go('splash')" style="background:#EF9F27; color:#1a1a0e;">¡Vuelve al inicio! 🏠</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>

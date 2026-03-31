@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(node -e \":*)",
+      "Bash(where node:*)",
+      "Bash(where.exe node:*)",
+      "Bash(powershell -Command \":*)",
+      "Bash(powershell -Command \"\\(Get-Content ''e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\styles.css'' -Raw\\).Split\\(''\\\\n''\\).Count\")"
+    ]
+  }
+}

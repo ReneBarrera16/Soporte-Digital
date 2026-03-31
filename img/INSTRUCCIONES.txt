@@ -1,0 +1,16 @@
+FOTOS QUE NECESITA LA PÁGINA
+==============================
+
+Coloca aquí tus fotos con estos nombres exactos:
+
+  abeja-splash.jpg
+      → Foto principal de la abeja que aparece en la pantalla de inicio.
+        Recomendado: fondo transparente (PNG) o foto con fondo limpio.
+        Tamaño ideal: 400x400 px o más, formato cuadrado.
+
+Si en el futuro agregas fotos a las secciones de detalle
+(Impacto, Quién Soy, Cuidados), también puedes guardarlas aquí
+con nombres descriptivos, por ejemplo:
+  abeja-impacto.jpg
+  abeja-quien-soy.jpg
+  abeja-cuidados.jpg

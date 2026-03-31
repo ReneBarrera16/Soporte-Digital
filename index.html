@@ -3,973 +3,572 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melipona - Información sobre Abejas</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #FFF8DC;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* PANTALLA */
-        .screen {
-            display: none;
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        .screen.active {
-            display: block;
-        }
-
-        /* BOTÓN ATRÁS */
-        .btn-back {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .btn-back:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.05);
-        }
-
-        /* SPLASH SCREEN */
-        .splash-screen {
-            background: linear-gradient(135deg, #FFD700 0%, #FFF8DC 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-        }
-
-        /* ANIMACIÓN DE CARGA */
-        .bee-animation {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .bee-body {
-            width: 50px;
-            height: 30px;
-            background: #FFD700;
-            border-radius: 50%;
-            margin: 15px auto;
-            position: relative;
-            border: 2px solid #FFA500;
-        }
-
-        .bee-body::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 8px;
-            background: #333;
-            top: 8px;
-            left: 0;
-            border-radius: 50%;
-        }
-
-        .bee-body::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 8px;
-            background: #333;
-            bottom: 8px;
-            left: 0;
-            border-radius: 50%;
-        }
-
-        .bee-wings {
-            position: absolute;
-            width: 100%;
-            height: 40px;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        .wing {
-            position: absolute;
-            width: 20px;
-            height: 25px;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid #999;
-            border-radius: 50%;
-            animation: wingFlap 0.4s ease-in-out infinite;
-        }
-
-        .wing.left {
-            left: -10px;
-            animation-delay: 0s;
-        }
-
-        .wing.right {
-            right: -10px;
-            animation-delay: 0.2s;
-        }
-
-        @keyframes wingFlap {
-            0%, 100% {
-                transform: rotateZ(-45deg);
-            }
-            50% {
-                transform: rotateZ(45deg);
-            }
-        }
-
-        .splash-title {
-            font-size: 32px;
-            font-weight: bold;
-            color: #FFD700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .splash-subtitle {
-            font-size: 16px;
-            color: #FF8C00;
-            margin-bottom: 40px;
-        }
-
-        .btn-main {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            margin-top: 30px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .btn-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-main:active {
-            transform: scale(0.98);
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* PÁGINA DE SELECTOR */
-        .selector-screen {
-            background-color: #FFF8DC;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            gap: 30px;
-        }
-
-        .selector-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #FF8C00;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .selector-container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .selector-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .selector-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .selector-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .selector-card p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .btn-selector {
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #fff;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-selector:hover {
-            transform: scale(1.05);
-        }
-
-        /* CONTENIDO DE SECCIONES */
-        .detail-screen {
-            padding: 80px 20px 40px;
-            min-height: 100vh;
-        }
-
-        .detail-title {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .detail-content {
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .detail-content p {
-            margin-bottom: 20px;
-        }
-
-        .btn-know-more {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-know-more:hover {
-            transform: scale(1.05);
-        }
-
-        /* ESTILOS DE SECCIONES DE DETALLE */
-        .detail-impacto {
-            background: linear-gradient(135deg, #FFD700 0%, #FFED4E 100%);
-            color: #333;
-        }
-
-        .detail-impacto .detail-title {
-            color: #FF8C00;
-        }
-
-        .detail-quien {
-            background: linear-gradient(135deg, #90EE90 0%, #FFFACD 100%);
-            color: #333;
-        }
-
-        .detail-quien .detail-title {
-            color: #228B22;
-        }
-
-        .detail-cuidados {
-            background: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);
-            color: #fff;
-        }
-
-        .detail-cuidados .detail-title {
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        /* PÁGINA DE RESUMEN DE SECCIONES */
-        .summary-screen {
-            padding: 80px 20px 40px;
-            min-height: 100vh;
-        }
-
-        .summary-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #FF8C00;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .summary-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .summary-card {
-            padding: 30px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #fff;
-            text-align: center;
-        }
-
-        .summary-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .summary-card h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .summary-card p {
-            font-size: 14px;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-
-        .summary-card-impacto {
-            background: linear-gradient(135deg, #FFD700 0%, #FFED4E 100%);
-            color: #333;
-        }
-
-        .summary-card-quien {
-            background: linear-gradient(135deg, #90EE90 0%, #FFFACD 100%);
-            color: #333;
-        }
-
-        .summary-card-cuidados {
-            background: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);
-            color: #fff;
-        }
-
-        .btn-summary {
-            padding: 10px 25px;
-            background: rgba(0, 0, 0, 0.2);
-            color: inherit;
-            border: 2px solid currentColor;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .summary-card-impacto .btn-summary {
-            color: #FF8C00;
-        }
-
-        .summary-card-quien .btn-summary {
-            color: #228B22;
-        }
-
-        .btn-summary:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        /* TARJETAS DESHABILITADAS */
-        .summary-card.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            filter: grayscale(100%);
-        }
-
-        .summary-card.disabled .btn-summary {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        /* PANTALLA DE PROGRESO LINEAL */
-        .progress-screen {
-            padding: 80px 20px 40px;
-            min-height: 100vh;
-        }
-
-        .progress-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #FF8C00;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .progress-tracker {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .progress-item {
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .progress-item h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .progress-item p {
-            font-size: 14px;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-
-        .progress-item-impacto {
-            background: linear-gradient(135deg, #FFD700 0%, #FFED4E 100%);
-            color: #333;
-        }
-
-        .progress-item-quien {
-            background: linear-gradient(135deg, #90EE90 0%, #FFFACD 100%);
-            color: #333;
-        }
-
-        .progress-item-cuidados {
-            background: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);
-            color: #fff;
-        }
-
-        .progress-item.locked {
-            opacity: 0.4;
-            filter: grayscale(100%);
-            cursor: not-allowed;
-        }
-
-        .progress-item.unlocked {
-            cursor: pointer;
-        }
-
-        .progress-item.unlocked:hover {
-            transform: translateY(-5px);
-        }
-
-        .btn-progress {
-            padding: 10px 25px;
-            background: rgba(0, 0, 0, 0.2);
-            color: inherit;
-            border: 2px solid currentColor;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .progress-item-impacto .btn-progress {
-            color: #FF8C00;
-        }
-
-        .progress-item-quien .btn-progress {
-            color: #228B22;
-        }
-
-        .progress-item.locked .btn-progress {
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        .btn-progress:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        /* BOTÓN CONTINUAR APRENDIENDO */
-        .btn-continue {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-
-        .btn-continue:hover {
-            transform: scale(1.05);
-        }
-
-        /* BOTÓN VOLVER MENÚ */
-        .btn-menu-return {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .btn-menu-return:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.05);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .detail-screen {
-                padding: 70px 15px 30px;
-            }
-
-            .detail-title {
-                font-size: 24px;
-            }
-
-            .detail-content {
-                font-size: 14px;
-            }
-
-            .summary-title {
-                font-size: 22px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .splash-title {
-                font-size: 24px;
-            }
-
-            .detail-screen {
-                padding: 60px 15px 20px;
-            }
-
-            .detail-title {
-                font-size: 20px;
-            }
-
-            .detail-content {
-                font-size: 13px;
-            }
-
-            .btn-back {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-        }
-    </style>
+    <title>Abejas Meliponini</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- PANTALLA 1: SPLASH SCREEN -->
-    <div class="screen active" id="splashScreen">
-        <div class="splash-screen">
-            <div class="bee-animation">
-                <div class="bee-body">
-                    <div class="bee-wings">
-                        <div class="wing left"></div>
-                        <div class="wing right"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="splash-title">🐝 Melipona 🐝</div>
-            <div class="splash-subtitle">Descubre todo sobre las abejas</div>
-            <button class="btn-main" onclick="goToSelector()">Comenzar</button>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 1 · PORTADA
+════════════════════════════════════════ -->
+<div class="screen active" id="splashScreen">
+    <div class="splash-cover">
+        <!-- Reemplaza MeliponaInicio.jpg con tu foto de portada -->
+        <img class="splash-bg" src="MeliponaInicio.jpg" alt="Abeja Meliponini">
+        <div class="splash-overlay"></div>
+        <div class="splash-content">
+            <h1 class="splash-heading">
+                <span class="splash-heading-top">ABEJAS</span>
+                <span class="splash-heading-main">MELIPONINI</span>
+            </h1>
+            <p class="splash-sub">Impacto, Descripción y Cuidados</p>
+            <button class="btn-cover" onclick="goTo('welcomeScreen')">
+                Click para Comenzar <span class="ico">▶</span>
+            </button>
         </div>
     </div>
+</div>
 
-    <!-- PANTALLA 2: SELECTOR -->
-    <div class="screen" id="selectorScreen">
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="selector-screen">
-            <div class="selector-title">¿Qué deseas hacer?</div>
-            <div class="selector-container">
-                <div class="selector-card">
-                    <h3>🌍 Ayúdame a recorrer la información</h3>
-                    <p>Explora cada sección de información sobre las abejas de forma ordenada.</p>
-                    <button class="btn-selector" onclick="goToProgress()">Comenzar</button>
-                </div>
-                <div class="selector-card">
-                    <h3>📚 Aprender por mi cuenta</h3>
-                    <p>Aprende a tu propio ritmo con todas las secciones desbloqueadas.</p>
-                    <button class="btn-selector" onclick="goToFreeLearn()">Comenzar</button>
-                </div>
+<!-- ════════════════════════════════════════
+     PANTALLA 2 · BIENVENIDO
+════════════════════════════════════════ -->
+<div class="screen" id="welcomeScreen">
+    <header class="app-header">
+        <span class="header-title">ABEJAS MELIPONINI</span>
+    </header>
+    <div class="page-body">
+        <h2 class="welcome-heading">¡Bienvenido!</h2>
+        <div class="welcome-row">
+            <div class="welcome-text">
+                <p>Hola, somos las <strong>abejas meliponas.</strong></p>
+                <p>No tenemos aguijón,<br>pero ayudamos a que<br>
+                   <em>las flores y los frutos crezcan.</em></p>
+                <p>Cuidarnos es proteger<br>
+                   <em>la vida que te rodea.</em></p>
             </div>
+            <!-- Reemplaza AbejaMelipona-1.jpg con tu foto de bienvenida -->
+            <img class="welcome-bee" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
+        </div>
+        <button class="btn-yellow" onclick="goTo('modeScreen')">
+            Empieza a explorar <span class="ico">▶</span>
+        </button>
+        <div class="info-box">
+            <p>Este material forma parte de un estudio de investigación sobre el
+            ecosistema de las <strong>abejas Meliponini</strong>, su importancia y
+            su rol en la polinización para los meliponarios.</p>
         </div>
     </div>
+</div>
 
-    <!-- PANTALLA 3: RECORRIDO LINEAL -->
-    <div class="screen" id="progressScreen">
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="progress-screen">
-            <div class="progress-title">Tu Recorrido de Aprendizaje</div>
-            <div class="progress-tracker">
-                <div class="progress-item progress-item-impacto unlocked" onclick="goToDetailProgress('impacto')">
-                    <h3>🌍 Impacto</h3>
-                    <p>Descubre el impacto vital de las abejas en nuestro planeta.</p>
-                    <button class="btn-progress">Comenzar</button>
-                </div>
-                <div class="progress-item progress-item-quien locked" id="progQuien">
-                    <h3>🌿 Quién Soy</h3>
-                    <p>Conoce más sobre la abeja Melipona.</p>
-                    <button class="btn-progress">Bloqueado</button>
-                </div>
-                <div class="progress-item progress-item-cuidados locked" id="progCuidados">
-                    <h3>🏠 Cuidados</h3>
-                    <p>Aprende cómo cuidar a nuestras abejas.</p>
-                    <button class="btn-progress">Bloqueado</button>
-                </div>
+<!-- ════════════════════════════════════════
+     PANTALLA 3 · SELECTOR DE MODO
+════════════════════════════════════════ -->
+<div class="screen" id="modeScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">ABEJAS MELIPONINI</span>
+    </header>
+    <div class="page-body">
+        <div class="section-badge">¿Cómo quieres aprender?</div>
+
+        <!-- MODO GUIADO -->
+        <div class="mode-card" onclick="startGuided()">
+            <div class="mode-card-icon" style="background:#EF9F27;">🗺️</div>
+            <div class="mode-card-text">
+                <h3>Recorrer la información</h3>
+                <p>Te guío paso a paso. Cada sección se desbloquea al completar la anterior.</p>
             </div>
+            <span class="menu-arrow">▶</span>
+        </div>
+
+        <!-- MODO LIBRE -->
+        <div class="mode-card" onclick="startFree()">
+            <div class="mode-card-icon" style="background:#3B6D11;">📚</div>
+            <div class="mode-card-text">
+                <h3>Aprender por mi cuenta</h3>
+                <p>Navega libremente por todas las secciones a tu propio ritmo.</p>
+            </div>
+            <span class="menu-arrow">▶</span>
+        </div>
+
+        <div class="info-box">
+            <p>⚠️ <strong>Importante:</strong> estas abejas no tienen aguijón funcional,
+            no representan ningún peligro.</p>
         </div>
     </div>
+</div>
 
-    <!-- PANTALLA 4: APRENDIZAJE LIBRE -->
-    <div class="screen" id="freeLearnScreen">
-        <button class="btn-menu-return" onclick="goToSelector()">Menú Principal</button>
-        <div class="summary-screen">
-            <div class="summary-title">Elige un tema para aprender</div>
-            <div class="summary-cards">
-                <div class="summary-card summary-card-impacto" onclick="goToDetailFree('impacto')">
-                    <h3>🌍 Impacto</h3>
-                    <p>Descubre el impacto vital de las abejas en nuestro planeta y ecosistemas.</p>
-                    <button class="btn-summary">Conocer más</button>
+<!-- ════════════════════════════════════════
+     PANTALLA 4A · RECORRIDO GUIADO (hub)
+════════════════════════════════════════ -->
+<div class="screen" id="progressScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">ABEJAS MELIPONINI</span>
+    </header>
+    <div class="page-body">
+        <div class="section-badge">Tu Recorrido de Aprendizaje</div>
+
+        <!-- Impacto: siempre desbloqueado al iniciar -->
+        <div class="menu-item" id="progImpacto"
+             onclick="goToGuided('impactoScreen')">
+            <div class="menu-item-img" style="background:#EF9F27;">
+                <img src="img/menu-impacto.jpg" alt="Impacto"
+                     onerror="this.style.display='none'">
+            </div>
+            <div class="menu-item-text">
+                <h3>Impacto</h3>
+                <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
+            </div>
+            <span class="menu-arrow" id="arrowImpacto">▶</span>
+        </div>
+
+        <!-- Descripción: bloqueado hasta completar Impacto+Cultivos -->
+        <div class="menu-item locked" id="progDescripcion">
+            <div class="menu-item-img" style="background:#888;">
+                <img src="img/menu-descripcion.jpg" alt="Descripción"
+                     onerror="this.style.display='none'">
+            </div>
+            <div class="menu-item-text">
+                <h3>Descripción</h3>
+                <p>¿Quién soy?<br>Diferencias entre especies</p>
+            </div>
+            <span class="menu-arrow lock-icon">🔒</span>
+        </div>
+
+        <!-- Cuidados: bloqueado hasta completar Descripción -->
+        <div class="menu-item locked" id="progCuidados">
+            <div class="menu-item-img" style="background:#6aaa3a;">
+                <img src="img/menu-cuidados.jpg" alt="Cuidados"
+                     onerror="this.style.display='none'">
+            </div>
+            <div class="menu-item-text">
+                <h3>Cuidados</h3>
+                <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
+            </div>
+            <span class="menu-arrow lock-icon">🔒</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 4B · MENÚ LIBRE
+════════════════════════════════════════ -->
+<div class="screen" id="menuScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">ABEJAS MELIPONINI</span>
+    </header>
+    <div class="page-body">
+        <div class="section-badge">Elige un tema para aprender</div>
+        <div class="menu-list">
+
+            <div class="menu-item" onclick="goToFree('impactoScreen')">
+                <div class="menu-item-img" style="background:#EF9F27;">
+                    <img src="img/menu-impacto.jpg" alt="Impacto"
+                         onerror="this.style.display='none'">
                 </div>
-                <div class="summary-card summary-card-quien" onclick="goToDetailFree('quien')">
-                    <h3>🌿 Quién Soy</h3>
-                    <p>Conoce más sobre la abeja Melipona y sus características únicas.</p>
-                    <button class="btn-summary">Conocer más</button>
+                <div class="menu-item-text">
+                    <h3>Impacto</h3>
+                    <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
                 </div>
-                <div class="summary-card summary-card-cuidados" onclick="goToDetailFree('cuidados')">
-                    <h3>🏠 Cuidados</h3>
-                    <p>Aprende cómo cuidar y proteger a nuestras abejas melíferas.</p>
-                    <button class="btn-summary">Conocer más</button>
+                <span class="menu-arrow">▶</span>
+            </div>
+
+            <div class="menu-item" onclick="goToFree('descripcionScreen')">
+                <div class="menu-item-img" style="background:#888;">
+                    <img src="img/menu-descripcion.jpg" alt="Descripción"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Descripción</h3>
+                    <p>¿Quién soy?<br>Diferencias entre especies</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+
+            <div class="menu-item" onclick="goToFree('cuidadosScreen')">
+                <div class="menu-item-img" style="background:#6aaa3a;">
+                    <img src="img/menu-cuidados.jpg" alt="Cuidados"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Cuidados</h3>
+                    <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 5 · IMPACTO
+════════════════════════════════════════ -->
+<div class="screen" id="impactoScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">IMPACTO</span>
+    </header>
+    <div class="page-body">
+
+        <div class="section-badge">¿Cuál es mi impacto?</div>
+
+        <p class="body-text">
+            De los <strong>100 cultivos</strong> que constituyen el
+            <strong>90% de los suministros alimentarios</strong> de todo el mundo,
+            <strong>71 dependen totalmente de la polinización.</strong>
+        </p>
+
+        <button class="btn-yellow full" onclick="goTo('cultivosScreen')">
+            Conocer algunos de estos cultivos
+        </button>
+
+        <hr class="divider">
+
+        <p class="label-small">Ahora</p>
+        <div class="section-badge">¿Polinización?<br>Si abejas ¿verdad?</div>
+
+        <p class="body-text">
+            ¿Sabías que existe una tribu de abejas nativas de latinoamérica?
+        </p>
+
+        <!-- Reemplaza AbejaMelipona-1.jpg con foto circular de abeja -->
+        <div class="circular-img-wrap">
+            <img class="circular-img" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
+        </div>
+
+        <p class="body-text">
+            Al ser <strong>nativa de latinoamérica</strong> resulta
+            <strong>altamente eficiente</strong> para la
+            <strong>polinización de cultivos nativos.</strong>
+        </p>
+
+        <!-- Reemplaza img/mapa-colombia.png con tu mapa -->
+        <div class="map-wrap">
+            <img class="map-img" src="img/mapa-colombia.png" alt="Mapa Colombia"
+                 onerror="this.parentElement.style.display='none'">
+        </div>
+
+        <p class="body-text">
+            Su rol de polinización <strong>impacta directamente</strong>
+            el desarrollo de las <strong>cosechas</strong> y en consecuencia
+            el <strong>costo de los alimentos.</strong>
+        </p>
+        <p class="body-text">
+            Además de ser <strong>indispensables</strong> para el
+            <strong>equilibrio ecosistémico</strong> de nuestros hábitats.
+        </p>
+
+        <!-- MODO GUIADO: ir a cultivos para desbloquear siguiente -->
+        <button class="btn-green full progress-only"
+                onclick="goTo('cultivosScreen')">
+            Siguiente <span class="ico">▶</span>
+        </button>
+        <!-- MODO LIBRE: volver al menú -->
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 6 · CULTIVOS
+════════════════════════════════════════ -->
+<div class="screen" id="cultivosScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">IMPACTO · CULTIVOS</span>
+    </header>
+    <div class="page-body">
+
+        <div class="crop-list">
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#e8304a;">
+                    <img src="img/cultivos/fresas.jpg" alt="Fresas"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🍓</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Fresas</h4>
+                    <p>70% de las fresas son polinizadas por abejas</p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- PANTALLA 5: DETALLE IMPACTO (PROGRESO) -->
-    <div class="screen" id="detailImpactoProgress">
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="detail-screen detail-impacto">
-            <h1 class="detail-title">🌍 Impacto de las Abejas</h1>
-            <div class="detail-content">
-                <p>
-                    Las abejas son fundamentales para los ecosistemas del planeta. Aproximadamente el 75% de los cultivos mundiales dependen de la polinización realizada por las abejas y otros insectos.
-                </p>
-                <p>
-                    Sin las abejas, muchas plantas no podrían reproducirse, lo que afectaría gravemente la producción de alimentos. Contribuyen a la polinización de frutas, verduras y plantas silvestres que alimentan a los seres vivos del planeta.
-                </p>
-                <p>
-                    Además de la polinización, las abejas producen miel, propóleo, cera y otros productos que son valiosos para los humanos y tienen propiedades medicinales extraordinarias.
-                </p>
-                <p>
-                    El declive de las poblaciones de abejas es una amenaza seria para la seguridad alimentaria mundial. La conservación de las abejas es esencial para mantener la biodiversidad y garantizar un futuro sostenible para todos.
-                </p>
-                <p>
-                    Estudios científicos demuestran que sin las abejas, muchas especies de plantas desaparecerían en pocos años, seguidas por los animales que dependen de ellas, creando un efecto dominó devastador para los ecosistemas.
-                </p>
-                <button class="btn-continue" onclick="unlockNextSection('quien'); goToDetailProgress('quien')">Continuar aprendiendo</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- PANTALLA 6: DETALLE QUIÉN SOY (PROGRESO) -->
-    <div class="screen" id="detailQuienProgress">
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="detail-screen detail-quien">
-            <h1 class="detail-title">🌿 Quién Soy - Melipona</h1>
-            <div class="detail-content">
-                <p>
-                    Mi nombre es Melipona y soy una abeja sin aguijón, originaria de América Central y América del Sur. Pertenezco a una especie única y especial de abejas que no se encuentra en otras partes del mundo.
-                </p>
-                <p>
-                    A diferencia de otras abejas, las meliponas no tenemos aguijón para defendernos. Somos abejas muy tranquilas, pacíficas y dóciles, lo que las hace ideales para vivir junto a los humanos sin temor a ser atacados.
-                </p>
-                <p>
-                    Vivimos en colonias altamente organizadas donde cada miembro tiene un rol importante. Trabajamos juntas para mantener nuestra colmena saludable, productiva y armoniónica durante toda la vida.
-                </p>
-                <p>
-                    Nuestras colmenas son estructuras fascinantes hechas de cera y propóleo. Producimos una miel única, más fluida que la de otras abejas, con propiedades medicinales especiales valoradas desde tiempos ancestrales.
-                </p>
-                <p>
-                    Los pueblos indígenas de América han trabajado con abejas meliponas durante miles de años en una práctica conocida como "meliponicultura", respetando y cuidando estas abejas extraordinarias como parte de su cultura y tradición.
-                </p>
-                <button class="btn-continue" onclick="unlockNextSection('cuidados'); goToDetailProgress('cuidados')">Continuar aprendiendo</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- PANTALLA 7: DETALLE CUIDADOS (PROGRESO) -->
-    <div class="screen" id="detailCuidadosProgress">
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="detail-screen detail-cuidados">
-            <h1 class="detail-title">🏠 Cuidados de las Abejas</h1>
-            <div class="detail-content">
-                <p>
-                    Para mantener a nuestras abejas saludables, es importante proporcionarles un ambiente tranquilo, seguro y protegido de amenazas externas. Necesitamos proteger sus colmenas de depredadores como las hormigas, las avispas y los pájaros depredadores.
-                </p>
-                <p>
-                    Debemos garantizar que tengan acceso a suficientes flores y plantas para obtener néctar y polen durante todo el año. Un paisaje diverso con flores silvestres, árboles frutales y plantas nativas es esencial para su nutrición.
-                </p>
-                <p>
-                    Es importante realizar un monitoreo regular de las colonias para detectar problemas de salud tempranamente y proporcionar tratamientos si es necesario. La prevención de enfermedades es más efectiva que la cura.
-                </p>
-                <p>
-                    Nunca debes usar pesticidas, herbicidas o insecticidas cerca de nuestras colmenas. Estos productos químicos son devastadores para las abejas y pueden matar colonias enteras en cuestión de días.
-                </p>
-                <p>
-                    Proporciona agua fresca y limpia cerca de las colmenas. Las abejas necesitan agua para refrescarse, diluir la miel y alimentar a las larvas. Un pequeño plato con agua y piedras es suficiente.
-                </p>
-                <button class="btn-continue" onclick="goToCompleteMenu()">Ver menú completo</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- PANTALLA 8: MENÚ COMPLETADO -->
-    <div class="screen" id="completeMenuScreen">
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="summary-screen">
-            <div class="summary-title">¡Felicitaciones! Ya aprendiste todo</div>
-            <div class="summary-cards">
-                <div class="summary-card summary-card-impacto" onclick="goToDetailProgress('impacto')">
-                    <h3>🌍 Impacto</h3>
-                    <p>Descubre el impacto vital de las abejas en nuestro planeta y ecosistemas.</p>
-                    <button class="btn-summary">Revisar</button>
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#5c3d2e;">
+                    <img src="img/cultivos/cafe.jpg" alt="Café"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">☕</span>
                 </div>
-                <div class="summary-card summary-card-quien" onclick="goToDetailProgress('quien')">
-                    <h3>🌿 Quién Soy</h3>
-                    <p>Conoce más sobre la abeja Melipona y sus características únicas.</p>
-                    <button class="btn-summary">Revisar</button>
-                </div>
-                <div class="summary-card summary-card-cuidados" onclick="goToDetailProgress('cuidados')">
-                    <h3>🏠 Cuidados</h3>
-                    <p>Aprende cómo cuidar y proteger a nuestras abejas melíferas.</p>
-                    <button class="btn-summary">Revisar</button>
+                <div class="crop-text">
+                    <h4>Café</h4>
+                    <p>Las abejas aumentan la fructificación del café del 60% al 90%</p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- PANTALLA 9: DETALLE IMPACTO (LIBRE) -->
-    <div class="screen" id="detailImpactoFree">
-        <button class="btn-menu-return" onclick="goToFreeLearn()">Menú Principal</button>
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="detail-screen detail-impacto">
-            <h1 class="detail-title">🌍 Impacto de las Abejas</h1>
-            <div class="detail-content">
-                <p>
-                    Las abejas son fundamentales para los ecosistemas del planeta. Aproximadamente el 75% de los cultivos mundiales dependen de la polinización realizada por las abejas y otros insectos.
-                </p>
-                <p>
-                    Sin las abejas, muchas plantas no podrían reproducirse, lo que afectaría gravemente la producción de alimentos. Contribuyen a la polinización de frutas, verduras y plantas silvestres que alimentan a los seres vivos del planeta.
-                </p>
-                <p>
-                    Además de la polinización, las abejas producen miel, propóleo, cera y otros productos que son valiosos para los humanos y tienen propiedades medicinales extraordinarias.
-                </p>
-                <p>
-                    El declive de las poblaciones de abejas es una amenaza seria para la seguridad alimentaria mundial. La conservación de las abejas es esencial para mantener la biodiversidad y garantizar un futuro sostenible para todos.
-                </p>
-                <p>
-                    Estudios científicos demuestran que sin las abejas, muchas especies de plantas desaparecerían en pocos años, seguidas por los animales que dependen de ellas, creando un efecto dominó devastador para los ecosistemas.
-                </p>
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#3b7a35;">
+                    <img src="img/cultivos/aguacate.jpg" alt="Aguacate"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🥑</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Aguacate</h4>
+                    <p>Las abejas mejoran la producción de aguacate en un 96%</p>
+                </div>
+            </div>
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#f0c040;">
+                    <img src="img/cultivos/banano.jpg" alt="Banano"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🍌</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Banano</h4>
+                    <p>La polinización hace más eficiente su producción</p>
+                </div>
+            </div>
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#f5956b;">
+                    <img src="img/cultivos/durazno.jpg" alt="Durazno"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🍑</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Durazno</h4>
+                    <p>La incidencia de Meliponinos aumenta su calidad</p>
+                </div>
+            </div>
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#a8c060;">
+                    <img src="img/cultivos/pera.jpg" alt="Pera"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🍐</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Pera</h4>
+                    <p>Más del 65% de estos cultivos los polinizan Meliponinos</p>
+                </div>
+            </div>
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#f08020;">
+                    <img src="img/cultivos/mango.jpg" alt="Mango"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🥭</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Mango</h4>
+                    <p>La diversidad de abejas aumentan su calidad en un 60%</p>
+                </div>
+            </div>
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#c8a878;">
+                    <img src="img/cultivos/macadamia.jpg" alt="Macadamia"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🌰</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Macadamia</h4>
+                    <p>Las abejas son las principales polinizadoras</p>
+                </div>
+            </div>
+
+            <div class="crop-item">
+                <div class="crop-circle" style="background:#d45080;">
+                    <img src="img/cultivos/pomarrosa.jpg" alt="Pomarrosa"
+                         onerror="this.style.display='none'">
+                    <span class="crop-emoji">🌸</span>
+                </div>
+                <div class="crop-text">
+                    <h4>Pomarrosa</h4>
+                    <p>De los cultivos favoritos de los Meliponinos</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MODO GUIADO: desbloquea Descripción y vuelve al hub -->
+        <button class="btn-green full progress-only"
+                onclick="unlockSection('Descripcion'); goTo('progressScreen')">
+            Continuar aprendiendo <span class="ico">▶</span>
+        </button>
+        <!-- MODO LIBRE: volver al menú -->
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+        <p class="footer-note">Continuemos esta aventura</p>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 7 · DESCRIPCIÓN
+════════════════════════════════════════ -->
+<div class="screen" id="descripcionScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">DESCRIPCIÓN</span>
+    </header>
+    <div class="page-body">
+
+        <div class="section-badge">¿Quién soy?</div>
+
+        <p class="body-text">
+            Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
+            originaria de <strong>América Central y América del Sur.</strong>
+            Pertenezco a una especie única y especial que no se encuentra
+            en otras partes del mundo.
+        </p>
+        <p class="body-text">
+            Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
+            ideales para vivir junto a los humanos sin temor a ser atacados.
+        </p>
+        <p class="body-text">
+            Vivimos en colonias altamente organizadas donde cada miembro tiene
+            un rol importante. Trabajamos juntas para mantener nuestra colmena
+            <strong>saludable, productiva y armoniosa.</strong>
+        </p>
+        <p class="body-text">
+            Producimos una <strong>miel única,</strong> más fluida que la de
+            otras abejas, con propiedades medicinales especiales valoradas
+            desde tiempos ancestrales.
+        </p>
+        <p class="body-text">
+            Los pueblos indígenas de América han trabajado con abejas meliponas
+            durante miles de años en una práctica conocida como
+            <strong>"meliponicultura".</strong>
+        </p>
+
+        <!-- MODO GUIADO: desbloquea Cuidados y vuelve al hub -->
+        <button class="btn-green full progress-only"
+                onclick="unlockSection('Cuidados'); goTo('progressScreen')">
+            Continuar aprendiendo <span class="ico">▶</span>
+        </button>
+        <!-- MODO LIBRE: volver al menú -->
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+        <p class="footer-note">Continuemos esta aventura</p>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 8 · CUIDADOS
+════════════════════════════════════════ -->
+<div class="screen" id="cuidadosScreen">
+    <header class="app-header">
+        <button class="header-back" onclick="goBack()">&#8592;</button>
+        <span class="header-title">CUIDADOS</span>
+    </header>
+    <div class="page-body">
+
+        <div class="section-badge">¿Cómo puedes cuidarme?</div>
+
+        <p class="body-text">
+            Para mantener a nuestras abejas saludables es importante
+            proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
+            protegido de depredadores como las hormigas, avispas y pájaros.
+        </p>
+        <p class="body-text">
+            Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
+            para obtener néctar y polen durante todo el año.
+        </p>
+        <p class="body-text">
+            <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
+            de nuestras colmenas. Estos productos pueden matar colonias enteras
+            en cuestión de días.
+        </p>
+        <p class="body-text">
+            Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
+            Un pequeño plato con agua y piedras es suficiente.
+        </p>
+
+        <!-- MODO GUIADO: va a la pantalla de completado -->
+        <button class="btn-green full progress-only"
+                onclick="goTo('completedScreen')">
+            ¡Completé el recorrido! <span class="ico">▶</span>
+        </button>
+        <!-- MODO LIBRE: volver al menú -->
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 9 · RECORRIDO COMPLETADO
+════════════════════════════════════════ -->
+<div class="screen" id="completedScreen">
+    <header class="app-header">
+        <span class="header-title">ABEJAS MELIPONINI</span>
+    </header>
+    <div class="page-body">
+
+        <div class="section-badge completed-badge">
+            ¡Felicitaciones!<br>Completaste el recorrido 🎉
+        </div>
+
+        <p class="body-text" style="text-align:center;">
+            Ya conoces el impacto, la descripción y los cuidados de las
+            <strong>abejas Meliponini.</strong> Puedes repasar cualquier sección:
+        </p>
+
+        <div class="menu-list">
+            <div class="menu-item" onclick="goToGuided('impactoScreen')">
+                <div class="menu-item-img" style="background:#EF9F27;">
+                    <img src="img/menu-impacto.jpg" alt="Impacto"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Impacto</h3><p>Revisar</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+            <div class="menu-item" onclick="goToGuided('descripcionScreen')">
+                <div class="menu-item-img" style="background:#888;">
+                    <img src="img/menu-descripcion.jpg" alt="Descripción"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Descripción</h3><p>Revisar</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+            <div class="menu-item" onclick="goToGuided('cuidadosScreen')">
+                <div class="menu-item-img" style="background:#6aaa3a;">
+                    <img src="img/menu-cuidados.jpg" alt="Cuidados"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Cuidados</h3><p>Revisar</p>
+                </div>
+                <span class="menu-arrow">▶</span>
             </div>
         </div>
+
+        <button class="btn-yellow full" onclick="goTo('modeScreen')">
+            Volver al inicio <span class="ico">▶</span>
+        </button>
+
     </div>
+</div>
 
-    <!-- PANTALLA 10: DETALLE QUIÉN SOY (LIBRE) -->
-    <div class="screen" id="detailQuienFree">
-        <button class="btn-menu-return" onclick="goToFreeLearn()">Menú Principal</button>
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="detail-screen detail-quien">
-            <h1 class="detail-title">🌿 Quién Soy - Melipona</h1>
-            <div class="detail-content">
-                <p>
-                    Mi nombre es Melipona y soy una abeja sin aguijón, originaria de América Central y América del Sur. Pertenezco a una especie única y especial de abejas que no se encuentra en otras partes del mundo.
-                </p>
-                <p>
-                    A diferencia de otras abejas, las meliponas no tenemos aguijón para defendernos. Somos abejas muy tranquilas, pacíficas y dóciles, lo que las hace ideales para vivir junto a los humanos sin temor a ser atacados.
-                </p>
-                <p>
-                    Vivimos en colonias altamente organizadas donde cada miembro tiene un rol importante. Trabajamos juntas para mantener nuestra colmena saludable, productiva y armoniónica durante toda la vida.
-                </p>
-                <p>
-                    Nuestras colmenas son estructuras fascinantes hechas de cera y propóleo. Producimos una miel única, más fluida que la de otras abejas, con propiedades medicinales especiales valoradas desde tiempos ancestrales.
-                </p>
-                <p>
-                    Los pueblos indígenas de América han trabajado con abejas meliponas durante miles de años en una práctica conocida como "meliponicultura", respetando y cuidando estas abejas extraordinarias como parte de su cultura y tradición.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PANTALLA 11: DETALLE CUIDADOS (LIBRE) -->
-    <div class="screen" id="detailCuidadosFree">
-        <button class="btn-menu-return" onclick="goToFreeLearn()">Menú Principal</button>
-        <button class="btn-back" onclick="goBack()">← Atrás</button>
-        <div class="detail-screen detail-cuidados">
-            <h1 class="detail-title">🏠 Cuidados de las Abejas</h1>
-            <div class="detail-content">
-                <p>
-                    Para mantener a nuestras abejas saludables, es importante proporcionarles un ambiente tranquilo, seguro y protegido de amenazas externas. Necesitamos proteger sus colmenas de depredadores como las hormigas, las avispas y los pájaros depredadores.
-                </p>
-                <p>
-                    Debemos garantizar que tengan acceso a suficientes flores y plantas para obtener néctar y polen durante todo el año. Un paisaje diversa con flores silvestres, árboles frutales y plantas nativas es esencial para su nutrición.
-                </p>
-                <p>
-                    Es importante realizar un monitoreo regular de las colonias para detectar problemas de salud tempranamente y proporcionar tratamientos si es necesario. La prevención de enfermedades es más efectiva que la cura.
-                </p>
-                <p>
-                    Nunca debes usar pesticidas, herbicidas o insecticidas cerca de nuestras colmenas. Estos productos químicos son devastadores para las abejas y pueden matar colonias enteras en cuestión de días.
-                </p>
-                <p>
-                    Proporciona agua fresca y limpia cerca de las colmenas. Las abejas necesitan agua para refrescarse, diluir la miel y alimentar a las larvas. Un pequeño plato con agua y piedras es suficiente.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Control de navegación
-        let history = ['splashScreen'];
-        let learnMode = 'free'; // 'progress' o 'free'
-
-        function showScreen(screenId) {
-            // Ocultar todas las pantallas
-            const screens = document.querySelectorAll('.screen');
-            screens.forEach(screen => screen.classList.remove('active'));
-            
-            // Mostrar la pantalla seleccionada
-            document.getElementById(screenId).classList.add('active');
-        }
-
-        function goToSelector() {
-            history = ['splashScreen', 'selectorScreen'];
-            showScreen('selectorScreen');
-        }
-
-        function goToProgress() {
-            learnMode = 'progress';
-            history.push('progressScreen');
-            showScreen('progressScreen');
-        }
-
-        function goToFreeLearn() {
-            learnMode = 'free';
-            history = ['splashScreen', 'selectorScreen', 'freeLearnScreen'];
-            showScreen('freeLearnScreen');
-        }
-
-        function goToDetailProgress(section) {
-            let screenId;
-            if (section === 'impacto') {
-                screenId = 'detailImpactoProgress';
-            } else if (section === 'quien') {
-                screenId = 'detailQuienProgress';
-            } else if (section === 'cuidados') {
-                screenId = 'detailCuidadosProgress';
-            }
-            history.push(screenId);
-            showScreen(screenId);
-        }
-
-        function goToDetailFree(section) {
-            let screenId;
-            if (section === 'impacto') {
-                screenId = 'detailImpactoFree';
-            } else if (section === 'quien') {
-                screenId = 'detailQuienFree';
-            } else if (section === 'cuidados') {
-                screenId = 'detailCuidadosFree';
-            }
-            history.push(screenId);
-            showScreen(screenId);
-        }
-
-        function goToCompleteMenu() {
-            history.push('completeMenuScreen');
-            showScreen('completeMenuScreen');
-        }
-
-        function unlockNextSection(section) {
-            if (section === 'quien') {
-                const quienElement = document.getElementById('progQuien');
-                quienElement.classList.remove('locked');
-                quienElement.classList.add('unlocked');
-                quienElement.onclick = () => goToDetailProgress('quien');
-                quienElement.querySelector('.btn-progress').textContent = 'Comenzar';
-            } else if (section === 'cuidados') {
-                const cuidadosElement = document.getElementById('progCuidados');
-                cuidadosElement.classList.remove('locked');
-                cuidadosElement.classList.add('unlocked');
-                cuidadosElement.onclick = () => goToDetailProgress('cuidados');
-                cuidadosElement.querySelector('.btn-progress').textContent = 'Comenzar';
-            }
-        }
-
-        function goBack() {
-            if (history.length > 1) {
-                history.pop();
-                const previousScreen = history[history.length - 1];
-                showScreen(previousScreen);
-            }
-        }
-    </script>
+<script src="main.js"></script>
 </body>
 </html>
