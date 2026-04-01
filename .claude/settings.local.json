@@ -6,7 +6,9 @@
       "Bash(where node:*)",
       "Bash(where.exe node:*)",
       "Bash(powershell -Command \":*)",
-      "Bash(powershell -Command \"\\(Get-Content ''e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\styles.css'' -Raw\\).Split\\(''\\\\n''\\).Count\")"
+      "Bash(powershell -Command \"\\(Get-Content ''e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\styles.css'' -Raw\\).Split\\(''\\\\n''\\).Count\")",
+      "Bash(find 'e:/02-Marlon Rene/Pagina Melipona/' -iname *melipona* -o -iname *inicio*)",
+      "Bash(find 'e:/02-Marlon Rene/Pagina Melipona/' -iname *.jpg -o -iname *.png -o -iname *.jpeg -o -iname *.webp)"
     ]
   }
 }
