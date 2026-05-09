@@ -68,3 +68,31 @@ Impacto | Cultivos | Descripción | Cuidados
 - Explicar qué hace cada parte del código modificado
 - Mantener compatibilidad con GitHub Pages
 - No hacer cambios masivos en una sola vez
+
+## index_v2.html — Rediseño Mobile-First
+
+### Objetivo
+Nueva versión de la página con estética mobile-first tipo app nativa.
+El archivo original (index.html) se conserva intacto como respaldo.
+
+### Referencias visuales
+- App "florest": hero fotográfico, cards flotantes, bordes redondeados
+- E.reader UI: pantallas limpias y bien definidas
+- Bottom nav con bump curvo: ítem activo sube con curva
+
+### Cambios de UX permitidos en v2
+- Navegación por bottom nav (abajo) en lugar de barra superior
+- Swipe horizontal entre pantallas
+- Sin scroll — cada pantalla cabe en el viewport del celular
+- Transiciones tipo slide suave entre pantallas
+
+### Estética v2
+- Misma paleta de colores del proyecto original
+- Cards flotantes que no tocan los bordes de pantalla
+- Bordes redondeados en todos los elementos (cards, botones, nav)
+- Hero fotográfico con overlay oscuro y texto encima
+- Tipografía bold con personalidad para títulos
+
+### Estructura (se mantiene igual que index.html)
+- El flujo y las pantallas son los mismos
+- Solo cambia la estética y la navegación

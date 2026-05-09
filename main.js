@@ -116,23 +116,26 @@ function startFree() {
 // REVEAL DEL SELECTOR DE MODO
 // ──────────────────────────────────────────────
 function revealModes() {
-    const wrap    = document.getElementById('modeCardsWrap');
-    const revealW = document.getElementById('revealWrap');
-    const cards   = wrap.querySelectorAll('.mode-card');
+    const single = document.getElementById('modeOrbSingle');
+    const split  = document.getElementById('modeOrbsSplit');
 
-    revealW.style.display = 'none';
-    wrap.classList.remove('pre-reveal');
-    cards.forEach(c => c.classList.add('reveal-anim'));
+    // Fase 1: explosión del orbe único
+    single.classList.add('splitting');
+
+    // Fase 2: aparecen los dos orbes desde el centro
+    setTimeout(() => {
+        single.style.display = 'none';
+        split.classList.add('revealed');
+    }, 390);
 }
 
 function resetModeReveal() {
-    const wrap    = document.getElementById('modeCardsWrap');
-    const revealW = document.getElementById('revealWrap');
-    const cards   = wrap.querySelectorAll('.mode-card');
+    const single = document.getElementById('modeOrbSingle');
+    const split  = document.getElementById('modeOrbsSplit');
 
-    revealW.style.display = '';
-    wrap.classList.add('pre-reveal');
-    cards.forEach(c => c.classList.remove('reveal-anim'));
+    single.style.display = '';
+    single.classList.remove('splitting');
+    split.classList.remove('revealed');
 }
 
 function goToGuided(screenId) {

@@ -118,38 +118,40 @@
         <div class="section-badge">Existen dos formas de explorar</div>
         <p class="mode-intro-text">¿Cuál te gusta más?</p>
 
-        <!-- Botón de revelar -->
-        <div class="reveal-wrap" id="revealWrap">
-            <button class="btn-reveal" onclick="revealModes()">
-                <span class="reveal-icon">✨</span> Descubrir las opciones
-            </button>
-        </div>
+        <!-- Orbe único + split -->
+        <div class="mode-orb-container" id="modeOrbContainer">
 
-        <!-- Cards (ocultas hasta el reveal) -->
-        <div class="mode-cards-wrap pre-reveal" id="modeCardsWrap">
-
-            <!-- MODO GUIADO -->
-            <div class="mode-card" onclick="startGuided()">
-                <div class="mode-card-icon" style="background:#E8981C;">🗺️</div>
-                <div class="mode-card-text">
-                    <h3>Recorrer la información</h3>
-                    <p>Te guío paso a paso. Cada sección se desbloquea al completar la anterior.</p>
-                </div>
-                <span class="menu-arrow">▶</span>
+            <!-- Orbe inicial -->
+            <div class="mode-orb-single" id="modeOrbSingle" onclick="revealModes()">
+                <span class="orb-star">🌟</span>
+                <span class="orb-cta">Descubrir</span>
+                <div class="orb-ring"></div>
             </div>
 
-            <!-- MODO LIBRE -->
-            <div class="mode-card" onclick="startFree()">
-                <div class="mode-card-icon" style="background:#4A8820;">📚</div>
-                <div class="mode-card-text">
-                    <h3>Aprender por mi cuenta</h3>
-                    <p>Navega libremente por todas las secciones a tu propio ritmo.</p>
+            <!-- Dos orbes revelados (ocultos al inicio) -->
+            <div class="mode-orbs-split" id="modeOrbsSplit">
+
+                <div class="mode-orb-half orb-left" onclick="startGuided()">
+                    <div class="orb-bubble" style="background:linear-gradient(135deg,#E8981C,#C07810);">
+                        <span class="orb-emoji">🗺️</span>
+                        <div class="orb-bubble-shine"></div>
+                    </div>
+                    <strong class="orb-title">Recorrer</strong>
+                    <p class="orb-desc">Guiado paso a paso,<br>desbloqueando secciones</p>
                 </div>
-                <span class="menu-arrow">▶</span>
+
+                <div class="mode-orb-half orb-right" onclick="startFree()">
+                    <div class="orb-bubble" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">
+                        <span class="orb-emoji">📚</span>
+                        <div class="orb-bubble-shine"></div>
+                    </div>
+                    <strong class="orb-title">Explorar</strong>
+                    <p class="orb-desc">Libremente,<br>a tu propio ritmo</p>
+                </div>
+
             </div>
 
         </div>
-
 
     </div>
 </div>
