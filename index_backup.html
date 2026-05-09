@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abejas Meliponini</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     BARRA DE NAVEGACIÓN GLOBAL (glass)
+════════════════════════════════════════ -->
+<nav class="glass-nav" id="glassNav">
+    <button class="gnav-back" id="gnavBack" onclick="goBack()">&#8592;</button>
+    <span class="gnav-logo">MELIPONA</span>
+    <div class="gnav-links" id="gnavLinks"></div>
+    <button class="gnav-about" onclick="toggleAbout(event)">Acerca de</button>
+</nav>
+
+<!-- Panel flotante "Acerca de" -->
+<div class="about-panel" id="aboutPanel">
+    <p>Este es un <strong>trabajo de tesis</strong> desarrollado para la concientización sobre las <strong>abejas meliponas</strong> y su importancia como polinizadoras nativas de Latinoamérica. Proyecto de Diseño Industrial.</p>
+    <button class="about-close" onclick="closeAbout()">✕</button>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 1 · PORTADA
+════════════════════════════════════════ -->
+<div class="screen active" id="splashScreen">
+    <div class="splash-cover">
+        <img class="splash-bg" src="Pagina Inicial melipona.jpg" alt="Abeja Meliponini">
+        <div class="splash-overlay"></div>
+        <div class="splash-content">
+            <h1 class="splash-heading">
+                <span class="splash-heading-top">ABEJAS</span>
+                <span class="splash-heading-main">MELIPONINI</span>
+            </h1>
+            <p class="splash-sub">Impacto, Descripción y Cuidados</p>
+            <button class="btn-cover" onclick="goTo('welcomeScreen')">
+                Click para Comenzar <span class="ico">▶</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 2 · BIENVENIDO
+════════════════════════════════════════ -->
+<div class="screen" id="welcomeScreen">
+    <div class="page-body welcome-body">
+        <div class="welcome-bee-wrap">
+            <img class="welcome-bee-center" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
+        </div>
+        <h2 class="welcome-heading">¡Bienvenido!</h2>
+        <div class="welcome-text-center">
+            <p>Hola, somos las <strong>abejas meliponas.</strong></p>
+            <p>No tenemos aguijón,<br>pero ayudamos a que<br>
+               <em>las flores y los frutos crezcan.</em></p>
+            <p>Cuidarnos es proteger<br>
+               <em>la vida que te rodea.</em></p>
+        </div>
+        <button class="btn-yellow full" onclick="goTo('warningScreen')">
+            Empieza a explorar <span class="ico">▶</span>
+        </button>
+        <div class="info-box">
+            <p>Este material forma parte de un estudio de investigación sobre el
+            ecosistema de las <strong>abejas Meliponini</strong>, su importancia y
+            su rol en la polinización para los meliponarios.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 2B · AVISO — NO SOMOS PELIGROSAS
+════════════════════════════════════════ -->
+<div class="screen" id="warningScreen">
+    <div class="page-body warn-body">
+
+        <div class="warn-icon-wrap">
+            <div class="warn-circle">🐝</div>
+            <div class="warn-rings"></div>
+        </div>
+
+        <div class="section-badge warn-badge">¡No somos peligrosas!</div>
+
+        <div class="warn-card">
+            <div class="warn-line">
+                <span class="warn-icon-inline">✅</span>
+                <span>Las abejas meliponas <strong>no tenemos aguijón funcional.</strong> No picamos, no atacamos. Somos completamente inofensivas.</span>
+            </div>
+            <div class="warn-line">
+                <span class="warn-icon-inline">🌸</span>
+                <span>Somos seres vivos muy <strong>ocupados y vitales.</strong> Por favor, <strong>no nos molestes.</strong> Necesitamos tranquilidad para polinizar.</span>
+            </div>
+            <div class="warn-line">
+                <span class="warn-icon-inline">🤝</span>
+                <span>Coexistir con nosotras es fácil, seguro y hermoso para todos.</span>
+            </div>
+        </div>
+
+        <button class="btn-green full" onclick="goTo('modeScreen')">
+            ¡Entendido! Vamos a explorar <span class="ico">▶</span>
+        </button>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 3 · SELECTOR DE MODO
+════════════════════════════════════════ -->
+<div class="screen" id="modeScreen">
+    <div class="page-body">
+
+        <div class="section-badge">Existen dos formas de explorar</div>
+        <p class="mode-intro-text">¿Cuál te gusta más?</p>
+
+        <!-- Orbe único + split -->
+        <div class="mode-orb-container" id="modeOrbContainer">
+
+            <!-- Orbe inicial -->
+            <div class="mode-orb-single" id="modeOrbSingle" onclick="revealModes()">
+                <span class="orb-star">🌟</span>
+                <span class="orb-cta">Descubrir</span>
+                <div class="orb-ring"></div>
+            </div>
+
+            <!-- Dos orbes revelados (ocultos al inicio) -->
+            <div class="mode-orbs-split" id="modeOrbsSplit">
+
+                <div class="mode-orb-half orb-left" onclick="startGuided()">
+                    <div class="orb-bubble" style="background:linear-gradient(135deg,#E8981C,#C07810);">
+                        <span class="orb-emoji">🗺️</span>
+                        <div class="orb-bubble-shine"></div>
+                    </div>
+                    <strong class="orb-title">Recorrer</strong>
+                    <p class="orb-desc">Guiado paso a paso,<br>desbloqueando secciones</p>
+                </div>
+
+                <div class="mode-orb-half orb-right" onclick="startFree()">
+                    <div class="orb-bubble" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">
+                        <span class="orb-emoji">📚</span>
+                        <div class="orb-bubble-shine"></div>
+                    </div>
+                    <strong class="orb-title">Explorar</strong>
+                    <p class="orb-desc">Libremente,<br>a tu propio ritmo</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 4A · RECORRIDO GUIADO (hub)
+════════════════════════════════════════ -->
+<div class="screen" id="progressScreen">
+    <div class="page-body">
+        <div class="section-badge">Tu Recorrido de Aprendizaje</div>
+
+        <div class="menu-item" id="progImpacto"
+             onclick="goToGuided('impactoScreen')">
+            <div class="menu-item-img" style="background:#EF9F27;">
+                <img src="img/menu-impacto.jpg" alt="Impacto"
+                     onerror="this.style.display='none'">
+            </div>
+            <div class="menu-item-text">
+                <h3>Impacto</h3>
+                <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
+            </div>
+            <span class="menu-arrow" id="arrowImpacto">▶</span>
+        </div>
+
+        <div class="menu-item locked" id="progDescripcion">
+            <div class="menu-item-img" style="background:#888;">
+                <img src="img/menu-descripcion.jpg" alt="Descripción"
+                     onerror="this.style.display='none'">
+            </div>
+            <div class="menu-item-text">
+                <h3>Descripción</h3>
+                <p>¿Quién soy?<br>Diferencias entre especies</p>
+            </div>
+            <span class="menu-arrow lock-icon">🔒</span>
+        </div>
+
+        <div class="menu-item locked" id="progCuidados">
+            <div class="menu-item-img" style="background:#6aaa3a;">
+                <img src="img/menu-cuidados.jpg" alt="Cuidados"
+                     onerror="this.style.display='none'">
+            </div>
+            <div class="menu-item-text">
+                <h3>Cuidados</h3>
+                <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
+            </div>
+            <span class="menu-arrow lock-icon">🔒</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 4B · MENÚ LIBRE
+════════════════════════════════════════ -->
+<div class="screen" id="menuScreen">
+    <div class="page-body">
+        <div class="section-badge">Elige un tema para aprender</div>
+        <div class="menu-list">
+
+            <div class="menu-item" onclick="goToFree('impactoScreen')">
+                <div class="menu-item-img" style="background:#EF9F27;">
+                    <img src="img/menu-impacto.jpg" alt="Impacto"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Impacto</h3>
+                    <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+
+            <div class="menu-item" onclick="goToFree('descripcionScreen')">
+                <div class="menu-item-img" style="background:#888;">
+                    <img src="img/menu-descripcion.jpg" alt="Descripción"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Descripción</h3>
+                    <p>¿Quién soy?<br>Diferencias entre especies</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+
+            <div class="menu-item" onclick="goToFree('cuidadosScreen')">
+                <div class="menu-item-img" style="background:#6aaa3a;">
+                    <img src="img/menu-cuidados.jpg" alt="Cuidados"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Cuidados</h3>
+                    <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 5 · IMPACTO
+════════════════════════════════════════ -->
+<div class="screen" id="impactoScreen">
+    <div class="page-body">
+
+        <div class="section-badge">¿Cuál es mi impacto?</div>
+
+        <p class="body-text">
+            De los <strong>100 cultivos</strong> que constituyen el
+            <strong>90% de los suministros alimentarios</strong> de todo el mundo,
+            <strong>71 dependen totalmente de la polinización.</strong>
+        </p>
+
+        <!-- ── CARRUSEL DE CULTIVOS ── -->
+        <div class="crop-carousel"
+             ontouchstart="cropTouchStart(event)"
+             ontouchend="cropTouchEnd(event)">
+
+            <div class="carousel-stage">
+
+                <div class="carousel-slide active">
+                    <div class="carousel-circle" style="background:#e8304a;">
+                        <img src="img/cultivos/fresas.jpg" alt="Fresas" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🍓</span>
+                    </div>
+                    <h3 class="carousel-name">Fresas</h3>
+                    <p class="carousel-desc">El 70% de las fresas del mundo son polinizadas por abejas</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#5c3d2e;">
+                        <img src="img/cultivos/cafe.jpg" alt="Café" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">☕</span>
+                    </div>
+                    <h3 class="carousel-name">Café</h3>
+                    <p class="carousel-desc">Las abejas aumentan la fructificación del café del 60% al 90%</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#3b7a35;">
+                        <img src="img/cultivos/aguacate.jpg" alt="Aguacate" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🥑</span>
+                    </div>
+                    <h3 class="carousel-name">Aguacate</h3>
+                    <p class="carousel-desc">Las abejas mejoran la producción de aguacate en un 96%</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#d4a800;">
+                        <img src="img/cultivos/banano.jpg" alt="Banano" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🍌</span>
+                    </div>
+                    <h3 class="carousel-name">Banano</h3>
+                    <p class="carousel-desc">La polinización hace más eficiente su producción</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#e07040;">
+                        <img src="img/cultivos/durazno.jpg" alt="Durazno" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🍑</span>
+                    </div>
+                    <h3 class="carousel-name">Durazno</h3>
+                    <p class="carousel-desc">La incidencia de Meliponinos aumenta su calidad notablemente</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#7aaa40;">
+                        <img src="img/cultivos/pera.jpg" alt="Pera" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🍐</span>
+                    </div>
+                    <h3 class="carousel-name">Pera</h3>
+                    <p class="carousel-desc">Más del 65% de estos cultivos los polinizan Meliponinos</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#e07020;">
+                        <img src="img/cultivos/mango.jpg" alt="Mango" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🥭</span>
+                    </div>
+                    <h3 class="carousel-name">Mango</h3>
+                    <p class="carousel-desc">La diversidad de abejas aumenta su calidad en un 60%</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#b89060;">
+                        <img src="img/cultivos/macadamia.jpg" alt="Macadamia" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🌰</span>
+                    </div>
+                    <h3 class="carousel-name">Macadamia</h3>
+                    <p class="carousel-desc">Las abejas son sus principales polinizadoras naturales</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#c04070;">
+                        <img src="img/cultivos/pomarrosa.jpg" alt="Pomarrosa" onerror="this.style.display='none'">
+                        <span class="carousel-emoji">🌸</span>
+                    </div>
+                    <h3 class="carousel-name">Pomarrosa</h3>
+                    <p class="carousel-desc">Uno de los cultivos favoritos de los Meliponinos</p>
+                </div>
+
+            </div><!-- /carousel-stage -->
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="cropPrev()">&#8249;</button>
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="carousel-dot active"  onclick="cropGoTo(0)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(1)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(2)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(3)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(4)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(5)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(6)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(7)"></span>
+                    <span class="carousel-dot" onclick="cropGoTo(8)"></span>
+                </div>
+                <button class="carousel-btn" onclick="cropNext()">&#8250;</button>
+            </div>
+
+        </div><!-- /crop-carousel -->
+
+        <div class="section-divider-title">
+            <span>Ahora — ¿Polinización? Sí, abejas ¿verdad?</span>
+        </div>
+
+        <p class="body-text">
+            ¿Sabías que existe una tribu de abejas nativas de latinoamérica?
+        </p>
+
+        <div class="circular-img-wrap">
+            <img class="circular-img" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
+        </div>
+
+        <p class="body-text">
+            Al ser <strong>nativa de latinoamérica</strong> resulta
+            <strong>altamente eficiente</strong> para la
+            <strong>polinización de cultivos nativos.</strong>
+        </p>
+
+        <div class="map-wrap">
+            <img class="map-img" src="img/mapa-colombia.png" alt="Mapa Colombia"
+                 onerror="this.parentElement.style.display='none'">
+        </div>
+
+        <p class="body-text">
+            Su rol de polinización <strong>impacta directamente</strong>
+            el desarrollo de las <strong>cosechas</strong> y en consecuencia
+            el <strong>costo de los alimentos.</strong>
+        </p>
+        <p class="body-text">
+            Además de ser <strong>indispensables</strong> para el
+            <strong>equilibrio ecosistémico</strong> de nuestros hábitats.
+        </p>
+
+        <button class="btn-green full progress-only"
+                onclick="unlockSection('Descripcion'); goTo('progressScreen')">
+            Continuar aprendiendo <span class="ico">▶</span>
+        </button>
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 7 · DESCRIPCIÓN
+════════════════════════════════════════ -->
+<div class="screen" id="descripcionScreen">
+    <div class="page-body">
+
+        <div class="section-badge">¿Quién soy?</div>
+
+        <p class="body-text">
+            Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
+            originaria de <strong>América Central y América del Sur.</strong>
+            Pertenezco a una especie única y especial que no se encuentra
+            en otras partes del mundo.
+        </p>
+        <p class="body-text">
+            Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
+            ideales para vivir junto a los humanos sin temor a ser atacados.
+        </p>
+        <p class="body-text">
+            Vivimos en colonias altamente organizadas donde cada miembro tiene
+            un rol importante. Trabajamos juntas para mantener nuestra colmena
+            <strong>saludable, productiva y armoniosa.</strong>
+        </p>
+        <p class="body-text">
+            Producimos una <strong>miel única,</strong> más fluida que la de
+            otras abejas, con propiedades medicinales especiales valoradas
+            desde tiempos ancestrales.
+        </p>
+        <p class="body-text">
+            Los pueblos indígenas de América han trabajado con abejas meliponas
+            durante miles de años en una práctica conocida como
+            <strong>"meliponicultura".</strong>
+        </p>
+
+        <button class="btn-green full progress-only"
+                onclick="unlockSection('Cuidados'); goTo('progressScreen')">
+            Continuar aprendiendo <span class="ico">▶</span>
+        </button>
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+        <p class="footer-note">Continuemos esta aventura</p>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 8 · CUIDADOS
+════════════════════════════════════════ -->
+<div class="screen" id="cuidadosScreen">
+    <div class="page-body">
+
+        <div class="section-badge">¿Cómo puedes cuidarme?</div>
+
+        <p class="body-text">
+            Para mantener a nuestras abejas saludables es importante
+            proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
+            protegido de depredadores como las hormigas, avispas y pájaros.
+        </p>
+        <p class="body-text">
+            Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
+            para obtener néctar y polen durante todo el año.
+        </p>
+        <p class="body-text">
+            <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
+            de nuestras colmenas. Estos productos pueden matar colonias enteras
+            en cuestión de días.
+        </p>
+        <p class="body-text">
+            Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
+            Un pequeño plato con agua y piedras es suficiente.
+        </p>
+
+        <!-- ── CARRUSEL DE PLANTAS FAVORITAS ── -->
+        <div class="section-badge" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">
+            Mis plantas favoritas para el polen
+        </div>
+
+        <div class="crop-carousel plant-carousel"
+             ontouchstart="plantTouchStart(event)"
+             ontouchend="plantTouchEnd(event)">
+
+            <div class="carousel-stage">
+
+                <div class="carousel-slide active">
+                    <div class="carousel-circle" style="background:#9b59b6;">
+                        <span class="carousel-emoji">💜</span>
+                    </div>
+                    <h3 class="carousel-name">Lavanda</h3>
+                    <p class="carousel-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#f1c40f;">
+                        <span class="carousel-emoji">🌻</span>
+                    </div>
+                    <h3 class="carousel-name">Girasol</h3>
+                    <p class="carousel-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#e67e22;">
+                        <span class="carousel-emoji">🌺</span>
+                    </div>
+                    <h3 class="carousel-name">Maracuyá</h3>
+                    <p class="carousel-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#2980b9;">
+                        <span class="carousel-emoji">💙</span>
+                    </div>
+                    <h3 class="carousel-name">Borraja</h3>
+                    <p class="carousel-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#c0392b;">
+                        <span class="carousel-emoji">🌸</span>
+                    </div>
+                    <h3 class="carousel-name">Cayena</h3>
+                    <p class="carousel-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="carousel-circle" style="background:#27ae60;">
+                        <span class="carousel-emoji">🍀</span>
+                    </div>
+                    <h3 class="carousel-name">Trébol</h3>
+                    <p class="carousel-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
+                </div>
+
+            </div><!-- /carousel-stage -->
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="plantPrev()">&#8249;</button>
+                <div class="carousel-dots" id="plantDots">
+                    <span class="carousel-dot active" onclick="plantGoTo(0)"></span>
+                    <span class="carousel-dot" onclick="plantGoTo(1)"></span>
+                    <span class="carousel-dot" onclick="plantGoTo(2)"></span>
+                    <span class="carousel-dot" onclick="plantGoTo(3)"></span>
+                    <span class="carousel-dot" onclick="plantGoTo(4)"></span>
+                    <span class="carousel-dot" onclick="plantGoTo(5)"></span>
+                </div>
+                <button class="carousel-btn" onclick="plantNext()">&#8250;</button>
+            </div>
+
+        </div><!-- /plant-carousel -->
+
+        <button class="btn-green full progress-only"
+                onclick="goTo('completedScreen')">
+            ¡Completé el recorrido! <span class="ico">▶</span>
+        </button>
+        <button class="btn-outline full free-only"
+                onclick="goTo('menuScreen')">
+            Ir al menú
+        </button>
+
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANTALLA 9 · RECORRIDO COMPLETADO
+════════════════════════════════════════ -->
+<div class="screen" id="completedScreen">
+    <div class="page-body">
+
+        <div class="section-badge completed-badge">
+            ¡Felicitaciones!<br>Completaste el recorrido 🎉
+        </div>
+
+        <p class="body-text" style="text-align:center;">
+            Ya conoces el impacto, la descripción y los cuidados de las
+            <strong>abejas Meliponini.</strong> Puedes repasar cualquier sección:
+        </p>
+
+        <div class="menu-list">
+            <div class="menu-item" onclick="goToGuided('impactoScreen')">
+                <div class="menu-item-img" style="background:#EF9F27;">
+                    <img src="img/menu-impacto.jpg" alt="Impacto"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Impacto</h3><p>Revisar</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+            <div class="menu-item" onclick="goToGuided('descripcionScreen')">
+                <div class="menu-item-img" style="background:#888;">
+                    <img src="img/menu-descripcion.jpg" alt="Descripción"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Descripción</h3><p>Revisar</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+            <div class="menu-item" onclick="goToGuided('cuidadosScreen')">
+                <div class="menu-item-img" style="background:#6aaa3a;">
+                    <img src="img/menu-cuidados.jpg" alt="Cuidados"
+                         onerror="this.style.display='none'">
+                </div>
+                <div class="menu-item-text">
+                    <h3>Cuidados</h3><p>Revisar</p>
+                </div>
+                <span class="menu-arrow">▶</span>
+            </div>
+        </div>
+
+        <button class="btn-yellow full" onclick="goTo('modeScreen')">
+            Volver al inicio <span class="ico">▶</span>
+        </button>
+
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

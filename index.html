@@ -2,639 +2,1374 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Abejas Meliponini</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --green-dark: #3B6D11;
+    --green-mid:  #639922;
+    --yellow:     #EF9F27;
+    --red:        #C0392B;
+    --cream:      #F5F0E8;
+    --cream-dark: #EDE7D9;
+    --white:      #FFFFFF;
+    --text:       #2A2015;
+    --text-soft:  #5A4F3C;
+    --nav-h:      65px;
+    --r:          24px;
+    --r-sm:       14px;
+}
+
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+}
+
+/* ── SCREEN SYSTEM ── */
+#app {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+    overflow: hidden;
+    background: var(--cream);
+}
+
+.screen.active {
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* ── SCROLLABLE CONTENT AREA ── */
+.s-scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.s-scroll::-webkit-scrollbar { display: none; }
+
+/* ── TOPBAR ── */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px 10px;
+    flex-shrink: 0;
+}
+.topbar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--green-dark);
+}
+.topbar-back {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+}
+
+/* ── BADGE ── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--green-dark);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    padding: 7px 14px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+}
+.badge-yellow { background: var(--yellow); color: var(--text); }
+.badge-red    { background: var(--red); }
+
+/* ── CARDS ── */
+.card {
+    background: var(--white);
+    border-radius: var(--r);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    padding: 18px;
+    margin-bottom: 12px;
+}
+.card-dark {
+    background: var(--green-dark);
+    border-radius: var(--r);
+    padding: 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 24px rgba(59,109,17,0.3);
+}
+.card-dark p { color: rgba(255,255,255,0.9); }
+.card-dark strong { color: var(--yellow); }
+
+/* ── TYPOGRAPHY ── */
+.body-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+}
+.body-text:last-child { margin-bottom: 0; }
+.body-text strong { color: var(--text); }
+
+/* ── BUTTONS ── */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.14s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-yellow  { background: var(--yellow); color: var(--text); box-shadow: 0 4px 16px rgba(239,159,39,0.4); }
+.btn-green   { background: var(--green-dark); color: #fff; box-shadow: 0 4px 16px rgba(59,109,17,0.35); }
+.btn-outline { background: transparent; border: 2px solid var(--green-dark); color: var(--green-dark); }
+
+.progress-only, .free-only { display: none; }
+body.mode-progress .progress-only { display: flex; }
+body.mode-free     .free-only     { display: flex; }
+
+/* ── BOTTOM NAV ── */
+#bottomNav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: var(--green-dark);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    border-radius: 22px 22px 0 0;
+    z-index: 200;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+#bottomNav.visible { transform: translateY(0); }
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    padding-bottom: 2px;
+}
+.nav-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    background: transparent;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                background 0.28s, box-shadow 0.28s;
+}
+.nav-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Nunito', sans-serif;
+    transition: color 0.28s;
+    letter-spacing: 0.02em;
+}
+.nav-item.active .nav-icon {
+    background: var(--yellow);
+    transform: translateY(-20px);
+    box-shadow: 0 6px 20px rgba(239,159,39,0.55);
+}
+.nav-item.active .nav-label { color: var(--yellow); }
+.nav-item.locked-nav { opacity: 0.35; pointer-events: none; }
+
+/* ── MENU CARDS (hub screens) ── */
+.menu-card {
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.13s;
+}
+.menu-card:active { transform: scale(0.98); }
+.menu-card.locked { opacity: 0.45; pointer-events: none; }
+.menu-card-img {
+    width: 58px; height: 58px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    position: relative;
+}
+.menu-card-img img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+.menu-card-text { flex: 1; }
+.menu-card-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 3px;
+}
+.menu-card-text p { font-size: 11px; color: var(--text-soft); line-height: 1.4; }
+.menu-card-arrow { font-size: 13px; color: var(--green-mid); }
+.lock-icon { font-size: 17px; }
+
+/* ── SPLASH ── */
+#splashScreen {
+    background: #111;
+}
+.splash-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+}
+.splash-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(10,30,5,0.25) 0%,
+        rgba(10,30,5,0.55) 45%,
+        rgba(10,30,5,0.88) 100%);
+}
+.splash-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end;
+    height: 100%;
+    padding: 36px 24px;
+    text-align: center;
+}
+.splash-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+.splash-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    line-height: 0.92;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.splash-title-top {
+    display: block;
+    font-size: 26px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 6px;
+}
+.splash-title-main { font-size: 56px; }
+.splash-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 36px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+.btn-splash {
+    background: var(--yellow);
+    color: var(--text);
+    padding: 17px 40px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(239,159,39,0.5);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.14s;
+}
+.btn-splash:active { transform: scale(0.96); }
+.splash-hint {
+    margin-top: 18px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+}
+
+/* ── WELCOME ── */
+.welcome-photo {
+    width: calc(100% - 32px);
+    margin: 16px auto 12px;
+    border-radius: var(--r);
+    overflow: hidden;
+    height: 210px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+    display: block;
+}
+.welcome-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+.welcome-card {
+    margin: 0 16px 10px;
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.welcome-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+}
+.welcome-card p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+}
+.welcome-card p:last-child { margin-bottom: 0; }
+.info-chip {
+    margin: 0 16px 12px;
+    background: var(--green-dark);
+    border-radius: var(--r-sm);
+    padding: 13px 16px;
+}
+.info-chip p { font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.82); }
+.welcome-btn { padding: 4px 16px 28px; }
+
+/* ── WARNING ── */
+#warningScreen {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.warn-orb {
+    width: 90px; height: 90px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 28px rgba(239,159,39,0.4);
+}
+.warn-card {
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 20px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    width: 100%;
+}
+.warn-line {
+    display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 14px;
+}
+.warn-line:last-child { margin-bottom: 0; }
+.warn-ico { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.warn-line p { font-size: 14px; line-height: 1.55; color: var(--text-soft); }
+.warn-line p strong { color: var(--text); }
+
+/* ── MODE SCREEN ── */
+#modeScreen {
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 0 16px 32px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.mode-header { text-align: center; padding: 36px 0 20px; }
+.mode-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; color: var(--green-dark);
+    margin-top: 10px;
+}
+.mode-orb-single {
+    width: 118px; height: 118px;
+    background: linear-gradient(135deg,#E8981C,#C07810);
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(239,159,39,0.5);
+    margin: 16px 0;
+    -webkit-tap-highlight-color: transparent;
+}
+.mode-orb-single.splitting { animation: orbExplode 0.4s forwards; }
+@keyframes orbExplode {
+    0%  { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+    100%{ transform: scale(0); opacity: 0; }
+}
+.orb-star { font-size: 38px; }
+.orb-cta  { font-size: 12px; font-weight: 900; color: var(--text); margin-top: 4px; }
+.mode-orbs-split { display: none; gap: 14px; width: 100%; }
+.mode-orbs-split.revealed {
+    display: flex;
+    animation: splitReveal 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes splitReveal {
+    from { opacity: 0; transform: scale(0.65); }
+    to   { opacity: 1; transform: scale(1); }
+}
+.mode-card {
+    flex: 1;
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 20px 16px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.14s;
+}
+.mode-card:active { transform: scale(0.97); }
+.mode-card-orb {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.mode-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 6px; }
+.mode-card p  { font-size: 12px; line-height: 1.4; color: var(--text-soft); }
+
+/* ── CAROUSEL ── */
+.carousel-wrap {
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.carousel-stage { position: relative; height: 192px; }
+.c-slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.88);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+}
+.c-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.c-circle {
+    width: 78px; height: 78px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+    flex-shrink: 0;
+}
+.c-circle img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+.c-circle span { position: relative; z-index: 1; }
+.c-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.c-desc { font-size: 12px; color: var(--text-soft); text-align: center; line-height: 1.45; padding: 0 8px; }
+.carousel-controls {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; padding-top: 12px;
+}
+.c-btn {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--green-dark);
+    background: transparent;
+    color: var(--green-dark);
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+}
+.c-dots { display: flex; gap: 5px; }
+.c-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    transition: background 0.28s, transform 0.28s;
+    cursor: pointer;
+}
+.c-dot.active { background: var(--yellow); transform: scale(1.5); }
+
+/* ── DIVIDER TITLE ── */
+.divider-title {
+    text-align: center;
+    font-size: 12px; font-weight: 700;
+    color: var(--text-soft);
+    padding: 6px 0 10px;
+}
+
+/* ── COMPLETED ── */
+.completed-banner {
+    background: linear-gradient(135deg,var(--yellow),#C07810);
+    border-radius: var(--r);
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 24px rgba(239,159,39,0.4);
+}
+.completed-banner h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text); margin-bottom: 4px; }
+.completed-banner p  { font-size: 14px; color: rgba(40,30,10,0.7); }
+
+/* ── RIPPLE ── */
+.ripple-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    animation: rippleExp 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+    border-radius: 50%;
+    transform-origin: center;
+}
+@keyframes rippleExp {
+    from { transform: scale(0); border-radius: 50%; }
+    to   { transform: scale(4); border-radius: 0; }
+}
+.ripple-overlay.fade-out { animation: rippleFade 0.38s ease forwards; }
+@keyframes rippleFade { from { opacity: 1; } to { opacity: 0; } }
+    </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-     BARRA DE NAVEGACIÓN GLOBAL (glass)
-════════════════════════════════════════ -->
-<nav class="glass-nav" id="glassNav">
-    <button class="gnav-back" id="gnavBack" onclick="goBack()">&#8592;</button>
-    <span class="gnav-logo">MELIPONA</span>
-    <div class="gnav-links" id="gnavLinks"></div>
-    <button class="gnav-about" onclick="toggleAbout(event)">Acerca de</button>
-</nav>
+<div id="app">
 
-<!-- Panel flotante "Acerca de" -->
-<div class="about-panel" id="aboutPanel">
-    <p>Este es un <strong>trabajo de tesis</strong> desarrollado para la concientización sobre las <strong>abejas meliponas</strong> y su importancia como polinizadoras nativas de Latinoamérica. Proyecto de Diseño Industrial.</p>
-    <button class="about-close" onclick="closeAbout()">✕</button>
-</div>
-
-<!-- ════════════════════════════════════════
-     PANTALLA 1 · PORTADA
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════
+     PANTALLA 1 · SPLASH
+══════════════════════════════════ -->
 <div class="screen active" id="splashScreen">
-    <div class="splash-cover">
-        <img class="splash-bg" src="Pagina Inicial melipona.jpg" alt="Abeja Meliponini">
-        <div class="splash-overlay"></div>
-        <div class="splash-content">
-            <h1 class="splash-heading">
-                <span class="splash-heading-top">ABEJAS</span>
-                <span class="splash-heading-main">MELIPONINI</span>
-            </h1>
-            <p class="splash-sub">Impacto, Descripción y Cuidados</p>
-            <button class="btn-cover" onclick="goTo('welcomeScreen')">
-                Click para Comenzar <span class="ico">▶</span>
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     PANTALLA 2 · BIENVENIDO
-════════════════════════════════════════ -->
-<div class="screen" id="welcomeScreen">
-    <div class="page-body welcome-body">
-        <div class="welcome-bee-wrap">
-            <img class="welcome-bee-center" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
-        </div>
-        <h2 class="welcome-heading">¡Bienvenido!</h2>
-        <div class="welcome-text-center">
-            <p>Hola, somos las <strong>abejas meliponas.</strong></p>
-            <p>No tenemos aguijón,<br>pero ayudamos a que<br>
-               <em>las flores y los frutos crezcan.</em></p>
-            <p>Cuidarnos es proteger<br>
-               <em>la vida que te rodea.</em></p>
-        </div>
-        <button class="btn-yellow full" onclick="goTo('warningScreen')">
-            Empieza a explorar <span class="ico">▶</span>
+    <img class="splash-bg" src="Pagina Inicial melipona.jpg" alt="Abeja Meliponini">
+    <div class="splash-overlay"></div>
+    <div class="splash-content">
+        <p class="splash-eyebrow">Soporte Digital · Tesis</p>
+        <h1 class="splash-title">
+            <span class="splash-title-top">ABEJAS</span>
+            <span class="splash-title-main">MELIPONINI</span>
+        </h1>
+        <p class="splash-sub">Impacto, Descripción y Cuidados</p>
+        <button class="btn-splash" onclick="goTo('welcomeScreen')">
+            Click para Comenzar ▶
         </button>
-        <div class="info-box">
-            <p>Este material forma parte de un estudio de investigación sobre el
-            ecosistema de las <strong>abejas Meliponini</strong>, su importancia y
-            su rol en la polinización para los meliponarios.</p>
-        </div>
+        <p class="splash-hint">Desliza para explorar</p>
     </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     PANTALLA 2B · AVISO — NO SOMOS PELIGROSAS
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════
+     PANTALLA 2 · BIENVENIDA
+══════════════════════════════════ -->
+<div class="screen" id="welcomeScreen" style="overflow-y:auto;-webkit-overflow-scrolling:touch;">
+    <div class="welcome-photo">
+        <img src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
+    </div>
+    <div class="welcome-card">
+        <h2>¡Bienvenido!</h2>
+        <p>Hola, somos las <strong>abejas meliponas.</strong></p>
+        <p>No tenemos aguijón,<br>pero ayudamos a que<br>
+           <em>las flores y los frutos crezcan.</em></p>
+        <p>Cuidarnos es proteger<br>
+           <em>la vida que te rodea.</em></p>
+    </div>
+    <div class="info-chip">
+        <p>Este material forma parte de un estudio de investigación sobre el
+        ecosistema de las <strong>abejas Meliponini</strong>, su importancia y
+        su rol en la polinización para los meliponarios.</p>
+    </div>
+    <div class="welcome-btn">
+        <button class="btn btn-yellow" onclick="goTo('warningScreen')">
+            Empieza a explorar ▶
+        </button>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PANTALLA 2B · ADVERTENCIA
+══════════════════════════════════ -->
 <div class="screen" id="warningScreen">
-    <div class="page-body warn-body">
-
-        <div class="warn-icon-wrap">
-            <div class="warn-circle">🐝</div>
-            <div class="warn-rings"></div>
+    <div class="warn-orb">🐝</div>
+    <span class="badge badge-red" style="margin-bottom:16px;">¡No somos peligrosas!</span>
+    <div class="warn-card">
+        <div class="warn-line">
+            <span class="warn-ico">✅</span>
+            <p>Las abejas meliponas <strong>no tenemos aguijón funcional.</strong>
+               No picamos, no atacamos. Somos completamente inofensivas.</p>
         </div>
-
-        <div class="section-badge warn-badge">¡No somos peligrosas!</div>
-
-        <div class="warn-card">
-            <div class="warn-line">
-                <span class="warn-icon-inline">✅</span>
-                <span>Las abejas meliponas <strong>no tenemos aguijón funcional.</strong> No picamos, no atacamos. Somos completamente inofensivas.</span>
-            </div>
-            <div class="warn-line">
-                <span class="warn-icon-inline">🌸</span>
-                <span>Somos seres vivos muy <strong>ocupados y vitales.</strong> Por favor, <strong>no nos molestes.</strong> Necesitamos tranquilidad para polinizar.</span>
-            </div>
-            <div class="warn-line">
-                <span class="warn-icon-inline">🤝</span>
-                <span>Coexistir con nosotras es fácil, seguro y hermoso para todos.</span>
-            </div>
+        <div class="warn-line">
+            <span class="warn-ico">🌸</span>
+            <p>Somos seres vivos muy <strong>ocupados y vitales.</strong>
+               Por favor, <strong>no nos molestes.</strong>
+               Necesitamos tranquilidad para polinizar.</p>
         </div>
-
-        <button class="btn-green full" onclick="goTo('modeScreen')">
-            ¡Entendido! Vamos a explorar <span class="ico">▶</span>
-        </button>
-
+        <div class="warn-line">
+            <span class="warn-ico">🤝</span>
+            <p>Coexistir con nosotras es fácil, seguro y hermoso para todos.</p>
+        </div>
     </div>
+    <button class="btn btn-green" onclick="goTo('modeScreen')" style="width:100%;">
+        ¡Entendido! Vamos a explorar ▶
+    </button>
 </div>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════
      PANTALLA 3 · SELECTOR DE MODO
-════════════════════════════════════════ -->
+══════════════════════════════════ -->
 <div class="screen" id="modeScreen">
-    <div class="page-body">
-
-        <div class="section-badge">Existen dos formas de explorar</div>
-        <p class="mode-intro-text">¿Cuál te gusta más?</p>
-
-        <!-- Orbe único + split -->
-        <div class="mode-orb-container" id="modeOrbContainer">
-
-            <!-- Orbe inicial -->
-            <div class="mode-orb-single" id="modeOrbSingle" onclick="revealModes()">
-                <span class="orb-star">🌟</span>
-                <span class="orb-cta">Descubrir</span>
-                <div class="orb-ring"></div>
-            </div>
-
-            <!-- Dos orbes revelados (ocultos al inicio) -->
-            <div class="mode-orbs-split" id="modeOrbsSplit">
-
-                <div class="mode-orb-half orb-left" onclick="startGuided()">
-                    <div class="orb-bubble" style="background:linear-gradient(135deg,#E8981C,#C07810);">
-                        <span class="orb-emoji">🗺️</span>
-                        <div class="orb-bubble-shine"></div>
-                    </div>
-                    <strong class="orb-title">Recorrer</strong>
-                    <p class="orb-desc">Guiado paso a paso,<br>desbloqueando secciones</p>
-                </div>
-
-                <div class="mode-orb-half orb-right" onclick="startFree()">
-                    <div class="orb-bubble" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">
-                        <span class="orb-emoji">📚</span>
-                        <div class="orb-bubble-shine"></div>
-                    </div>
-                    <strong class="orb-title">Explorar</strong>
-                    <p class="orb-desc">Libremente,<br>a tu propio ritmo</p>
-                </div>
-
-            </div>
-
+    <div class="mode-header">
+        <span class="badge">Existen dos formas de explorar</span>
+        <h2>¿Cuál te gusta más?</h2>
+    </div>
+    <div id="modeOrbContainer" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+        <div class="mode-orb-single" id="modeOrbSingle" onclick="revealModes()">
+            <span class="orb-star">🌟</span>
+            <span class="orb-cta">Descubrir</span>
         </div>
-
+        <div class="mode-orbs-split" id="modeOrbsSplit">
+            <div class="mode-card" onclick="startGuided()">
+                <div class="mode-card-orb" style="background:linear-gradient(135deg,#E8981C,#C07810);">🗺️</div>
+                <h3>Recorrer</h3>
+                <p>Guiado paso a paso,<br>desbloqueando secciones</p>
+            </div>
+            <div class="mode-card" onclick="startFree()">
+                <div class="mode-card-orb" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">📚</div>
+                <h3>Explorar</h3>
+                <p>Libremente,<br>a tu propio ritmo</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     PANTALLA 4A · RECORRIDO GUIADO (hub)
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════
+     PANTALLA 4A · HUB GUIADO
+══════════════════════════════════ -->
 <div class="screen" id="progressScreen">
-    <div class="page-body">
-        <div class="section-badge">Tu Recorrido de Aprendizaje</div>
+    <div class="topbar">
+        <span class="topbar-title">Tu Recorrido</span>
+    </div>
+    <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
+        <span class="badge" style="margin-bottom:14px;">Tu Recorrido de Aprendizaje</span>
 
-        <div class="menu-item" id="progImpacto"
-             onclick="goToGuided('impactoScreen')">
-            <div class="menu-item-img" style="background:#EF9F27;">
-                <img src="img/menu-impacto.jpg" alt="Impacto"
-                     onerror="this.style.display='none'">
+        <div class="menu-card" id="progImpacto" onclick="goToGuided('impactoScreen')">
+            <div class="menu-card-img" style="background:#EF9F27;">
+                <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
+                <span>🌿</span>
             </div>
-            <div class="menu-item-text">
+            <div class="menu-card-text">
                 <h3>Impacto</h3>
                 <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
             </div>
-            <span class="menu-arrow" id="arrowImpacto">▶</span>
+            <span class="menu-card-arrow">▶</span>
         </div>
 
-        <div class="menu-item locked" id="progDescripcion">
-            <div class="menu-item-img" style="background:#888;">
-                <img src="img/menu-descripcion.jpg" alt="Descripción"
-                     onerror="this.style.display='none'">
+        <div class="menu-card locked" id="progDescripcion">
+            <div class="menu-card-img" style="background:#888;">
+                <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
+                <span>🐝</span>
             </div>
-            <div class="menu-item-text">
+            <div class="menu-card-text">
                 <h3>Descripción</h3>
                 <p>¿Quién soy?<br>Diferencias entre especies</p>
             </div>
-            <span class="menu-arrow lock-icon">🔒</span>
+            <span class="menu-card-arrow lock-icon">🔒</span>
         </div>
 
-        <div class="menu-item locked" id="progCuidados">
-            <div class="menu-item-img" style="background:#6aaa3a;">
-                <img src="img/menu-cuidados.jpg" alt="Cuidados"
-                     onerror="this.style.display='none'">
+        <div class="menu-card locked" id="progCuidados">
+            <div class="menu-card-img" style="background:#6aaa3a;">
+                <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
+                <span>🌱</span>
             </div>
-            <div class="menu-item-text">
+            <div class="menu-card-text">
                 <h3>Cuidados</h3>
                 <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
             </div>
-            <span class="menu-arrow lock-icon">🔒</span>
+            <span class="menu-card-arrow lock-icon">🔒</span>
         </div>
-
     </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     PANTALLA 4B · MENÚ LIBRE
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════
+     PANTALLA 4B · HUB LIBRE
+══════════════════════════════════ -->
 <div class="screen" id="menuScreen">
-    <div class="page-body">
-        <div class="section-badge">Elige un tema para aprender</div>
-        <div class="menu-list">
+    <div class="topbar">
+        <span class="topbar-title">Elige un tema</span>
+    </div>
+    <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
+        <span class="badge" style="margin-bottom:14px;">Elige un tema para aprender</span>
 
-            <div class="menu-item" onclick="goToFree('impactoScreen')">
-                <div class="menu-item-img" style="background:#EF9F27;">
-                    <img src="img/menu-impacto.jpg" alt="Impacto"
-                         onerror="this.style.display='none'">
-                </div>
-                <div class="menu-item-text">
-                    <h3>Impacto</h3>
-                    <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
-                </div>
-                <span class="menu-arrow">▶</span>
+        <div class="menu-card" onclick="goToFree('impactoScreen')">
+            <div class="menu-card-img" style="background:#EF9F27;">
+                <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
+                <span>🌿</span>
             </div>
-
-            <div class="menu-item" onclick="goToFree('descripcionScreen')">
-                <div class="menu-item-img" style="background:#888;">
-                    <img src="img/menu-descripcion.jpg" alt="Descripción"
-                         onerror="this.style.display='none'">
-                </div>
-                <div class="menu-item-text">
-                    <h3>Descripción</h3>
-                    <p>¿Quién soy?<br>Diferencias entre especies</p>
-                </div>
-                <span class="menu-arrow">▶</span>
+            <div class="menu-card-text">
+                <h3>Impacto</h3>
+                <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
             </div>
+            <span class="menu-card-arrow">▶</span>
+        </div>
 
-            <div class="menu-item" onclick="goToFree('cuidadosScreen')">
-                <div class="menu-item-img" style="background:#6aaa3a;">
-                    <img src="img/menu-cuidados.jpg" alt="Cuidados"
-                         onerror="this.style.display='none'">
-                </div>
-                <div class="menu-item-text">
-                    <h3>Cuidados</h3>
-                    <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
-                </div>
-                <span class="menu-arrow">▶</span>
+        <div class="menu-card" onclick="goToFree('descripcionScreen')">
+            <div class="menu-card-img" style="background:#888;">
+                <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
+                <span>🐝</span>
             </div>
+            <div class="menu-card-text">
+                <h3>Descripción</h3>
+                <p>¿Quién soy?<br>Diferencias entre especies</p>
+            </div>
+            <span class="menu-card-arrow">▶</span>
+        </div>
 
+        <div class="menu-card" onclick="goToFree('cuidadosScreen')">
+            <div class="menu-card-img" style="background:#6aaa3a;">
+                <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
+                <span>🌱</span>
+            </div>
+            <div class="menu-card-text">
+                <h3>Cuidados</h3>
+                <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
+            </div>
+            <span class="menu-card-arrow">▶</span>
         </div>
     </div>
 </div>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════
      PANTALLA 5 · IMPACTO
-════════════════════════════════════════ -->
+══════════════════════════════════ -->
 <div class="screen" id="impactoScreen">
-    <div class="page-body">
+    <div class="topbar">
+        <button class="topbar-back" onclick="goBack()">←</button>
+        <span class="topbar-title">Impacto</span>
+    </div>
+    <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
+        <span class="badge" style="margin-bottom:12px;">¿Cuál es mi impacto?</span>
 
-        <div class="section-badge">¿Cuál es mi impacto?</div>
-
-        <p class="body-text">
-            De los <strong>100 cultivos</strong> que constituyen el
+        <div class="card-dark">
+            <p>De los <strong>100 cultivos</strong> que constituyen el
             <strong>90% de los suministros alimentarios</strong> de todo el mundo,
-            <strong>71 dependen totalmente de la polinización.</strong>
-        </p>
+            <strong>71 dependen totalmente de la polinización.</strong></p>
+        </div>
 
-        <!-- ── CARRUSEL DE CULTIVOS ── -->
-        <div class="crop-carousel"
+        <!-- CARRUSEL CULTIVOS -->
+        <div class="carousel-wrap"
              ontouchstart="cropTouchStart(event)"
              ontouchend="cropTouchEnd(event)">
-
             <div class="carousel-stage">
-
-                <div class="carousel-slide active">
-                    <div class="carousel-circle" style="background:#e8304a;">
+                <div class="c-slide active">
+                    <div class="c-circle" style="background:#e8304a;">
                         <img src="img/cultivos/fresas.jpg" alt="Fresas" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🍓</span>
+                        <span>🍓</span>
                     </div>
-                    <h3 class="carousel-name">Fresas</h3>
-                    <p class="carousel-desc">El 70% de las fresas del mundo son polinizadas por abejas</p>
+                    <p class="c-name">Fresas</p>
+                    <p class="c-desc">El 70% de las fresas del mundo son polinizadas por abejas</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#5c3d2e;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#5c3d2e;">
                         <img src="img/cultivos/cafe.jpg" alt="Café" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">☕</span>
+                        <span>☕</span>
                     </div>
-                    <h3 class="carousel-name">Café</h3>
-                    <p class="carousel-desc">Las abejas aumentan la fructificación del café del 60% al 90%</p>
+                    <p class="c-name">Café</p>
+                    <p class="c-desc">Las abejas aumentan la fructificación del café del 60% al 90%</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#3b7a35;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#3b7a35;">
                         <img src="img/cultivos/aguacate.jpg" alt="Aguacate" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🥑</span>
+                        <span>🥑</span>
                     </div>
-                    <h3 class="carousel-name">Aguacate</h3>
-                    <p class="carousel-desc">Las abejas mejoran la producción de aguacate en un 96%</p>
+                    <p class="c-name">Aguacate</p>
+                    <p class="c-desc">Las abejas mejoran la producción de aguacate en un 96%</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#d4a800;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#d4a800;">
                         <img src="img/cultivos/banano.jpg" alt="Banano" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🍌</span>
+                        <span>🍌</span>
                     </div>
-                    <h3 class="carousel-name">Banano</h3>
-                    <p class="carousel-desc">La polinización hace más eficiente su producción</p>
+                    <p class="c-name">Banano</p>
+                    <p class="c-desc">La polinización hace más eficiente su producción</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#e07040;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#e07040;">
                         <img src="img/cultivos/durazno.jpg" alt="Durazno" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🍑</span>
+                        <span>🍑</span>
                     </div>
-                    <h3 class="carousel-name">Durazno</h3>
-                    <p class="carousel-desc">La incidencia de Meliponinos aumenta su calidad notablemente</p>
+                    <p class="c-name">Durazno</p>
+                    <p class="c-desc">La incidencia de Meliponinos aumenta su calidad notablemente</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#7aaa40;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#7aaa40;">
                         <img src="img/cultivos/pera.jpg" alt="Pera" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🍐</span>
+                        <span>🍐</span>
                     </div>
-                    <h3 class="carousel-name">Pera</h3>
-                    <p class="carousel-desc">Más del 65% de estos cultivos los polinizan Meliponinos</p>
+                    <p class="c-name">Pera</p>
+                    <p class="c-desc">Más del 65% de estos cultivos los polinizan Meliponinos</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#e07020;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#e07020;">
                         <img src="img/cultivos/mango.jpg" alt="Mango" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🥭</span>
+                        <span>🥭</span>
                     </div>
-                    <h3 class="carousel-name">Mango</h3>
-                    <p class="carousel-desc">La diversidad de abejas aumenta su calidad en un 60%</p>
+                    <p class="c-name">Mango</p>
+                    <p class="c-desc">La diversidad de abejas aumenta su calidad en un 60%</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#b89060;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#b89060;">
                         <img src="img/cultivos/macadamia.jpg" alt="Macadamia" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🌰</span>
+                        <span>🌰</span>
                     </div>
-                    <h3 class="carousel-name">Macadamia</h3>
-                    <p class="carousel-desc">Las abejas son sus principales polinizadoras naturales</p>
+                    <p class="c-name">Macadamia</p>
+                    <p class="c-desc">Las abejas son sus principales polinizadoras naturales</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#c04070;">
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#c04070;">
                         <img src="img/cultivos/pomarrosa.jpg" alt="Pomarrosa" onerror="this.style.display='none'">
-                        <span class="carousel-emoji">🌸</span>
+                        <span>🌸</span>
                     </div>
-                    <h3 class="carousel-name">Pomarrosa</h3>
-                    <p class="carousel-desc">Uno de los cultivos favoritos de los Meliponinos</p>
+                    <p class="c-name">Pomarrosa</p>
+                    <p class="c-desc">Uno de los cultivos favoritos de los Meliponinos</p>
                 </div>
-
-            </div><!-- /carousel-stage -->
-
-            <div class="carousel-controls">
-                <button class="carousel-btn" onclick="cropPrev()">&#8249;</button>
-                <div class="carousel-dots" id="carouselDots">
-                    <span class="carousel-dot active"  onclick="cropGoTo(0)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(1)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(2)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(3)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(4)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(5)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(6)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(7)"></span>
-                    <span class="carousel-dot" onclick="cropGoTo(8)"></span>
-                </div>
-                <button class="carousel-btn" onclick="cropNext()">&#8250;</button>
             </div>
-
-        </div><!-- /crop-carousel -->
-
-        <div class="section-divider-title">
-            <span>Ahora — ¿Polinización? Sí, abejas ¿verdad?</span>
+            <div class="carousel-controls">
+                <button class="c-btn" onclick="cropPrev()">&#8249;</button>
+                <div class="c-dots" id="carouselDots">
+                    <span class="c-dot active" onclick="cropGoTo(0)"></span>
+                    <span class="c-dot" onclick="cropGoTo(1)"></span>
+                    <span class="c-dot" onclick="cropGoTo(2)"></span>
+                    <span class="c-dot" onclick="cropGoTo(3)"></span>
+                    <span class="c-dot" onclick="cropGoTo(4)"></span>
+                    <span class="c-dot" onclick="cropGoTo(5)"></span>
+                    <span class="c-dot" onclick="cropGoTo(6)"></span>
+                    <span class="c-dot" onclick="cropGoTo(7)"></span>
+                    <span class="c-dot" onclick="cropGoTo(8)"></span>
+                </div>
+                <button class="c-btn" onclick="cropNext()">&#8250;</button>
+            </div>
         </div>
 
-        <p class="body-text">
-            ¿Sabías que existe una tribu de abejas nativas de latinoamérica?
-        </p>
+        <div class="divider-title">Ahora — ¿Polinización? Sí, abejas ¿verdad?</div>
 
-        <div class="circular-img-wrap">
-            <img class="circular-img" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
-        </div>
-
-        <p class="body-text">
-            Al ser <strong>nativa de latinoamérica</strong> resulta
+        <div class="card">
+            <p class="body-text">¿Sabías que existe una tribu de abejas nativas de latinoamérica?</p>
+            <div style="display:flex;justify-content:center;margin-bottom:12px;">
+                <img src="AbejaMelipona-1.jpg" alt="Abeja Meliponini"
+                     style="width:90px;height:90px;border-radius:50%;object-fit:cover;box-shadow:0 4px 18px rgba(0,0,0,0.15);">
+            </div>
+            <p class="body-text">Al ser <strong>nativa de latinoamérica</strong> resulta
             <strong>altamente eficiente</strong> para la
-            <strong>polinización de cultivos nativos.</strong>
-        </p>
-
-        <div class="map-wrap">
-            <img class="map-img" src="img/mapa-colombia.png" alt="Mapa Colombia"
-                 onerror="this.parentElement.style.display='none'">
-        </div>
-
-        <p class="body-text">
-            Su rol de polinización <strong>impacta directamente</strong>
+            <strong>polinización de cultivos nativos.</strong></p>
+            <div style="border-radius:14px;overflow:hidden;margin-bottom:12px;">
+                <img src="img/mapa-colombia.png" alt="Mapa Colombia"
+                     style="width:100%;display:block;" onerror="this.parentElement.style.display='none'">
+            </div>
+            <p class="body-text">Su rol de polinización <strong>impacta directamente</strong>
             el desarrollo de las <strong>cosechas</strong> y en consecuencia
-            el <strong>costo de los alimentos.</strong>
-        </p>
-        <p class="body-text">
-            Además de ser <strong>indispensables</strong> para el
-            <strong>equilibrio ecosistémico</strong> de nuestros hábitats.
-        </p>
-
-        <button class="btn-green full progress-only"
-                onclick="unlockSection('Descripcion'); goTo('progressScreen')">
-            Continuar aprendiendo <span class="ico">▶</span>
-        </button>
-        <button class="btn-outline full free-only"
-                onclick="goTo('menuScreen')">
-            Ir al menú
-        </button>
-
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     PANTALLA 7 · DESCRIPCIÓN
-════════════════════════════════════════ -->
-<div class="screen" id="descripcionScreen">
-    <div class="page-body">
-
-        <div class="section-badge">¿Quién soy?</div>
-
-        <p class="body-text">
-            Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
-            originaria de <strong>América Central y América del Sur.</strong>
-            Pertenezco a una especie única y especial que no se encuentra
-            en otras partes del mundo.
-        </p>
-        <p class="body-text">
-            Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
-            ideales para vivir junto a los humanos sin temor a ser atacados.
-        </p>
-        <p class="body-text">
-            Vivimos en colonias altamente organizadas donde cada miembro tiene
-            un rol importante. Trabajamos juntas para mantener nuestra colmena
-            <strong>saludable, productiva y armoniosa.</strong>
-        </p>
-        <p class="body-text">
-            Producimos una <strong>miel única,</strong> más fluida que la de
-            otras abejas, con propiedades medicinales especiales valoradas
-            desde tiempos ancestrales.
-        </p>
-        <p class="body-text">
-            Los pueblos indígenas de América han trabajado con abejas meliponas
-            durante miles de años en una práctica conocida como
-            <strong>"meliponicultura".</strong>
-        </p>
-
-        <button class="btn-green full progress-only"
-                onclick="unlockSection('Cuidados'); goTo('progressScreen')">
-            Continuar aprendiendo <span class="ico">▶</span>
-        </button>
-        <button class="btn-outline full free-only"
-                onclick="goTo('menuScreen')">
-            Ir al menú
-        </button>
-        <p class="footer-note">Continuemos esta aventura</p>
-
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     PANTALLA 8 · CUIDADOS
-════════════════════════════════════════ -->
-<div class="screen" id="cuidadosScreen">
-    <div class="page-body">
-
-        <div class="section-badge">¿Cómo puedes cuidarme?</div>
-
-        <p class="body-text">
-            Para mantener a nuestras abejas saludables es importante
-            proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
-            protegido de depredadores como las hormigas, avispas y pájaros.
-        </p>
-        <p class="body-text">
-            Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
-            para obtener néctar y polen durante todo el año.
-        </p>
-        <p class="body-text">
-            <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
-            de nuestras colmenas. Estos productos pueden matar colonias enteras
-            en cuestión de días.
-        </p>
-        <p class="body-text">
-            Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
-            Un pequeño plato con agua y piedras es suficiente.
-        </p>
-
-        <!-- ── CARRUSEL DE PLANTAS FAVORITAS ── -->
-        <div class="section-badge" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">
-            Mis plantas favoritas para el polen
+            el <strong>costo de los alimentos.</strong></p>
+            <p class="body-text">Además de ser <strong>indispensables</strong> para el
+            <strong>equilibrio ecosistémico</strong> de nuestros hábitats.</p>
         </div>
 
-        <div class="crop-carousel plant-carousel"
+        <button class="btn btn-green progress-only"
+                onclick="unlockSection('Descripcion'); goTo('progressScreen')">
+            Continuar aprendiendo ▶
+        </button>
+        <button class="btn btn-outline free-only"
+                onclick="goTo('menuScreen')" style="margin-top:8px;">
+            Ir al menú
+        </button>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PANTALLA 7 · DESCRIPCIÓN
+══════════════════════════════════ -->
+<div class="screen" id="descripcionScreen">
+    <div class="topbar">
+        <button class="topbar-back" onclick="goBack()">←</button>
+        <span class="topbar-title">Descripción</span>
+    </div>
+    <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
+        <span class="badge" style="margin-bottom:12px;">¿Quién soy?</span>
+
+        <div class="card">
+            <p class="body-text">
+                Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
+                originaria de <strong>América Central y América del Sur.</strong>
+                Pertenezco a una especie única y especial que no se encuentra
+                en otras partes del mundo.
+            </p>
+            <p class="body-text">
+                Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
+                ideales para vivir junto a los humanos sin temor a ser atacados.
+            </p>
+            <p class="body-text">
+                Vivimos en colonias altamente organizadas donde cada miembro tiene
+                un rol importante. Trabajamos juntas para mantener nuestra colmena
+                <strong>saludable, productiva y armoniosa.</strong>
+            </p>
+            <p class="body-text">
+                Producimos una <strong>miel única,</strong> más fluida que la de
+                otras abejas, con propiedades medicinales especiales valoradas
+                desde tiempos ancestrales.
+            </p>
+            <p class="body-text">
+                Los pueblos indígenas de América han trabajado con abejas meliponas
+                durante miles de años en una práctica conocida como
+                <strong>"meliponicultura".</strong>
+            </p>
+        </div>
+
+        <button class="btn btn-green progress-only"
+                onclick="unlockSection('Cuidados'); goTo('progressScreen')">
+            Continuar aprendiendo ▶
+        </button>
+        <button class="btn btn-outline free-only"
+                onclick="goTo('menuScreen')" style="margin-top:8px;">
+            Ir al menú
+        </button>
+        <p style="text-align:center;font-size:12px;color:var(--text-soft);margin-top:14px;">
+            Continuemos esta aventura
+        </p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PANTALLA 8 · CUIDADOS
+══════════════════════════════════ -->
+<div class="screen" id="cuidadosScreen">
+    <div class="topbar">
+        <button class="topbar-back" onclick="goBack()">←</button>
+        <span class="topbar-title">Cuidados</span>
+    </div>
+    <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
+        <span class="badge" style="margin-bottom:12px;">¿Cómo puedes cuidarme?</span>
+
+        <div class="card">
+            <p class="body-text">
+                Para mantener a nuestras abejas saludables es importante
+                proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
+                protegido de depredadores como las hormigas, avispas y pájaros.
+            </p>
+            <p class="body-text">
+                Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
+                para obtener néctar y polen durante todo el año.
+            </p>
+            <p class="body-text">
+                <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
+                de nuestras colmenas. Estos productos pueden matar colonias enteras
+                en cuestión de días.
+            </p>
+            <p class="body-text">
+                Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
+                Un pequeño plato con agua y piedras es suficiente.
+            </p>
+        </div>
+
+        <span class="badge" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);margin-bottom:12px;">
+            Mis plantas favoritas para el polen
+        </span>
+
+        <!-- CARRUSEL PLANTAS -->
+        <div class="carousel-wrap plant-carousel"
              ontouchstart="plantTouchStart(event)"
              ontouchend="plantTouchEnd(event)">
-
             <div class="carousel-stage">
-
-                <div class="carousel-slide active">
-                    <div class="carousel-circle" style="background:#9b59b6;">
-                        <span class="carousel-emoji">💜</span>
-                    </div>
-                    <h3 class="carousel-name">Lavanda</h3>
-                    <p class="carousel-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
+                <div class="c-slide active">
+                    <div class="c-circle" style="background:#9b59b6;"><span>💜</span></div>
+                    <p class="c-name">Lavanda</p>
+                    <p class="c-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#f1c40f;">
-                        <span class="carousel-emoji">🌻</span>
-                    </div>
-                    <h3 class="carousel-name">Girasol</h3>
-                    <p class="carousel-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#f1c40f;"><span>🌻</span></div>
+                    <p class="c-name">Girasol</p>
+                    <p class="c-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#e67e22;">
-                        <span class="carousel-emoji">🌺</span>
-                    </div>
-                    <h3 class="carousel-name">Maracuyá</h3>
-                    <p class="carousel-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#e67e22;"><span>🌺</span></div>
+                    <p class="c-name">Maracuyá</p>
+                    <p class="c-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#2980b9;">
-                        <span class="carousel-emoji">💙</span>
-                    </div>
-                    <h3 class="carousel-name">Borraja</h3>
-                    <p class="carousel-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#2980b9;"><span>💙</span></div>
+                    <p class="c-name">Borraja</p>
+                    <p class="c-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#c0392b;">
-                        <span class="carousel-emoji">🌸</span>
-                    </div>
-                    <h3 class="carousel-name">Cayena</h3>
-                    <p class="carousel-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#c0392b;"><span>🌸</span></div>
+                    <p class="c-name">Cayena</p>
+                    <p class="c-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
                 </div>
-
-                <div class="carousel-slide">
-                    <div class="carousel-circle" style="background:#27ae60;">
-                        <span class="carousel-emoji">🍀</span>
-                    </div>
-                    <h3 class="carousel-name">Trébol</h3>
-                    <p class="carousel-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
+                <div class="c-slide">
+                    <div class="c-circle" style="background:#27ae60;"><span>🍀</span></div>
+                    <p class="c-name">Trébol</p>
+                    <p class="c-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
                 </div>
-
-            </div><!-- /carousel-stage -->
-
-            <div class="carousel-controls">
-                <button class="carousel-btn" onclick="plantPrev()">&#8249;</button>
-                <div class="carousel-dots" id="plantDots">
-                    <span class="carousel-dot active" onclick="plantGoTo(0)"></span>
-                    <span class="carousel-dot" onclick="plantGoTo(1)"></span>
-                    <span class="carousel-dot" onclick="plantGoTo(2)"></span>
-                    <span class="carousel-dot" onclick="plantGoTo(3)"></span>
-                    <span class="carousel-dot" onclick="plantGoTo(4)"></span>
-                    <span class="carousel-dot" onclick="plantGoTo(5)"></span>
-                </div>
-                <button class="carousel-btn" onclick="plantNext()">&#8250;</button>
             </div>
+            <div class="carousel-controls">
+                <button class="c-btn" onclick="plantPrev()">&#8249;</button>
+                <div class="c-dots" id="plantDots">
+                    <span class="c-dot active" onclick="plantGoTo(0)"></span>
+                    <span class="c-dot" onclick="plantGoTo(1)"></span>
+                    <span class="c-dot" onclick="plantGoTo(2)"></span>
+                    <span class="c-dot" onclick="plantGoTo(3)"></span>
+                    <span class="c-dot" onclick="plantGoTo(4)"></span>
+                    <span class="c-dot" onclick="plantGoTo(5)"></span>
+                </div>
+                <button class="c-btn" onclick="plantNext()">&#8250;</button>
+            </div>
+        </div>
 
-        </div><!-- /plant-carousel -->
-
-        <button class="btn-green full progress-only"
+        <button class="btn btn-green progress-only"
                 onclick="goTo('completedScreen')">
-            ¡Completé el recorrido! <span class="ico">▶</span>
+            ¡Completé el recorrido! ▶
         </button>
-        <button class="btn-outline full free-only"
-                onclick="goTo('menuScreen')">
+        <button class="btn btn-outline free-only"
+                onclick="goTo('menuScreen')" style="margin-top:8px;">
             Ir al menú
         </button>
-
     </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     PANTALLA 9 · RECORRIDO COMPLETADO
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════
+     PANTALLA 9 · COMPLETADO
+══════════════════════════════════ -->
 <div class="screen" id="completedScreen">
-    <div class="page-body">
-
-        <div class="section-badge completed-badge">
-            ¡Felicitaciones!<br>Completaste el recorrido 🎉
+    <div class="topbar">
+        <span class="topbar-title">¡Felicitaciones!</span>
+    </div>
+    <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
+        <div class="completed-banner">
+            <h2>¡Felicitaciones!</h2>
+            <p>Completaste el recorrido 🎉</p>
         </div>
-
-        <p class="body-text" style="text-align:center;">
-            Ya conoces el impacto, la descripción y los cuidados de las
-            <strong>abejas Meliponini.</strong> Puedes repasar cualquier sección:
-        </p>
-
-        <div class="menu-list">
-            <div class="menu-item" onclick="goToGuided('impactoScreen')">
-                <div class="menu-item-img" style="background:#EF9F27;">
-                    <img src="img/menu-impacto.jpg" alt="Impacto"
-                         onerror="this.style.display='none'">
-                </div>
-                <div class="menu-item-text">
-                    <h3>Impacto</h3><p>Revisar</p>
-                </div>
-                <span class="menu-arrow">▶</span>
-            </div>
-            <div class="menu-item" onclick="goToGuided('descripcionScreen')">
-                <div class="menu-item-img" style="background:#888;">
-                    <img src="img/menu-descripcion.jpg" alt="Descripción"
-                         onerror="this.style.display='none'">
-                </div>
-                <div class="menu-item-text">
-                    <h3>Descripción</h3><p>Revisar</p>
-                </div>
-                <span class="menu-arrow">▶</span>
-            </div>
-            <div class="menu-item" onclick="goToGuided('cuidadosScreen')">
-                <div class="menu-item-img" style="background:#6aaa3a;">
-                    <img src="img/menu-cuidados.jpg" alt="Cuidados"
-                         onerror="this.style.display='none'">
-                </div>
-                <div class="menu-item-text">
-                    <h3>Cuidados</h3><p>Revisar</p>
-                </div>
-                <span class="menu-arrow">▶</span>
-            </div>
+        <div class="card">
+            <p class="body-text" style="text-align:center;margin-bottom:0;">
+                Ya conoces el impacto, la descripción y los cuidados de las
+                <strong>abejas Meliponini.</strong> Puedes repasar cualquier sección:
+            </p>
         </div>
-
-        <button class="btn-yellow full" onclick="goTo('modeScreen')">
-            Volver al inicio <span class="ico">▶</span>
+        <div class="menu-card" onclick="goToGuided('impactoScreen')">
+            <div class="menu-card-img" style="background:#EF9F27;">
+                <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
+                <span>🌿</span>
+            </div>
+            <div class="menu-card-text"><h3>Impacto</h3><p>Revisar</p></div>
+            <span class="menu-card-arrow">▶</span>
+        </div>
+        <div class="menu-card" onclick="goToGuided('descripcionScreen')">
+            <div class="menu-card-img" style="background:#888;">
+                <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
+                <span>🐝</span>
+            </div>
+            <div class="menu-card-text"><h3>Descripción</h3><p>Revisar</p></div>
+            <span class="menu-card-arrow">▶</span>
+        </div>
+        <div class="menu-card" onclick="goToGuided('cuidadosScreen')">
+            <div class="menu-card-img" style="background:#6aaa3a;">
+                <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
+                <span>🌱</span>
+            </div>
+            <div class="menu-card-text"><h3>Cuidados</h3><p>Revisar</p></div>
+            <span class="menu-card-arrow">▶</span>
+        </div>
+        <button class="btn btn-yellow" onclick="goTo('modeScreen')" style="margin-top:4px;">
+            Volver al inicio ▶
         </button>
-
     </div>
 </div>
 
-<script src="main.js"></script>
+</div><!-- /app -->
+
+<!-- ══════════════════════════════════
+     BOTTOM NAVIGATION
+══════════════════════════════════ -->
+<nav id="bottomNav">
+    <div class="nav-item" id="navHome" onclick="goHome()">
+        <div class="nav-icon">🏠</div>
+        <span class="nav-label">Inicio</span>
+    </div>
+    <div class="nav-item" id="navImpacto" onclick="navGoTo('impactoScreen')">
+        <div class="nav-icon">🌿</div>
+        <span class="nav-label">Impacto</span>
+    </div>
+    <div class="nav-item" id="navDescripcion" onclick="navGoTo('descripcionScreen')">
+        <div class="nav-icon">🐝</div>
+        <span class="nav-label">Descripción</span>
+    </div>
+    <div class="nav-item" id="navCuidados" onclick="navGoTo('cuidadosScreen')">
+        <div class="nav-icon">🌱</div>
+        <span class="nav-label">Cuidados</span>
+    </div>
+</nav>
+
+<script>
+/* ── STATE ── */
+let navHistory       = ['splashScreen'];
+let learnMode        = 'free';
+let unlockedSections = [];
+
+/* ── BOTTOM NAV ── */
+const NAV_HIDE = ['splashScreen','welcomeScreen','warningScreen','modeScreen'];
+const NAV_ACTIVE = {
+    progressScreen:   'navHome',
+    menuScreen:       'navHome',
+    completedScreen:  'navHome',
+    impactoScreen:    'navImpacto',
+    descripcionScreen:'navDescripcion',
+    cuidadosScreen:   'navCuidados'
+};
+
+function updateBottomNav(screenId) {
+    const nav = document.getElementById('bottomNav');
+    if (NAV_HIDE.includes(screenId)) {
+        nav.classList.remove('visible');
+        return;
+    }
+    nav.classList.add('visible');
+
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const activeId = NAV_ACTIVE[screenId];
+    if (activeId) document.getElementById(activeId).classList.add('active');
+
+    const navDesc = document.getElementById('navDescripcion');
+    const navCuid = document.getElementById('navCuidados');
+    if (learnMode === 'progress') {
+        navDesc.classList.toggle('locked-nav', !unlockedSections.includes('Descripcion'));
+        navCuid.classList.toggle('locked-nav', !unlockedSections.includes('Cuidados'));
+    } else {
+        navDesc.classList.remove('locked-nav');
+        navCuid.classList.remove('locked-nav');
+    }
+}
+
+function goHome() {
+    learnMode === 'progress' ? goTo('progressScreen') : goTo('menuScreen');
+}
+
+function navGoTo(screenId) {
+    learnMode === 'progress' ? goToGuided(screenId) : goToFree(screenId);
+}
+
+/* ── LEARN MODE ── */
+function setLearnMode(mode) {
+    learnMode = mode;
+    document.body.classList.remove('mode-progress','mode-free');
+    document.body.classList.add('mode-' + mode);
+}
+
+function startGuided() {
+    rippleTransition('#2F5C0C', function() {
+        setLearnMode('progress');
+        navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','progressScreen'];
+        showScreen('progressScreen', 'forward');
+    });
+}
+
+function startFree() {
+    rippleTransition('#E8981C', function() {
+        setLearnMode('free');
+        navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','menuScreen'];
+        showScreen('menuScreen', 'forward');
+    });
+}
+
+/* ── MODE REVEAL ── */
+function revealModes() {
+    const single = document.getElementById('modeOrbSingle');
+    const split  = document.getElementById('modeOrbsSplit');
+    single.classList.add('splitting');
+    setTimeout(() => { single.style.display = 'none'; split.classList.add('revealed'); }, 390);
+}
+
+function resetModeReveal() {
+    const single = document.getElementById('modeOrbSingle');
+    const split  = document.getElementById('modeOrbsSplit');
+    single.style.display = '';
+    single.classList.remove('splitting');
+    split.classList.remove('revealed');
+}
+
+/* ── UNLOCK SECTIONS ── */
+function unlockSection(sectionId) {
+    if (!unlockedSections.includes(sectionId)) unlockedSections.push(sectionId);
+    const el = document.getElementById('prog' + sectionId);
+    if (!el) return;
+    el.classList.remove('locked');
+    el.onclick = () => goToGuided(sectionId.toLowerCase() + 'Screen');
+    const arrow = el.querySelector('.lock-icon');
+    if (arrow) { arrow.textContent = '▶'; arrow.classList.remove('lock-icon'); arrow.classList.add('menu-card-arrow'); }
+}
+
+/* ── SCREEN TRANSITION ── */
+function showScreen(id, direction) {
+    const current = document.querySelector('.screen.active');
+    const next    = document.getElementById(id);
+    if (!next || current === next) return;
+
+    const fwd = direction !== 'back';
+    const dur = '0.38s cubic-bezier(0.4,0,0.2,1)';
+
+    next.style.transition  = 'none';
+    next.style.transform   = fwd ? 'translateX(100%)' : 'translateX(-100%)';
+    next.style.pointerEvents = 'none';
+    next.classList.add('active');
+
+    next.getBoundingClientRect(); // force reflow
+
+    next.style.transition = 'transform ' + dur;
+    next.style.transform  = 'translateX(0)';
+
+    if (current) {
+        current.style.transition = 'transform ' + dur;
+        current.style.transform  = fwd ? 'translateX(-100%)' : 'translateX(100%)';
+        current.addEventListener('transitionend', function h() {
+            current.classList.remove('active');
+            current.style.transform = current.style.transition = '';
+            current.removeEventListener('transitionend', h);
+        });
+    }
+
+    next.addEventListener('transitionend', function h() {
+        next.style.transition = next.style.pointerEvents = '';
+        next.removeEventListener('transitionend', h);
+    });
+
+    updateBottomNav(id);
+
+    if (id === 'impactoScreen')       { startCropCarousel();  stopPlantCarousel(); }
+    else if (id === 'cuidadosScreen') { startPlantCarousel(); stopCropCarousel();  }
+    else                              { stopCropCarousel();   stopPlantCarousel(); }
+
+    if (id === 'modeScreen') resetModeReveal();
+
+    const scrollEl = next.querySelector('.s-scroll');
+    if (scrollEl) scrollEl.scrollTop = 0;
+}
+
+function goTo(id) {
+    navHistory.push(id);
+    showScreen(id, 'forward');
+}
+
+function goToGuided(id) {
+    setLearnMode('progress');
+    navHistory.push(id);
+    showScreen(id, 'forward');
+}
+
+function goToFree(id) {
+    setLearnMode('free');
+    navHistory.push(id);
+    showScreen(id, 'forward');
+}
+
+function goBack() {
+    if (navHistory.length > 1) {
+        navHistory.pop();
+        showScreen(navHistory[navHistory.length - 1], 'back');
+    }
+}
+
+/* ── RIPPLE ── */
+function rippleTransition(color, callback) {
+    const r = document.createElement('div');
+    r.className = 'ripple-overlay';
+    r.style.background = color;
+    document.body.appendChild(r);
+    r.addEventListener('animationend', function onExp() {
+        r.removeEventListener('animationend', onExp);
+        callback();
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            r.classList.add('fade-out');
+            r.addEventListener('animationend', function onFade() {
+                r.removeEventListener('animationend', onFade);
+                r.remove();
+            });
+        }));
+    });
+}
+
+/* ── CROP CAROUSEL ── */
+let cropIndex = 0, CROP_N = 9, cropTimer = null, cropTouchX = 0;
+
+function cropGoTo(i) {
+    const slides = document.querySelectorAll('#impactoScreen .c-slide');
+    const dots   = document.querySelectorAll('#carouselDots .c-dot');
+    slides[cropIndex].classList.remove('active');
+    dots[cropIndex].classList.remove('active');
+    cropIndex = ((i % CROP_N) + CROP_N) % CROP_N;
+    slides[cropIndex].classList.add('active');
+    dots[cropIndex].classList.add('active');
+}
+function cropNext() { cropGoTo(cropIndex + 1); cropResetTimer(); }
+function cropPrev() { cropGoTo(cropIndex - 1); cropResetTimer(); }
+function cropResetTimer() { clearInterval(cropTimer); cropTimer = setInterval(() => cropGoTo(cropIndex + 1), 2800); }
+function startCropCarousel() { cropGoTo(0); cropResetTimer(); }
+function stopCropCarousel()  { clearInterval(cropTimer); cropTimer = null; }
+function cropTouchStart(e)   { cropTouchX = e.touches[0].clientX; }
+function cropTouchEnd(e)     { const dx = e.changedTouches[0].clientX - cropTouchX; if (Math.abs(dx) > 40) dx < 0 ? cropNext() : cropPrev(); }
+
+/* ── PLANT CAROUSEL ── */
+let plantIndex = 0, PLANT_N = 6, plantTimer = null, plantTouchX = 0;
+
+function plantGoTo(i) {
+    const slides = document.querySelectorAll('.plant-carousel .c-slide');
+    const dots   = document.querySelectorAll('#plantDots .c-dot');
+    slides[plantIndex].classList.remove('active');
+    dots[plantIndex].classList.remove('active');
+    plantIndex = ((i % PLANT_N) + PLANT_N) % PLANT_N;
+    slides[plantIndex].classList.add('active');
+    dots[plantIndex].classList.add('active');
+}
+function plantNext() { plantGoTo(plantIndex + 1); plantResetTimer(); }
+function plantPrev() { plantGoTo(plantIndex - 1); plantResetTimer(); }
+function plantResetTimer() { clearInterval(plantTimer); plantTimer = setInterval(() => plantGoTo(plantIndex + 1), 2800); }
+function startPlantCarousel() { plantGoTo(0); plantResetTimer(); }
+function stopPlantCarousel()  { clearInterval(plantTimer); plantTimer = null; }
+function plantTouchStart(e)   { plantTouchX = e.touches[0].clientX; }
+function plantTouchEnd(e)     { const dx = e.changedTouches[0].clientX - plantTouchX; if (Math.abs(dx) > 40) dx < 0 ? plantNext() : plantPrev(); }
+
+/* ── INIT ── */
+updateBottomNav('splashScreen');
+</script>
 </body>
 </html>
