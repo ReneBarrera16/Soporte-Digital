@@ -8,7 +8,9 @@
       "Bash(powershell -Command \":*)",
       "Bash(powershell -Command \"\\(Get-Content ''e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\styles.css'' -Raw\\).Split\\(''\\\\n''\\).Count\")",
       "Bash(find 'e:/02-Marlon Rene/Pagina Melipona/' -iname *melipona* -o -iname *inicio*)",
-      "Bash(find 'e:/02-Marlon Rene/Pagina Melipona/' -iname *.jpg -o -iname *.png -o -iname *.jpeg -o -iname *.webp)"
+      "Bash(find 'e:/02-Marlon Rene/Pagina Melipona/' -iname *.jpg -o -iname *.png -o -iname *.jpeg -o -iname *.webp)",
+      "PowerShell($f = \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\index_v2.html\"; \\(Get-Item $f\\).Length)",
+      "PowerShell($f = \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\index.html\"; \\(Get-Item $f\\).Length)"
     ]
   }
 }
