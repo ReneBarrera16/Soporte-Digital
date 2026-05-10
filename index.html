@@ -44,19 +44,23 @@ html, body {
 .screen {
     position: absolute;
     inset: 0;
-    transform: translateX(100%);
+    opacity: 0;
     pointer-events: none;
     overflow: hidden;
     background: var(--cream);
+    display: flex;
+    flex-direction: column;
 }
 
 .screen.active {
-    transform: translateX(0);
+    opacity: 1;
     pointer-events: auto;
 }
 
 /* ── SCROLLABLE CONTENT AREA ── */
 .s-scroll {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -412,10 +416,6 @@ body.mode-free     .free-only     { display: flex; }
 /* ── MODE SCREEN ── */
 #modeScreen {
     display: flex; flex-direction: column;
-    align-items: center;
-    padding: 0 16px 32px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 }
 .mode-header { text-align: center; padding: 36px 0 20px; }
 .mode-header h2 {
@@ -442,38 +442,42 @@ body.mode-free     .free-only     { display: flex; }
 }
 .orb-star { font-size: 38px; }
 .orb-cta  { font-size: 12px; font-weight: 900; color: var(--text); margin-top: 4px; }
-.mode-orbs-split { display: none; gap: 14px; width: 100%; }
+.mode-orbs-split { display: none; flex-direction: column; gap: 12px; width: 100%; }
 .mode-orbs-split.revealed {
     display: flex;
-    animation: splitReveal 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    animation: splitReveal 0.35s ease-out forwards;
 }
 @keyframes splitReveal {
-    from { opacity: 0; transform: scale(0.65); }
-    to   { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 .mode-card {
-    flex: 1;
+    width: 100%;
     background: var(--white);
     border-radius: var(--r);
-    padding: 20px 16px;
+    padding: 16px;
     box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-    display: flex; flex-direction: column;
-    align-items: center; text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: transform 0.14s;
+    text-align: left;
 }
-.mode-card:active { transform: scale(0.97); }
+.mode-card:active { transform: scale(0.98); }
 .mode-card-orb {
-    width: 68px; height: 68px;
-    border-radius: 50%;
+    width: 58px; height: 58px;
+    border-radius: 16px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 30px;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    font-size: 28px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
 }
-.mode-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 6px; }
-.mode-card p  { font-size: 12px; line-height: 1.4; color: var(--text-soft); }
+.mode-card-text { flex: 1; }
+.mode-card-text h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text); margin-bottom: 4px; }
+.mode-card-text p  { font-size: 12px; line-height: 1.4; color: var(--text-soft); }
+.mode-card-chevron { font-size: 14px; color: var(--green-mid); }
 
 /* ── CAROUSEL ── */
 .carousel-wrap {
@@ -654,25 +658,33 @@ body.mode-free     .free-only     { display: flex; }
      PANTALLA 3 · SELECTOR DE MODO
 ══════════════════════════════════ -->
 <div class="screen" id="modeScreen">
-    <div class="mode-header">
-        <span class="badge">Existen dos formas de explorar</span>
-        <h2>¿Cuál te gusta más?</h2>
-    </div>
-    <div id="modeOrbContainer" style="width:100%;display:flex;flex-direction:column;align-items:center;">
-        <div class="mode-orb-single" id="modeOrbSingle" onclick="revealModes()">
-            <span class="orb-star">🌟</span>
-            <span class="orb-cta">Descubrir</span>
+    <div class="s-scroll" style="display:flex;flex-direction:column;align-items:center;padding:0 16px 32px;">
+        <div class="mode-header">
+            <span class="badge">Existen dos formas de explorar</span>
+            <h2>¿Cuál te gusta más?</h2>
         </div>
-        <div class="mode-orbs-split" id="modeOrbsSplit">
-            <div class="mode-card" onclick="startGuided()">
-                <div class="mode-card-orb" style="background:linear-gradient(135deg,#E8981C,#C07810);">🗺️</div>
-                <h3>Recorrer</h3>
-                <p>Guiado paso a paso,<br>desbloqueando secciones</p>
+        <div id="modeOrbContainer" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+            <div class="mode-orb-single" id="modeOrbSingle" onclick="revealModes()">
+                <span class="orb-star">🌟</span>
+                <span class="orb-cta">Descubrir</span>
             </div>
-            <div class="mode-card" onclick="startFree()">
-                <div class="mode-card-orb" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">📚</div>
-                <h3>Explorar</h3>
-                <p>Libremente,<br>a tu propio ritmo</p>
+            <div class="mode-orbs-split" id="modeOrbsSplit">
+                <div class="mode-card" onclick="startGuided()">
+                    <div class="mode-card-orb" style="background:linear-gradient(135deg,#E8981C,#C07810);">🗺️</div>
+                    <div class="mode-card-text">
+                        <h3>Recorrer</h3>
+                        <p>Guiado paso a paso, desbloqueando secciones</p>
+                    </div>
+                    <span class="mode-card-chevron">▶</span>
+                </div>
+                <div class="mode-card" onclick="startFree()">
+                    <div class="mode-card-orb" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);">📚</div>
+                    <div class="mode-card-text">
+                        <h3>Explorar</h3>
+                        <p>Libremente, a tu propio ritmo</p>
+                    </div>
+                    <span class="mode-card-chevron">▶</span>
+                </div>
             </div>
         </div>
     </div>
@@ -1200,7 +1212,7 @@ function startGuided() {
     rippleTransition('#2F5C0C', function() {
         setLearnMode('progress');
         navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','progressScreen'];
-        showScreen('progressScreen', 'forward');
+        showScreen('progressScreen');
     });
 }
 
@@ -1208,7 +1220,7 @@ function startFree() {
     rippleTransition('#E8981C', function() {
         setLearnMode('free');
         navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','menuScreen'];
-        showScreen('menuScreen', 'forward');
+        showScreen('menuScreen');
     });
 }
 
@@ -1239,39 +1251,38 @@ function unlockSection(sectionId) {
     if (arrow) { arrow.textContent = '▶'; arrow.classList.remove('lock-icon'); arrow.classList.add('menu-card-arrow'); }
 }
 
-/* ── SCREEN TRANSITION ── */
-function showScreen(id, direction) {
+/* ── SCREEN TRANSITION — FADE ── */
+function showScreen(id) {
     const current = document.querySelector('.screen.active');
     const next    = document.getElementById(id);
     if (!next || current === next) return;
 
-    const fwd = direction !== 'back';
-    const dur = '0.38s cubic-bezier(0.4,0,0.2,1)';
+    const DUR = '0.3s ease';
 
-    next.style.transition  = 'none';
-    next.style.transform   = fwd ? 'translateX(100%)' : 'translateX(-100%)';
-    next.style.pointerEvents = 'none';
+    next.style.opacity    = '0';
+    next.style.zIndex     = '2';
+    next.style.transition = 'none';
     next.classList.add('active');
 
-    next.getBoundingClientRect(); // force reflow
+    next.getBoundingClientRect();
 
-    next.style.transition = 'transform ' + dur;
-    next.style.transform  = 'translateX(0)';
+    next.style.transition = 'opacity ' + DUR;
+    next.style.opacity    = '1';
 
     if (current) {
-        current.style.transition = 'transform ' + dur;
-        current.style.transform  = fwd ? 'translateX(-100%)' : 'translateX(100%)';
+        current.style.transition = 'opacity ' + DUR;
+        current.style.opacity    = '0';
         current.addEventListener('transitionend', function h() {
             current.classList.remove('active');
-            current.style.transform = current.style.transition = '';
+            current.style.opacity = current.style.transition = '';
             current.removeEventListener('transitionend', h);
-        });
+        }, { once: true });
     }
 
     next.addEventListener('transitionend', function h() {
-        next.style.transition = next.style.pointerEvents = '';
+        next.style.opacity = next.style.zIndex = next.style.transition = '';
         next.removeEventListener('transitionend', h);
-    });
+    }, { once: true });
 
     updateBottomNav(id);
 
@@ -1285,27 +1296,13 @@ function showScreen(id, direction) {
     if (scrollEl) scrollEl.scrollTop = 0;
 }
 
-function goTo(id) {
-    navHistory.push(id);
-    showScreen(id, 'forward');
-}
-
-function goToGuided(id) {
-    setLearnMode('progress');
-    navHistory.push(id);
-    showScreen(id, 'forward');
-}
-
-function goToFree(id) {
-    setLearnMode('free');
-    navHistory.push(id);
-    showScreen(id, 'forward');
-}
-
+function goTo(id)       { navHistory.push(id); showScreen(id); }
+function goToGuided(id) { setLearnMode('progress'); navHistory.push(id); showScreen(id); }
+function goToFree(id)   { setLearnMode('free');     navHistory.push(id); showScreen(id); }
 function goBack() {
     if (navHistory.length > 1) {
         navHistory.pop();
-        showScreen(navHistory[navHistory.length - 1], 'back');
+        showScreen(navHistory[navHistory.length - 1]);
     }
 }
 
