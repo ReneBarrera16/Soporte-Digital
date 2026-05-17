@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Abejas Meliponini</title>
+    <link rel="icon" type="image/png" href="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,7 +30,8 @@
 html, body {
     width: 100%; height: 100%;
     overflow: hidden;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
     background: var(--cream);
     color: var(--text);
 }
@@ -76,8 +78,8 @@ html, body {
     flex-shrink: 0;
 }
 .topbar-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 19px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 21px;
     font-weight: 700;
     color: var(--green-dark);
 }
@@ -88,7 +90,7 @@ html, body {
     background: var(--white);
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     flex-shrink: 0;
@@ -100,9 +102,9 @@ html, body {
     align-items: center;
     background: var(--green-dark);
     color: #fff;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 900;
-    font-size: 12px;
+    font-size: 14px;
     padding: 7px 14px;
     border-radius: 50px;
     margin-bottom: 12px;
@@ -126,11 +128,11 @@ html, body {
     box-shadow: 0 6px 24px rgba(59,109,17,0.3);
 }
 .card-dark p { color: rgba(255,255,255,0.9); }
-.card-dark strong { color: var(--yellow); }
+.card-dark strong { color: #F0D060; }
 
 /* ── TYPOGRAPHY ── */
 .body-text {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.65;
     color: var(--text-soft);
     margin-bottom: 10px;
@@ -151,17 +153,17 @@ button { -webkit-user-select: none; user-select: none; touch-action: manipulatio
     padding: 15px 24px;
     border: none;
     border-radius: 50px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 900;
-    font-size: 15px;
+    font-size: 17px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: transform 0.14s;
 }
 .btn:active { transform: scale(0.97); }
-.btn-yellow  { background: var(--yellow); color: var(--text); box-shadow: 0 4px 16px rgba(239,159,39,0.4); }
-.btn-green   { background: var(--green-dark); color: #fff; box-shadow: 0 4px 16px rgba(59,109,17,0.35); }
-.btn-outline { background: transparent; border: 2px solid var(--green-dark); color: var(--green-dark); }
+.btn-yellow  { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
+.btn-green   { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
+.btn-outline { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
 
 .progress-only, .free-only { display: none; }
 body.mode-progress .progress-only { display: flex; }
@@ -198,16 +200,16 @@ body.mode-free     .free-only     { display: flex; }
     width: 44px; height: 44px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
+    font-size: 24px;
     background: transparent;
     transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
                 background 0.28s, box-shadow 0.28s;
 }
 .nav-label {
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
     color: rgba(255,255,255,0.55);
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lexend', sans-serif;
     transition: color 0.28s;
     letter-spacing: 0.02em;
 }
@@ -216,7 +218,7 @@ body.mode-free     .free-only     { display: flex; }
     transform: translateY(-20px);
     box-shadow: 0 6px 20px rgba(239,159,39,0.55);
 }
-.nav-item.active .nav-label { color: var(--yellow); }
+.nav-item.active .nav-label { color: #F0D060; }
 .nav-item.locked-nav { opacity: 0.35; pointer-events: none; }
 
 /* ── MENU CARDS (hub screens) ── */
@@ -241,7 +243,7 @@ body.mode-free     .free-only     { display: flex; }
     overflow: hidden;
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 26px;
+    font-size: 28px;
     position: relative;
 }
 .menu-card-img img {
@@ -252,14 +254,15 @@ body.mode-free     .free-only     { display: flex; }
 }
 .menu-card-text { flex: 1; }
 .menu-card-text h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--text);
     margin-bottom: 3px;
 }
-.menu-card-text p { font-size: 11px; color: var(--text-soft); line-height: 1.4; }
-.menu-card-arrow { font-size: 13px; color: var(--green-mid); }
-.lock-icon { font-size: 17px; }
+.menu-card-text p { font-size: 13px; color: var(--text-soft); line-height: 1.4; }
+.menu-card-arrow { font-size: 15px; color: var(--green-mid); }
+.lock-icon { font-size: 19px; }
 
 /* ── SPLASH TAROT ── */
 #splashScreen {
@@ -432,16 +435,16 @@ body.mode-free     .free-only     { display: flex; }
         transparent 100%);
 }
 .splash-eyebrow {
-    font-family: 'Nunito', sans-serif;
-    font-size: 9px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.32em;
-    color: #C9A84C;
+    color: #F0D060;
     text-transform: uppercase;
     margin-bottom: 9px;
 }
 .splash-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 900;
     color: #F5EDD4;
     margin-bottom: 8px;
@@ -449,21 +452,22 @@ body.mode-free     .free-only     { display: flex; }
 }
 .splash-title-top {
     display: block;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.30em;
-    color: #E8C96A;
+    color: #F0D060;
     margin-bottom: 5px;
 }
 .splash-title-main {
     display: block;
-    font-size: 44px;
+    font-size: 48px;
+    font-weight: 700;
     letter-spacing: 0.05em;
 }
 .splash-sub {
-    font-family: 'Nunito', sans-serif;
-    font-size: 11px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px;
     color: rgba(245,237,212,0.55);
     margin-bottom: 26px;
     font-weight: 600;
@@ -474,9 +478,9 @@ body.mode-free     .free-only     { display: flex; }
     color: #3D2410;
     padding: 15px 46px;
     border-radius: 50px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.08em;
     border: 2px solid #E8C96A;
     cursor: pointer;
@@ -490,8 +494,8 @@ body.mode-free     .free-only     { display: flex; }
 }
 .splash-hint {
     margin-top: 14px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 9px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 11px;
     color: rgba(245,237,212,0.28);
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -558,10 +562,10 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Línea decorativa con numeración romana */
 .welcome-numeral {
-    font-family: 'Playfair Display', serif;
-    font-size: 11px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px;
     font-weight: 400;
-    color: #C9A84C;
+    color: #6B7A2E;
     letter-spacing: 0.28em;
     text-align: center;
     margin-bottom: 12px;
@@ -581,8 +585,8 @@ body.mode-free     .free-only     { display: flex; }
 }
 
 .welcome-card-body h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 32px;
     font-weight: 900;
     color: #3D2410;
     text-align: center;
@@ -590,8 +594,8 @@ body.mode-free     .free-only     { display: flex; }
     line-height: 1.1;
 }
 .welcome-card-body p {
-    font-family: 'Nunito', sans-serif;
-    font-size: 15px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 17px;
     line-height: 1.7;
     color: #5A3E28;
     margin-bottom: 8px;
@@ -610,8 +614,8 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Texto de contexto (ex info-chip) — itálica discreta */
 .welcome-info-text {
-    font-family: 'Nunito', sans-serif;
-    font-size: 11.5px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px;
     line-height: 1.55;
     color: #8B6A4A;
     text-align: center;
@@ -631,9 +635,9 @@ body.mode-free     .free-only     { display: flex; }
     color: #3D2410;
     padding: 15px 46px;
     border-radius: 50px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.08em;
     border: 2px solid #E8C96A;
     cursor: pointer;
@@ -704,12 +708,13 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Cabecera dorada con abeja y badge */
 .warn-header {
-    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    background: #F5EDD4;
     padding: 26px 24px 20px;
     text-align: center;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
 }
 .warn-bee-icon {
-    font-size: 46px;
+    font-size: 50px;
     line-height: 1;
     display: block;
     margin-bottom: 10px;
@@ -719,8 +724,8 @@ body.mode-free     .free-only     { display: flex; }
     display: inline-block;
     background: #8B1A2E;
     color: #F5EDD4;
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.05em;
     padding: 6px 20px;
@@ -730,10 +735,10 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Numeración romana */
 .warn-numeral {
-    font-family: 'Playfair Display', serif;
-    font-size: 11px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px;
     font-weight: 400;
-    color: #C9A84C;
+    color: #6B7A2E;
     letter-spacing: 0.28em;
     text-align: center;
     margin: 16px 24px 0;
@@ -764,8 +769,8 @@ body.mode-free     .free-only     { display: flex; }
     line-height: 1;
 }
 .warn-line p {
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 16px;
     line-height: 1.6;
     color: #5A3E28;
     margin: 0;
@@ -783,9 +788,9 @@ body.mode-free     .free-only     { display: flex; }
     color: #3D2410;
     padding: 15px 46px;
     border-radius: 50px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.08em;
     border: 2px solid #E8C96A;
     cursor: pointer;
@@ -848,8 +853,8 @@ body.mode-free     .free-only     { display: flex; }
     border-bottom: 1.5px solid rgba(61,36,16,0.15);
 }
 .mode-numeral {
-    font-family: 'Playfair Display', serif;
-    font-size: 12px; letter-spacing: 0.18em;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px; letter-spacing: 0.18em;
     color: rgba(61,36,16,0.6);
     display: flex; align-items: center; justify-content: center; gap: 10px;
     margin-bottom: 6px;
@@ -858,12 +863,12 @@ body.mode-free     .free-only     { display: flex; }
     content: ''; flex: 1; height: 1px; background: rgba(61,36,16,0.25);
 }
 .mode-card-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 21px; color: #3D2410; margin-bottom: 3px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 23px; font-weight: 700; color: #3D2410; margin-bottom: 3px;
 }
 .mode-subtitle {
-    font-size: 12px; color: rgba(61,36,16,0.58);
-    font-style: italic; font-family: 'Nunito', sans-serif;
+    font-size: 14px; color: rgba(61,36,16,0.58);
+    font-style: italic; font-family: 'Lexend', sans-serif;
 }
 
 /* Cuerpo de la carta */
@@ -893,10 +898,10 @@ body.mode-free     .free-only     { display: flex; }
     50% { transform: scale(1.3); opacity: 0.7; }
     100%{ transform: scale(0); opacity: 0; }
 }
-.orb-star { font-size: 34px; line-height: 1; color: #3D2410; }
+.orb-star { font-size: 36px; line-height: 1; color: #3D2410; }
 .orb-cta  {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px; font-weight: 700;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px; font-weight: 700;
     color: #3D2410; margin-top: 4px; letter-spacing: 0.05em;
 }
 
@@ -924,18 +929,18 @@ body.mode-free     .free-only     { display: flex; }
 }
 .mode-option-card:active { transform: scale(0.96); box-shadow: 0 2px 8px rgba(201,168,76,0.2); }
 .mode-option-numeral {
-    font-family: 'Playfair Display', serif;
-    font-size: 11px; letter-spacing: 0.12em;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px; letter-spacing: 0.12em;
     color: rgba(61,36,16,0.5); margin-bottom: 6px;
 }
-.mode-option-icon { font-size: 28px; margin-bottom: 8px; }
+.mode-option-icon { font-size: 30px; margin-bottom: 8px; }
 .mode-option-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px; font-weight: 700; color: #3D2410; margin-bottom: 4px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 18px; font-weight: 700; color: #3D2410; margin-bottom: 4px;
 }
 .mode-option-card p {
-    font-family: 'Nunito', sans-serif;
-    font-size: 11px; line-height: 1.4; color: rgba(61,36,16,0.62);
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px; line-height: 1.4; color: rgba(61,36,16,0.62);
 }
 
 /* Flores de modeScreen — mismo sistema que las demás */
@@ -978,7 +983,7 @@ body.mode-free     .free-only     { display: flex; }
     width: 78px; height: 78px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 34px;
+    font-size: 36px;
     overflow: hidden;
     margin-bottom: 10px;
     position: relative;
@@ -990,8 +995,8 @@ body.mode-free     .free-only     { display: flex; }
     object-fit: cover;
 }
 .c-circle span { position: relative; z-index: 1; }
-.c-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
-.c-desc { font-size: 12px; color: var(--text-soft); text-align: center; line-height: 1.45; padding: 0 8px; }
+.c-name { font-family: 'Lexend', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.c-desc { font-size: 14px; color: var(--text-soft); text-align: center; line-height: 1.45; padding: 0 8px; }
 .carousel-controls {
     display: flex; align-items: center; justify-content: center;
     gap: 12px; padding-top: 12px;
@@ -1002,7 +1007,7 @@ body.mode-free     .free-only     { display: flex; }
     border: 2px solid var(--green-dark);
     background: transparent;
     color: var(--green-dark);
-    font-size: 18px;
+    font-size: 20px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; line-height: 1;
     -webkit-tap-highlight-color: transparent;
@@ -1020,7 +1025,7 @@ body.mode-free     .free-only     { display: flex; }
 /* ── DIVIDER TITLE ── */
 .divider-title {
     text-align: center;
-    font-size: 12px; font-weight: 700;
+    font-size: 14px; font-weight: 700;
     color: var(--text-soft);
     padding: 6px 0 10px;
 }
@@ -1034,8 +1039,8 @@ body.mode-free     .free-only     { display: flex; }
     margin-bottom: 12px;
     box-shadow: 0 6px 24px rgba(239,159,39,0.4);
 }
-.completed-banner h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text); margin-bottom: 4px; }
-.completed-banner p  { font-size: 14px; color: rgba(40,30,10,0.7); }
+.completed-banner h2 { font-family: 'Lexend', sans-serif; font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.completed-banner p  { font-size: 16px; color: rgba(40,30,10,0.7); }
 
 /* ── IMPACTO TAROT ── */
 #impactoScreen { background: #3D2410; }
@@ -1044,10 +1049,10 @@ body.mode-free     .free-only     { display: flex; }
     background: rgba(45,22,8,0.98);
     border-bottom: 1px solid rgba(201,168,76,0.3);
 }
-#impactoScreen .topbar-title { color: #E8C96A; font-size: 20px; letter-spacing: 0.04em; }
+#impactoScreen .topbar-title { color: #F0D060; font-size: 22px; letter-spacing: 0.04em; }
 #impactoScreen .topbar-back {
     background: rgba(201,168,76,0.12); color: #E8C96A;
-    border: 1px solid rgba(201,168,76,0.28); box-shadow: none; font-size: 20px;
+    border: 1px solid rgba(201,168,76,0.28); box-shadow: none; font-size: 22px;
 }
 #impactoScreen .s-scroll { position: relative; z-index: 2; }
 
@@ -1080,8 +1085,8 @@ body.mode-free     .free-only     { display: flex; }
     text-align: center;
 }
 .impacto-numeral {
-    font-family: 'Playfair Display', serif;
-    font-size: 11px; font-weight: 400;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px; font-weight: 400;
     color: rgba(61,36,16,0.6); letter-spacing: 0.30em;
     margin-bottom: 6px;
     display: flex; align-items: center; gap: 8px;
@@ -1091,8 +1096,8 @@ body.mode-free     .free-only     { display: flex; }
 .impacto-numeral::after  { content: ''; flex: 1; height: 1px;
     background: linear-gradient(to left, transparent, rgba(61,36,16,0.3)); }
 .impacto-card-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; font-weight: 900; color: #3D2410; margin: 0;
+    font-family: 'Lexend', sans-serif;
+    font-size: 24px; font-weight: 900; color: #3D2410; margin: 0;
 }
 
 /* Cuerpo */
@@ -1109,13 +1114,13 @@ body.mode-free     .free-only     { display: flex; }
     border: 1px solid rgba(201,168,76,0.3);
 }
 .impacto-stat-number {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900; color: #E8C96A;
-    line-height: 1; display: block; font-size: 44px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 900; color: #F0D060;
+    line-height: 1; display: block; font-size: 48px;
 }
 .impacto-stat-unit {
-    font-family: 'Nunito', sans-serif;
-    font-size: 9px; color: rgba(245,237,212,0.6);
+    font-family: 'Lexend', sans-serif;
+    font-size: 11px; color: rgba(245,237,212,0.6);
     letter-spacing: 0.08em; text-transform: uppercase;
     margin-top: 5px; display: block; line-height: 1.3;
 }
@@ -1124,10 +1129,10 @@ body.mode-free     .free-only     { display: flex; }
     border-radius: 14px; padding: 14px 6px; text-align: center;
     border: 1px solid rgba(201,168,76,0.35);
 }
-.impacto-stat-full .impacto-stat-number { font-size: 54px; }
+.impacto-stat-full .impacto-stat-number { font-size: 60px; }
 .impacto-stat-context {
-    font-family: 'Nunito', sans-serif;
-    font-size: 12px; color: #5A3E28;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px; color: #5A3E28;
     text-align: center; margin-top: 12px; line-height: 1.6; margin-bottom: 0;
 }
 .impacto-stat-context strong { color: #3D2410; font-weight: 800; }
@@ -1156,8 +1161,8 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Texto de sección */
 .impacto-section-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px; font-weight: 700; color: #8B4A1A;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px; font-weight: 700; color: #8B4A1A;
     text-align: center; font-style: italic; margin-bottom: 12px;
 }
 .impacto-bee-photo {
@@ -1167,8 +1172,8 @@ body.mode-free     .free-only     { display: flex; }
     box-shadow: 0 0 0 3px #C9A84C, 0 6px 20px rgba(0,0,0,0.18);
 }
 .impacto-body-text {
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px; line-height: 1.65; color: #5A3E28;
+    font-family: 'Lexend', sans-serif;
+    font-size: 16px; line-height: 1.65; color: #5A3E28;
     margin-bottom: 10px; text-align: center;
 }
 .impacto-body-text strong { color: #3D2410; font-weight: 800; }
@@ -1188,11 +1193,10 @@ body.mode-free     .free-only     { display: flex; }
     background: #C9A84C; color: #3D2410;
     border: 2px solid #E8C96A;
     box-shadow: 0 6px 24px rgba(201,168,76,0.45);
-    font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.05em;
+    font-family: 'Lexend', sans-serif; font-weight: 700; letter-spacing: 0.05em;
 }
 .impacto-card-footer .btn-outline {
-    border-color: rgba(201,168,76,0.4); color: #8B4A1A;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lexend', sans-serif;
 }
 
 /* Flores desbordadas relativas a impacto-card-outer */
@@ -1226,6 +1230,306 @@ body.mode-free     .free-only     { display: flex; }
 }
 .ripple-overlay.fade-out { animation: rippleFade 0.38s ease forwards; }
 @keyframes rippleFade { from { opacity: 1; } to { opacity: 0; } }
+
+/* ── HUB SCREENS TAROT (progressScreen / menuScreen) ── */
+#progressScreen, #menuScreen, #completedScreen {
+    background: #3D2410;
+}
+#progressScreen .topbar,
+#menuScreen .topbar,
+#completedScreen .topbar {
+    position: relative; z-index: 5;
+    background: rgba(45,22,8,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+}
+#progressScreen .topbar-title,
+#menuScreen .topbar-title,
+#completedScreen .topbar-title { color: #F0D060; font-size: 22px; letter-spacing: 0.04em; }
+#progressScreen .s-scroll,
+#menuScreen .s-scroll,
+#completedScreen .s-scroll { position: relative; z-index: 2; }
+
+/* Badge dorado para hubs */
+#progressScreen .badge,
+#menuScreen .badge {
+    background: rgba(201,168,76,0.15);
+    color: #F0D060;
+    border: 1px solid rgba(201,168,76,0.35);
+    font-weight: 700; letter-spacing: 0.06em;
+}
+
+/* Menu cards oscuras en hubs */
+#progressScreen .menu-card,
+#menuScreen .menu-card,
+#completedScreen .menu-card {
+    background: rgba(245,237,212,0.07);
+    border: 1.5px solid rgba(201,168,76,0.28);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+#progressScreen .menu-card-text h3,
+#menuScreen .menu-card-text h3,
+#completedScreen .menu-card-text h3 { color: #F5EDD4; }
+#progressScreen .menu-card-text p,
+#menuScreen .menu-card-text p,
+#completedScreen .menu-card-text p { color: rgba(245,237,212,0.5); }
+#progressScreen .menu-card-arrow,
+#menuScreen .menu-card-arrow,
+#completedScreen .menu-card-arrow { color: #F0D060; }
+
+/* Banner completado en carta dorada */
+#completedScreen .completed-banner {
+    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    border: 2px solid rgba(61,36,16,0.18);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+}
+#completedScreen .completed-banner h2 { color: #3D2410; }
+#completedScreen .completed-banner p  { color: rgba(61,36,16,0.65); }
+#completedScreen .card {
+    background: rgba(245,237,212,0.07);
+    border: 1px solid rgba(201,168,76,0.25);
+    box-shadow: none;
+}
+#completedScreen .body-text { color: rgba(245,237,212,0.75); }
+#completedScreen .body-text strong { color: #F0D060; }
+#completedScreen .btn-yellow {
+    background: #C9A84C; color: #3D2410;
+    border: 2px solid #E8C96A;
+    box-shadow: 0 6px 24px rgba(201,168,76,0.45);
+}
+
+/* ── DESCRIPCION TAROT ── */
+#descripcionScreen { background: #3D2410; }
+#descripcionScreen .topbar {
+    position: relative; z-index: 5;
+    background: rgba(45,22,8,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+}
+#descripcionScreen .topbar-title { color: #F0D060; font-size: 22px; letter-spacing: 0.04em; }
+#descripcionScreen .topbar-back {
+    background: rgba(201,168,76,0.12); color: #E8C96A;
+    border: 1px solid rgba(201,168,76,0.28); box-shadow: none; font-size: 22px;
+}
+#descripcionScreen .s-scroll { position: relative; z-index: 2; }
+
+.desc-card-outer {
+    position: relative;
+    width: calc(100% - 32px); max-width: 400px;
+    margin: 20px auto 28px;
+    animation: cardSlideUp 0.75s cubic-bezier(0.34, 1.12, 0.64, 1) both;
+}
+.desc-tarot-card {
+    background: #F5EDD4; border-radius: 22px;
+    border: 2px solid #C9A84C;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.52), 0 0 0 1px rgba(232,201,106,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.55);
+    overflow: hidden; position: relative; z-index: 2;
+}
+.desc-card-header {
+    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    padding: 20px 24px 16px; text-align: center;
+}
+.desc-numeral {
+    font-size: 13px; font-weight: 400;
+    color: rgba(61,36,16,0.6); letter-spacing: 0.30em;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+}
+.desc-numeral::before { content:''; flex:1; height:1px;
+    background: linear-gradient(to right, transparent, rgba(61,36,16,0.3)); }
+.desc-numeral::after  { content:''; flex:1; height:1px;
+    background: linear-gradient(to left, transparent, rgba(61,36,16,0.3)); }
+.desc-card-header h2 {
+    font-size: 24px; font-weight: 900; color: #3D2410; margin: 0;
+}
+.desc-card-body { padding: 20px 20px 6px; }
+
+/* Grid de 3 especies */
+.desc-species-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px;
+}
+.desc-species-item {
+    background: rgba(61,36,16,0.07);
+    border-radius: 14px; padding: 10px 6px; text-align: center;
+    border: 1px solid rgba(201,168,76,0.22);
+}
+.desc-species-img {
+    width: 58px; height: 58px; border-radius: 50%; object-fit: cover;
+    display: block; margin: 0 auto 7px;
+    box-shadow: 0 0 0 2px #C9A84C, 0 4px 12px rgba(0,0,0,0.18);
+    background: rgba(61,36,16,0.08);
+}
+.desc-species-name {
+    font-size: 11px; font-weight: 700; color: #3D2410; line-height: 1.35;
+    font-style: italic;
+}
+.desc-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+    margin: 14px 0 16px;
+}
+.desc-body-text {
+    font-size: 16px; line-height: 1.65; color: #5A3E28; margin-bottom: 10px;
+}
+.desc-body-text strong { color: #3D2410; font-weight: 800; }
+.desc-note {
+    font-size: 14px; text-align: center; color: #8B4A1A;
+    font-style: italic; margin-top: 6px;
+}
+.desc-card-footer {
+    padding: 16px 20px 24px;
+    border-top: 1px solid rgba(201,168,76,0.22);
+    display: flex; flex-direction: column; gap: 10px;
+}
+.desc-card-footer .btn-green {
+    background: #C9A84C; color: #3D2410;
+    border: 2px solid #E8C96A;
+    box-shadow: 0 6px 24px rgba(201,168,76,0.45);
+    font-weight: 700; letter-spacing: 0.05em;
+}
+
+/* Flores Descripción */
+.desc-flower { position: absolute; pointer-events: none; z-index: 10; }
+.desc-flower-img {
+    display: block; width: 100%; transform-origin: center;
+    animation: windSpin 8s ease-in-out infinite;
+}
+.desc-flower-tr {
+    top: -70px; right: -44px; width: 114px;
+    animation: floatPetal 4.6s ease-in-out infinite; animation-delay: 0.5s;
+}
+.desc-flower-bl {
+    bottom: -64px; left: -42px; width: 98px;
+    animation: floatPetalAlt 5.1s ease-in-out infinite; animation-delay: 1.6s;
+}
+.desc-flower-tr .desc-flower-img { animation-delay: -2s; }
+.desc-flower-bl .desc-flower-img { animation-delay: -5s; }
+
+/* ── CUIDADOS TAROT ── */
+#cuidadosScreen { background: #3D2410; }
+#cuidadosScreen .topbar {
+    position: relative; z-index: 5;
+    background: rgba(45,22,8,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+}
+#cuidadosScreen .topbar-title { color: #F0D060; font-size: 22px; letter-spacing: 0.04em; }
+#cuidadosScreen .topbar-back {
+    background: rgba(201,168,76,0.12); color: #E8C96A;
+    border: 1px solid rgba(201,168,76,0.28); box-shadow: none; font-size: 22px;
+}
+#cuidadosScreen .s-scroll { position: relative; z-index: 2; }
+
+.cuid-card-outer {
+    position: relative;
+    width: calc(100% - 32px); max-width: 400px;
+    margin: 20px auto 28px;
+    animation: cardSlideUp 0.75s cubic-bezier(0.34, 1.12, 0.64, 1) both;
+}
+.cuid-tarot-card {
+    background: #F5EDD4; border-radius: 22px;
+    border: 2px solid #C9A84C;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.52), 0 0 0 1px rgba(232,201,106,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.55);
+    overflow: hidden; position: relative; z-index: 2;
+}
+.cuid-card-header {
+    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    padding: 20px 24px 16px; text-align: center;
+}
+.cuid-numeral {
+    font-size: 13px; font-weight: 400;
+    color: rgba(61,36,16,0.6); letter-spacing: 0.30em;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+}
+.cuid-numeral::before { content:''; flex:1; height:1px;
+    background: linear-gradient(to right, transparent, rgba(61,36,16,0.3)); }
+.cuid-numeral::after  { content:''; flex:1; height:1px;
+    background: linear-gradient(to left, transparent, rgba(61,36,16,0.3)); }
+.cuid-card-header h2 {
+    font-size: 24px; font-weight: 900; color: #3D2410; margin: 0;
+}
+.cuid-card-body { padding: 20px 20px 6px; }
+.cuid-body-text {
+    font-size: 16px; line-height: 1.65; color: #5A3E28; margin-bottom: 10px;
+}
+.cuid-body-text strong { color: #3D2410; font-weight: 800; }
+.cuid-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+    margin: 14px 0 16px;
+}
+.cuid-section-label {
+    font-size: 15px; font-weight: 700; color: #8B4A1A;
+    text-align: center; font-style: italic; margin-bottom: 12px;
+}
+
+/* Carrusel dentro de cuidados */
+#cuidadosScreen .carousel-wrap {
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 16px; box-shadow: none; margin-bottom: 0;
+}
+#cuidadosScreen .c-name { color: #3D2410; }
+#cuidadosScreen .c-desc { color: #5A3E28; }
+#cuidadosScreen .c-btn {
+    background: rgba(201,168,76,0.18); color: #8B4A1A;
+    border: 1px solid rgba(201,168,76,0.35); box-shadow: none;
+}
+#cuidadosScreen .c-dot { background: rgba(201,168,76,0.32); }
+#cuidadosScreen .c-dot.active { background: #C9A84C; transform: scale(1.5); }
+
+.cuid-card-footer {
+    padding: 16px 20px 24px;
+    border-top: 1px solid rgba(201,168,76,0.22);
+    display: flex; flex-direction: column; gap: 10px;
+}
+.cuid-card-footer .btn-green {
+    background: #C9A84C; color: #3D2410;
+    border: 2px solid #E8C96A;
+    box-shadow: 0 6px 24px rgba(201,168,76,0.45);
+    font-weight: 700; letter-spacing: 0.05em;
+}
+/* Flores Cuidados */
+.cuid-flower { position: absolute; pointer-events: none; z-index: 10; }
+.cuid-flower-img {
+    display: block; width: 100%; transform-origin: center;
+    animation: windSpin 8s ease-in-out infinite;
+}
+.cuid-flower-tr {
+    top: -68px; right: -44px; width: 116px;
+    animation: floatPetal 4.4s ease-in-out infinite; animation-delay: 0.6s;
+}
+.cuid-flower-bl {
+    bottom: -66px; left: -40px; width: 100px;
+    animation: floatPetalAlt 5.3s ease-in-out infinite; animation-delay: 1.3s;
+}
+.cuid-flower-tr .cuid-flower-img { animation-delay: -1s; }
+.cuid-flower-bl .cuid-flower-img { animation-delay: -4s; }
+
+/* ── FLORES ENTRE PÁRRAFOS ── */
+.para-flower {
+    pointer-events: none;
+    transform-origin: center;
+    animation: windSpin 8s ease-in-out infinite;
+}
+.para-flower-r {
+    float: right;
+    width: 68px;
+    margin: 0 -6px 8px 14px;
+    display: block;
+}
+.para-flower-l {
+    float: left;
+    width: 68px;
+    margin: 0 14px 8px -6px;
+    display: block;
+}
+.para-flower-c {
+    display: block;
+    margin: 6px auto;
+    width: 56px;
+    clear: both;
+}
     </style>
 </head>
 <body>
@@ -1344,6 +1648,7 @@ body.mode-free     .free-only     { display: flex; }
                     <p>Hola, somos las <strong>abejas meliponas.</strong></p>
                     <p>No tenemos aguijón,<br>pero ayudamos a que<br>
                        <em>las flores y los frutos crezcan.</em></p>
+                    <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Margarita.png" alt="" style="animation-delay: 2s;">
                     <p>Cuidarnos es proteger<br>
                        <em>la vida que te rodea.</em></p>
                     <div class="welcome-divider"></div>
@@ -1421,6 +1726,7 @@ body.mode-free     .free-only     { display: flex; }
                            Por favor, <strong>no nos molestes.</strong>
                            Necesitamos tranquilidad para polinizar.</p>
                     </div>
+                    <img class="para-flower para-flower-c" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno.png" alt="" style="animation-delay: 3s;">
                     <div class="warn-line">
                         <span class="warn-ico">🤝</span>
                         <p>Coexistir con nosotras es fácil, seguro y hermoso para todos.</p>
@@ -1513,6 +1819,11 @@ body.mode-free     .free-only     { display: flex; }
      PANTALLA 4A · HUB GUIADO
 ══════════════════════════════════ -->
 <div class="screen" id="progressScreen">
+
+    <div class="splash-mosaic"></div>
+    <img class="splash-sol"
+         src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png" alt="">
+
     <div class="topbar">
         <span class="topbar-title">Tu Recorrido</span>
     </div>
@@ -1520,7 +1831,7 @@ body.mode-free     .free-only     { display: flex; }
         <span class="badge" style="margin-bottom:14px;">Tu Recorrido de Aprendizaje</span>
 
         <div class="menu-card" id="progImpacto" onclick="goToGuided('impactoScreen')">
-            <div class="menu-card-img" style="background:#EF9F27;">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
                 <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
                 <span>🌿</span>
             </div>
@@ -1532,7 +1843,7 @@ body.mode-free     .free-only     { display: flex; }
         </div>
 
         <div class="menu-card locked" id="progDescripcion">
-            <div class="menu-card-img" style="background:#888;">
+            <div class="menu-card-img" style="background:rgba(245,237,212,0.12);">
                 <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
                 <span>🐝</span>
             </div>
@@ -1544,7 +1855,7 @@ body.mode-free     .free-only     { display: flex; }
         </div>
 
         <div class="menu-card locked" id="progCuidados">
-            <div class="menu-card-img" style="background:#6aaa3a;">
+            <div class="menu-card-img" style="background:rgba(107,122,46,0.35);">
                 <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
                 <span>🌱</span>
             </div>
@@ -1561,6 +1872,11 @@ body.mode-free     .free-only     { display: flex; }
      PANTALLA 4B · HUB LIBRE
 ══════════════════════════════════ -->
 <div class="screen" id="menuScreen">
+
+    <div class="splash-mosaic"></div>
+    <img class="splash-sol"
+         src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png" alt="">
+
     <div class="topbar">
         <span class="topbar-title">Elige un tema</span>
     </div>
@@ -1568,7 +1884,7 @@ body.mode-free     .free-only     { display: flex; }
         <span class="badge" style="margin-bottom:14px;">Elige un tema para aprender</span>
 
         <div class="menu-card" onclick="goToFree('impactoScreen')">
-            <div class="menu-card-img" style="background:#EF9F27;">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
                 <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
                 <span>🌿</span>
             </div>
@@ -1580,7 +1896,7 @@ body.mode-free     .free-only     { display: flex; }
         </div>
 
         <div class="menu-card" onclick="goToFree('descripcionScreen')">
-            <div class="menu-card-img" style="background:#888;">
+            <div class="menu-card-img" style="background:rgba(245,237,212,0.12);">
                 <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
                 <span>🐝</span>
             </div>
@@ -1592,7 +1908,7 @@ body.mode-free     .free-only     { display: flex; }
         </div>
 
         <div class="menu-card" onclick="goToFree('cuidadosScreen')">
-            <div class="menu-card-img" style="background:#6aaa3a;">
+            <div class="menu-card-img" style="background:rgba(107,122,46,0.35);">
                 <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
                 <span>🌱</span>
             </div>
@@ -1781,6 +2097,7 @@ body.mode-free     .free-only     { display: flex; }
                     <p class="impacto-body-text">Su rol de polinización <strong>impacta directamente</strong>
                     el desarrollo de las <strong>cosechas</strong> y en consecuencia
                     el <strong>costo de los alimentos.</strong></p>
+                    <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%203.png" alt="" style="animation-delay: 1s;">
                     <p class="impacto-body-text">Además de ser <strong>indispensables</strong> para el
                     <strong>equilibrio ecosistémico</strong> de nuestros hábitats.</p>
 
@@ -1807,52 +2124,112 @@ body.mode-free     .free-only     { display: flex; }
      PANTALLA 7 · DESCRIPCIÓN
 ══════════════════════════════════ -->
 <div class="screen" id="descripcionScreen">
+
+    <div class="splash-mosaic"></div>
+    <img class="splash-sol"
+         src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png" alt="">
+
     <div class="topbar">
         <button class="topbar-back" onclick="goBack()">←</button>
         <span class="topbar-title">Descripción</span>
     </div>
+
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
-        <span class="badge" style="margin-bottom:12px;">¿Quién soy?</span>
+        <div class="desc-card-outer">
 
-        <div class="card">
-            <p class="body-text">
-                Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
-                originaria de <strong>América Central y América del Sur.</strong>
-                Pertenezco a una especie única y especial que no se encuentra
-                en otras partes del mundo.
-            </p>
-            <p class="body-text">
-                Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
-                ideales para vivir junto a los humanos sin temor a ser atacados.
-            </p>
-            <p class="body-text">
-                Vivimos en colonias altamente organizadas donde cada miembro tiene
-                un rol importante. Trabajamos juntas para mantener nuestra colmena
-                <strong>saludable, productiva y armoniosa.</strong>
-            </p>
-            <p class="body-text">
-                Producimos una <strong>miel única,</strong> más fluida que la de
-                otras abejas, con propiedades medicinales especiales valoradas
-                desde tiempos ancestrales.
-            </p>
-            <p class="body-text">
-                Los pueblos indígenas de América han trabajado con abejas meliponas
-                durante miles de años en una práctica conocida como
-                <strong>"meliponicultura".</strong>
-            </p>
+            <!-- Flores desbordadas -->
+            <div class="desc-flower desc-flower-tr">
+                <img class="desc-flower-img"
+                     src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orqu%C3%ADdea%203.png"
+                     alt="">
+            </div>
+            <div class="desc-flower desc-flower-bl">
+                <img class="desc-flower-img"
+                     src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png"
+                     alt="">
+            </div>
+
+            <!-- Carta tarot -->
+            <div class="desc-tarot-card">
+
+                <!-- Cabecera dorada -->
+                <div class="desc-card-header">
+                    <div class="desc-numeral">✦ V ✦</div>
+                    <h2>¿Quién soy?</h2>
+                </div>
+
+                <!-- Cuerpo -->
+                <div class="desc-card-body">
+
+                    <!-- Grid de las 3 especies nativas -->
+                    <div class="desc-species-grid">
+                        <div class="desc-species-item">
+                            <img class="desc-species-img"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
+                                 alt="Tetragonisca angustula">
+                            <p class="desc-species-name">Tetragonisca<br>angustula</p>
+                        </div>
+                        <div class="desc-species-item">
+                            <img class="desc-species-img"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
+                                 alt="Scaptotrigona pectoralis">
+                            <p class="desc-species-name">Scaptotrigona<br>pectoralis</p>
+                        </div>
+                        <div class="desc-species-item">
+                            <img class="desc-species-img"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
+                                 alt="Melipona beechii">
+                            <p class="desc-species-name">Melipona<br>beechii</p>
+                        </div>
+                    </div>
+
+                    <div class="desc-divider"></div>
+
+                    <p class="desc-body-text">
+                        Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
+                        originaria de <strong>América Central y América del Sur.</strong>
+                        Pertenezco a una especie única y especial que no se encuentra
+                        en otras partes del mundo.
+                    </p>
+                    <p class="desc-body-text">
+                        Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
+                        ideales para vivir junto a los humanos sin temor a ser atacados.
+                    </p>
+                    <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orqu%C3%ADdea%201.png" alt="" style="animation-delay: 1.5s;">
+                    <p class="desc-body-text">
+                        Vivimos en colonias altamente organizadas donde cada miembro tiene
+                        un rol importante. Trabajamos juntas para mantener nuestra colmena
+                        <strong>saludable, productiva y armoniosa.</strong>
+                    </p>
+                    <p class="desc-body-text">
+                        Producimos una <strong>miel única,</strong> más fluida que la de
+                        otras abejas, con propiedades medicinales especiales valoradas
+                        desde tiempos ancestrales.
+                    </p>
+                    <img class="para-flower para-flower-l" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno%20doble.png" alt="" style="animation-delay: 5s;">
+                    <p class="desc-body-text">
+                        Los pueblos indígenas de América han trabajado con abejas meliponas
+                        durante miles de años en una práctica conocida como
+                        <strong>"meliponicultura".</strong>
+                    </p>
+                    <p class="desc-note">Continuemos esta aventura</p>
+
+                </div>
+
+                <!-- Pie de carta: botones -->
+                <div class="desc-card-footer">
+                    <button class="btn btn-green progress-only"
+                            onclick="unlockSection('Cuidados'); goTo('progressScreen')">
+                        Continuar aprendiendo ▶
+                    </button>
+                    <button class="btn btn-outline free-only"
+                            onclick="goTo('menuScreen')">
+                        Ir al menú
+                    </button>
+                </div>
+
+            </div>
         </div>
-
-        <button class="btn btn-green progress-only"
-                onclick="unlockSection('Cuidados'); goTo('progressScreen')">
-            Continuar aprendiendo ▶
-        </button>
-        <button class="btn btn-outline free-only"
-                onclick="goTo('menuScreen')" style="margin-top:8px;">
-            Ir al menú
-        </button>
-        <p style="text-align:center;font-size:12px;color:var(--text-soft);margin-top:14px;">
-            Continuemos esta aventura
-        </p>
     </div>
 </div>
 
@@ -1860,96 +2237,133 @@ body.mode-free     .free-only     { display: flex; }
      PANTALLA 8 · CUIDADOS
 ══════════════════════════════════ -->
 <div class="screen" id="cuidadosScreen">
+
+    <div class="splash-mosaic"></div>
+    <img class="splash-sol"
+         src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png" alt="">
+
     <div class="topbar">
         <button class="topbar-back" onclick="goBack()">←</button>
         <span class="topbar-title">Cuidados</span>
     </div>
+
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
-        <span class="badge" style="margin-bottom:12px;">¿Cómo puedes cuidarme?</span>
+        <div class="cuid-card-outer">
 
-        <div class="card">
-            <p class="body-text">
-                Para mantener a nuestras abejas saludables es importante
-                proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
-                protegido de depredadores como las hormigas, avispas y pájaros.
-            </p>
-            <p class="body-text">
-                Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
-                para obtener néctar y polen durante todo el año.
-            </p>
-            <p class="body-text">
-                <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
-                de nuestras colmenas. Estos productos pueden matar colonias enteras
-                en cuestión de días.
-            </p>
-            <p class="body-text">
-                Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
-                Un pequeño plato con agua y piedras es suficiente.
-            </p>
-        </div>
-
-        <span class="badge" style="background:linear-gradient(135deg,#4A8820,#2F5C0C);margin-bottom:12px;">
-            Mis plantas favoritas para el polen
-        </span>
-
-        <!-- CARRUSEL PLANTAS -->
-        <div class="carousel-wrap plant-carousel"
-             ontouchstart="plantTouchStart(event)"
-             ontouchend="plantTouchEnd(event)">
-            <div class="carousel-stage">
-                <div class="c-slide active">
-                    <div class="c-circle" style="background:#9b59b6;"><span>💜</span></div>
-                    <p class="c-name">Lavanda</p>
-                    <p class="c-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
-                </div>
-                <div class="c-slide">
-                    <div class="c-circle" style="background:#f1c40f;"><span>🌻</span></div>
-                    <p class="c-name">Girasol</p>
-                    <p class="c-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
-                </div>
-                <div class="c-slide">
-                    <div class="c-circle" style="background:#e67e22;"><span>🌺</span></div>
-                    <p class="c-name">Maracuyá</p>
-                    <p class="c-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
-                </div>
-                <div class="c-slide">
-                    <div class="c-circle" style="background:#2980b9;"><span>💙</span></div>
-                    <p class="c-name">Borraja</p>
-                    <p class="c-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
-                </div>
-                <div class="c-slide">
-                    <div class="c-circle" style="background:#c0392b;"><span>🌸</span></div>
-                    <p class="c-name">Cayena</p>
-                    <p class="c-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
-                </div>
-                <div class="c-slide">
-                    <div class="c-circle" style="background:#27ae60;"><span>🍀</span></div>
-                    <p class="c-name">Trébol</p>
-                    <p class="c-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
-                </div>
+            <!-- Flores desbordadas -->
+            <div class="cuid-flower cuid-flower-tr">
+                <img class="cuid-flower-img"
+                     src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno%20morado.png"
+                     alt="">
             </div>
-            <div class="carousel-controls">
-                <button class="c-btn" onclick="plantPrev()">&#8249;</button>
-                <div class="c-dots" id="plantDots">
-                    <span class="c-dot active" onclick="plantGoTo(0)"></span>
-                    <span class="c-dot" onclick="plantGoTo(1)"></span>
-                    <span class="c-dot" onclick="plantGoTo(2)"></span>
-                    <span class="c-dot" onclick="plantGoTo(3)"></span>
-                    <span class="c-dot" onclick="plantGoTo(4)"></span>
-                    <span class="c-dot" onclick="plantGoTo(5)"></span>
+            <div class="cuid-flower cuid-flower-bl">
+                <img class="cuid-flower-img"
+                     src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Hoja%20random.png"
+                     alt="">
+            </div>
+
+            <!-- Carta tarot -->
+            <div class="cuid-tarot-card">
+
+                <!-- Cabecera dorada -->
+                <div class="cuid-card-header">
+                    <div class="cuid-numeral">✦ VI ✦</div>
+                    <h2>¿Cómo puedes cuidarme?</h2>
                 </div>
-                <button class="c-btn" onclick="plantNext()">&#8250;</button>
+
+                <!-- Cuerpo -->
+                <div class="cuid-card-body">
+
+                    <p class="cuid-body-text">
+                        Para mantener a nuestras abejas saludables es importante
+                        proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
+                        protegido de depredadores como las hormigas, avispas y pájaros.
+                    </p>
+                    <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%202.png" alt="" style="animation-delay: 2.5s;">
+                    <p class="cuid-body-text">
+                        Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
+                        para obtener néctar y polen durante todo el año.
+                    </p>
+                    <p class="cuid-body-text">
+                        <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
+                        de nuestras colmenas. Estos productos pueden matar colonias enteras
+                        en cuestión de días.
+                    </p>
+                    <img class="para-flower para-flower-l" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Jade.png" alt="" style="animation-delay: 6s;">
+                    <p class="cuid-body-text">
+                        Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
+                        Un pequeño plato con agua y piedras es suficiente.
+                    </p>
+
+                    <div class="cuid-divider"></div>
+                    <p class="cuid-section-label">Mis plantas favoritas para el polen</p>
+
+                    <!-- Carrusel plantas dentro de la carta -->
+                    <div class="carousel-wrap plant-carousel"
+                         ontouchstart="plantTouchStart(event)"
+                         ontouchend="plantTouchEnd(event)">
+                        <div class="carousel-stage">
+                            <div class="c-slide active">
+                                <div class="c-circle" style="background:#9b59b6;"><span>💜</span></div>
+                                <p class="c-name">Lavanda</p>
+                                <p class="c-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle" style="background:#f1c40f;"><span>🌻</span></div>
+                                <p class="c-name">Girasol</p>
+                                <p class="c-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle" style="background:#e67e22;"><span>🌺</span></div>
+                                <p class="c-name">Maracuyá</p>
+                                <p class="c-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle" style="background:#2980b9;"><span>💙</span></div>
+                                <p class="c-name">Borraja</p>
+                                <p class="c-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle" style="background:#c0392b;"><span>🌸</span></div>
+                                <p class="c-name">Cayena</p>
+                                <p class="c-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle" style="background:#27ae60;"><span>🍀</span></div>
+                                <p class="c-name">Trébol</p>
+                                <p class="c-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="c-btn" onclick="plantPrev()">&#8249;</button>
+                            <div class="c-dots" id="plantDots">
+                                <span class="c-dot active" onclick="plantGoTo(0)"></span>
+                                <span class="c-dot" onclick="plantGoTo(1)"></span>
+                                <span class="c-dot" onclick="plantGoTo(2)"></span>
+                                <span class="c-dot" onclick="plantGoTo(3)"></span>
+                                <span class="c-dot" onclick="plantGoTo(4)"></span>
+                                <span class="c-dot" onclick="plantGoTo(5)"></span>
+                            </div>
+                            <button class="c-btn" onclick="plantNext()">&#8250;</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pie de carta: botones -->
+                <div class="cuid-card-footer">
+                    <button class="btn btn-green progress-only"
+                            onclick="goTo('completedScreen')">
+                        ¡Completé el recorrido! ▶
+                    </button>
+                    <button class="btn btn-outline free-only"
+                            onclick="goTo('menuScreen')">
+                        Ir al menú
+                    </button>
+                </div>
+
             </div>
         </div>
-
-        <button class="btn btn-green progress-only"
-                onclick="goTo('completedScreen')">
-            ¡Completé el recorrido! ▶
-        </button>
-        <button class="btn btn-outline free-only"
-                onclick="goTo('menuScreen')" style="margin-top:8px;">
-            Ir al menú
-        </button>
     </div>
 </div>
 
@@ -1957,9 +2371,15 @@ body.mode-free     .free-only     { display: flex; }
      PANTALLA 9 · COMPLETADO
 ══════════════════════════════════ -->
 <div class="screen" id="completedScreen">
+
+    <div class="splash-mosaic"></div>
+    <img class="splash-sol"
+         src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png" alt="">
+
     <div class="topbar">
         <span class="topbar-title">¡Felicitaciones!</span>
     </div>
+
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
         <div class="completed-banner">
             <h2>¡Felicitaciones!</h2>
@@ -1972,7 +2392,7 @@ body.mode-free     .free-only     { display: flex; }
             </p>
         </div>
         <div class="menu-card" onclick="goToGuided('impactoScreen')">
-            <div class="menu-card-img" style="background:#EF9F27;">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
                 <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
                 <span>🌿</span>
             </div>
@@ -1980,7 +2400,7 @@ body.mode-free     .free-only     { display: flex; }
             <span class="menu-card-arrow">▶</span>
         </div>
         <div class="menu-card" onclick="goToGuided('descripcionScreen')">
-            <div class="menu-card-img" style="background:#888;">
+            <div class="menu-card-img" style="background:rgba(245,237,212,0.12);">
                 <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
                 <span>🐝</span>
             </div>
@@ -1988,7 +2408,7 @@ body.mode-free     .free-only     { display: flex; }
             <span class="menu-card-arrow">▶</span>
         </div>
         <div class="menu-card" onclick="goToGuided('cuidadosScreen')">
-            <div class="menu-card-img" style="background:#6aaa3a;">
+            <div class="menu-card-img" style="background:rgba(107,122,46,0.35);">
                 <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
                 <span>🌱</span>
             </div>
@@ -2091,19 +2511,15 @@ function setLearnMode(mode) {
 }
 
 function startGuided() {
-    rippleTransition('#2F5C0C', function() {
-        setLearnMode('progress');
-        navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','progressScreen'];
-        showScreen('progressScreen');
-    });
+    setLearnMode('progress');
+    navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','progressScreen'];
+    showScreenSlide('progressScreen');
 }
 
 function startFree() {
-    rippleTransition('#E8981C', function() {
-        setLearnMode('free');
-        navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','menuScreen'];
-        showScreen('menuScreen');
-    });
+    setLearnMode('free');
+    navHistory = ['splashScreen','welcomeScreen','warningScreen','modeScreen','menuScreen'];
+    showScreenSlide('menuScreen');
 }
 
 /* ── MODE REVEAL ── */
@@ -2178,9 +2594,54 @@ function showScreen(id) {
     if (scrollEl) scrollEl.scrollTop = 0;
 }
 
+/* ── SCREEN TRANSITION — SLIDE HORIZONTAL (modo selector) ── */
+function showScreenSlide(id) {
+    const current = document.querySelector('.screen.active');
+    const next    = document.getElementById(id);
+    if (!next || current === next) return;
+
+    const DUR = '0.45s cubic-bezier(0.4,0,0.2,1)';
+
+    next.style.transform  = 'translateX(100%)';
+    next.style.opacity    = '1';
+    next.style.zIndex     = '2';
+    next.style.transition = 'none';
+    next.classList.add('active');
+
+    next.getBoundingClientRect();
+
+    next.style.transition = 'transform ' + DUR;
+    next.style.transform  = 'translateX(0)';
+
+    if (current) {
+        current.style.transition = 'transform ' + DUR + ', opacity ' + DUR;
+        current.style.transform  = 'translateX(-28%)';
+        current.style.opacity    = '0';
+        current.addEventListener('transitionend', function h() {
+            current.classList.remove('active');
+            current.style.transform = current.style.opacity = current.style.transition = '';
+            current.removeEventListener('transitionend', h);
+        }, { once: true });
+    }
+
+    next.addEventListener('transitionend', function h() {
+        next.style.transform = next.style.zIndex = next.style.transition = '';
+        next.removeEventListener('transitionend', h);
+    }, { once: true });
+
+    updateBottomNav(id);
+
+    if (id === 'impactoScreen')       { startCropCarousel();  stopPlantCarousel(); }
+    else if (id === 'cuidadosScreen') { startPlantCarousel(); stopCropCarousel();  }
+    else                              { stopCropCarousel();   stopPlantCarousel(); }
+
+    const scrollEl = next.querySelector('.s-scroll');
+    if (scrollEl) scrollEl.scrollTop = 0;
+}
+
 function goTo(id)       { navHistory.push(id); showScreen(id); }
-function goToGuided(id) { setLearnMode('progress'); navHistory.push(id); showScreen(id); }
-function goToFree(id)   { setLearnMode('free');     navHistory.push(id); showScreen(id); }
+function goToGuided(id) { setLearnMode('progress'); navHistory.push(id); showScreenSlide(id); }
+function goToFree(id)   { setLearnMode('free');     navHistory.push(id); showScreenSlide(id); }
 function goBack() {
     if (navHistory.length > 1) {
         navHistory.pop();

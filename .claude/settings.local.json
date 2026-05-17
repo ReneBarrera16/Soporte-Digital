@@ -13,7 +13,8 @@
       "PowerShell($f = \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\index.html\"; \\(Get-Item $f\\).Length)",
       "Bash(Get-ChildItem \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\" -Recurse)",
       "Bash(Select-Object FullName, PSIsContainer)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "Bash(Get-ChildItem \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\recursos graficos\\\\\" | Select-Object Name, Length)"
     ]
   }
 }
