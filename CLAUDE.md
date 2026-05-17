@@ -5,39 +5,69 @@ Página web educativa sobre Abejas Meliponini como soporte digital
 de tesis de diseño industrial. Público objetivo: ciudadanos urbanos
 que no conocen las abejas meliponinas.
 
-## Referencia principal de diseño
-https://www.melipona.eco
+## Concepto visual central: Tarot Latinoamericano
+La página se siente como un mazo de cartas sagradas sobre las abejas.
+Cada sección es una "carta" que se revela. Las abejas son personajes
+con identidad propia — no datos fríos, sino seres con historia.
 
-Analizar y tomar inspiración de:
-- Fotos de fondo grandes y cinematográficas (hero con imagen full screen)
-- Texto narrativo y poético — no informativo frío
-- Tipografía serif elegante mezclada con sans-serif
-- Secciones con tabs para organizar contenido
-- Transiciones suaves entre secciones
-- Sensación orgánica, cálida, natural
+Palabras clave del moodboard: Latinoamericano · Llamativo · Acogedor · Armonioso
+
+## Referencia de diseño
+Tarjetas diseñadas en Illustrator del proyecto (tarot de abejas):
+- Fondo de mosaico dorado con textura
+- Numeración romana (III, VIII, XIX)
+- Flores tropicales desbordándose por los bordes de la carta
+- Tipografía serif con personalidad para nombres de especies
+- Cada abeja centrada en una silueta orgánica crema/hueso
+- Elementos flotantes: sol dorado, nubes, estrellas carambolo
 
 ## Paleta de colores
-- Verde oscuro #3B6D11 y verde claro #639922 → naturaleza, vida
-- Amarillo/dorado #EF9F27 → miel, identidad latina
-- Rojo #C0392B → datos importantes, urgencia
-- Naranja #E67E22 → calidez, cultivos (contraste)
-- Azul #2980B9 → agua, cielo (contraste secundario)
-- Fondos: crema cálido o verde muy oscuro casi negro
+- Dorado mosaico #C9A84C y #E8C96A → fondo texturizado de carta
+- Naranja carta #E8834A → carta central, acento principal
+- Verde oliva #6B7A2E y #8B9A3A → naturaleza, hojas
+- Rojo borgoña #8B1A2E → flores tropicales, acentos dramáticos
+- Crema/hueso #F5EDD4 → siluetas, texto sobre fondos oscuros
+- Café oscuro #3D2410 → textos principales, bordes de carta
 
-## Estilo visual
-- Colorido y orgánico con toques latinos
-- Fotos reales de abejas meliponinas ocupando pantalla completa
-- Tipografía bold y con personalidad para títulos
-- Sensación de estar en la naturaleza colombiana/latinoamericana
-- NO genérico, NO corporativo, NO frío
+## Tipografía
+- Títulos y nombres de especies: serif elegante con personalidad
+  (opciones: Playfair Display, IM Fell English, Cormorant Garamond)
+- Numeración romana: misma fuente serif, tamaño grande
+- Texto de cuerpo: sans-serif legible y cálido (Lato, Nunito)
+- Frases/citas: itálica serif, estilo manuscrito botánico
+
+## Estética de carta
+- Cada pantalla/sección se presenta como una carta de tarot
+- Las cartas tienen borde dorado con esquinas redondeadas
+- Textura de mosaico en el fondo (CSS pattern o imagen)
+- Flores y elementos PNG se desbordan por encima del borde de la carta
+- Animación de entrada: carta voltea desde el reverso (flip 3D)
+  o desliza desde abajo como si saliera de un mazo
+- Elementos flotantes animados: sol que gira lentamente, flores que caen
+
+## Assets disponibles en el proyecto
+Todos los recursos gráficos están en la carpeta `/recursos graficos/`.
+Antes de escribir cualquier código, listar los archivos de esa carpeta
+para saber exactamente qué hay disponible y usar esos nombres reales.
+- Imágenes PNG de flores tropicales (orquídeas, hibiscos, etc.)
+- Imágenes PNG de las tres abejas (Tetragonisca, Scaptotrigona, Melipona)
+- Elementos decorativos: sol dorado, estrellas carambolo, nubes, esferas
+Usarlos como elementos que se desbordan en las cartas, NO como fondos planos.
+
+## Animaciones de carta
+- Entrada de pantalla: flip de carta (rotateY de 90° a 0°) o slide desde abajo
+- Transición entre pantallas: la carta anterior sale volando hacia arriba,
+  la nueva entra desde abajo del mazo
+- Hover en botones: leve elevación con sombra dorada
+- Modo libre: las tabs se comportan como seleccionar una carta del mazo
 
 ## Estructura de la página (NO modificar, solo estética)
 La página tiene DOS modos de navegación que deben mantenerse:
 
 ### Modo Secuencial
-El usuario desbloquea el contenido pantalla por pantalla en orden:
-1. Splash — hero con foto de abeja, botón "Click para Comenzar"
-2. Bienvenida — mensaje de presentación de las abejas
+El usuario desbloquea el contenido pantalla por pantalla:
+1. Splash — hero oscuro, carta central con abeja, botón "Revelar"
+2. Bienvenida — carta de presentación de las abejas
 3. Advertencia — "No somos peligrosas, solo hacemos nuestro trabajo"
 4. Selector de modo — elegir entre secuencial o libre
 5. Impacto — datos de polinización y cultivos
@@ -46,21 +76,22 @@ El usuario desbloquea el contenido pantalla por pantalla en orden:
 8. Cuidados — cómo convivir con ellas
 
 ### Modo Libre
-Mismo contenido pero accesible desde un menú con tabs:
+Mismo contenido accesible desde tabs:
 Impacto | Cultivos | Descripción | Cuidados
+Cada tab activa muestra su carta con animación de flip.
 
-## Lo que SÍ se puede cambiar (estética)
+## Lo que SÍ se puede cambiar
 - Colores, fuentes, tamaños tipográficos
-- Fondos, texturas, overlays sobre fotos
+- Fondos, texturas, overlays
 - Animaciones y transiciones entre pantallas
 - Estilo de botones, cards y badges
 - Espaciado y composición visual
+- Estructura del HTML si es necesario para las animaciones
 
-## Lo que NO se puede cambiar (estructura)
+## Lo que NO se puede cambiar
 - El flujo Splash → Bienvenida → Advertencia → Selector
 - La existencia de los dos modos (secuencial y libre)
 - El contenido textual de cada sección
-- La navegación entre pantallas del modo secuencial
 
 ## Reglas de trabajo
 - Trabajar siempre paso a paso, sección por sección
@@ -68,31 +99,4 @@ Impacto | Cultivos | Descripción | Cuidados
 - Explicar qué hace cada parte del código modificado
 - Mantener compatibilidad con GitHub Pages
 - No hacer cambios masivos en una sola vez
-
-## index_v2.html — Rediseño Mobile-First
-
-### Objetivo
-Nueva versión de la página con estética mobile-first tipo app nativa.
-El archivo original (index.html) se conserva intacto como respaldo.
-
-### Referencias visuales
-- App "florest": hero fotográfico, cards flotantes, bordes redondeados
-- E.reader UI: pantallas limpias y bien definidas
-- Bottom nav con bump curvo: ítem activo sube con curva
-
-### Cambios de UX permitidos en v2
-- Navegación por bottom nav (abajo) en lugar de barra superior
-- Swipe horizontal entre pantallas
-- Sin scroll — cada pantalla cabe en el viewport del celular
-- Transiciones tipo slide suave entre pantallas
-
-### Estética v2
-- Misma paleta de colores del proyecto original
-- Cards flotantes que no tocan los bordes de pantalla
-- Bordes redondeados en todos los elementos (cards, botones, nav)
-- Hero fotográfico con overlay oscuro y texto encima
-- Tipografía bold con personalidad para títulos
-
-### Estructura (se mantiene igual que index.html)
-- El flujo y las pantallas son los mismos
-- Solo cambia la estética y la navegación
+- Un solo archivo HTML (no más versiones separadas)
