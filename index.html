@@ -161,7 +161,7 @@ button { -webkit-user-select: none; user-select: none; touch-action: manipulatio
     transition: transform 0.14s;
 }
 .btn:active { transform: scale(0.97); }
-.btn-yellow  { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
+.btn-yellow  { background: #C9A84C; color: #3d101f; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
 .btn-green   { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
 .btn-outline { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
 
@@ -266,7 +266,7 @@ body.mode-free     .free-only     { display: flex; }
 
 /* ── SPLASH TAROT ── */
 #splashScreen {
-    background: #3D2410;
+    background: #4f550c;
     overflow: hidden;
 }
 
@@ -316,11 +316,11 @@ body.mode-free     .free-only     { display: flex; }
 /* Área de carta — centrada con flores desbordadas */
 .splash-card-area {
     position: absolute;
-    top: 46%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(64vw, 270px);
-    aspect-ratio: 2 / 3;
+    width: min(64vw, 250px);
+    aspect-ratio: 7 / 12;
     z-index: 2;
     animation: cardEntrance 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) both;
 }
@@ -345,7 +345,7 @@ body.mode-free     .free-only     { display: flex; }
     transform: rotateY(180deg);
 }
 
-/* Cara delantera y trasera */
+/* Cara delantera y trasera del la tarjeta tarot que gira */
 .splash-card-front,
 .splash-card-back {
     position: absolute; inset: 0;
@@ -353,7 +353,7 @@ body.mode-free     .free-only     { display: flex; }
     -webkit-backface-visibility: hidden;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 16px 60px rgba(0,0,0,0.55), 0 0 0 2px rgba(201,168,76,0.35);
+    box-shadow: 0 16px 60px rgba(255, 253, 115, 0.55), 0 0 0 2px rgba(241, 255, 111, 0.35);
 }
 .splash-card-front { transform: rotateY(180deg); }
 .splash-card-front img,
@@ -387,7 +387,7 @@ body.mode-free     .free-only     { display: flex; }
 }
 /* Caladio — esquina inferior-izquierda, mayormente debajo de la carta */
 .splash-flower-bl {
-    bottom: -88px; left: -48px;
+    bottom: -58px; left: -48px;
     width: 86px;
     animation: floatPetal 4.8s ease-in-out infinite;
     animation-delay: 1.9s;
@@ -430,8 +430,8 @@ body.mode-free     .free-only     { display: flex; }
     text-align: center;
     padding: 70px 28px 42px;
     background: linear-gradient(to top,
-        rgba(61,36,16,0.97) 0%,
-        rgba(61,36,16,0.75) 55%,
+        rgba(39, 46, 9, 0.97) 0%,
+        rgba(39, 46, 9, 0.97) 35%,
         transparent 100%);
 }
 .splash-eyebrow {
@@ -502,11 +502,11 @@ body.mode-free     .free-only     { display: flex; }
     text-transform: uppercase;
 }
 
-/* ── WELCOME TAROT ── */
-#welcomeScreen { background: #3D2410; }
+/* ── Pantalla 2 ¡Bienvenido! ── */
+#welcomeScreen { background: #bd4c00; }
 #welcomeScreen .s-scroll { position: relative; z-index: 2; }
 
-/* Carta contenedora — anima desde abajo al entrar */
+/* Carta taror inicial contenedora — anima desde abajo al entrar */
 .welcome-card-outer {
     position: relative;
     width: calc(100% - 36px);
@@ -523,7 +523,7 @@ body.mode-free     .free-only     { display: flex; }
 .welcome-tarot-card {
     background: #F5EDD4;
     border-radius: 22px;
-    border: 2px solid #C9A84C;
+    border: 2px solid #c23d00;
     box-shadow:
         0 20px 60px rgba(0,0,0,0.52),
         0 0 0 1px rgba(232,201,106,0.25),
@@ -1645,15 +1645,15 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="welcome-card-body">
                     <div class="welcome-numeral">✦ I ✦</div>
                     <h2>¡Bienvenido!</h2>
-                    <p>Hola, somos las <strong>abejas meliponas.</strong></p>
-                    <p>No tenemos aguijón,<br>pero ayudamos a que<br>
+                    <p>Hola, somos las <strong>abejas meliponini.</strong></p>
+                    <p>No tenemos aguijón,<br>pero somos fundamentales para que<br>
                        <em>las flores y los frutos crezcan.</em></p>
                     <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Margarita.png" alt="" style="animation-delay: 2s;">
                     <p>Cuidarnos es proteger<br>
                        <em>la vida que te rodea.</em></p>
                     <div class="welcome-divider"></div>
                     <p class="welcome-info-text">
-                        Este material forma parte de un estudio de investigación sobre el
+                        Este material forma parte de un estudio de investigación exploratoria sobre el
                         ecosistema de las <strong>abejas Meliponini</strong>, su importancia y
                         su rol en la polinización para los meliponarios.
                     </p>
@@ -1662,7 +1662,7 @@ body.mode-free     .free-only     { display: flex; }
                 <!-- Pie de carta: botón de avance -->
                 <div class="welcome-card-footer">
                     <button class="btn-welcome" onclick="goTo('warningScreen')">
-                        Empieza a explorar ▶
+                        Vamos a curiosear ▶
                     </button>
                 </div>
 
@@ -1717,8 +1717,8 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="warn-body">
                     <div class="warn-line">
                         <span class="warn-ico">✅</span>
-                        <p>Las abejas meliponas <strong>no tenemos aguijón funcional.</strong>
-                           No picamos, no atacamos. Somos completamente inofensivas.</p>
+                        <p>Las abejas meliponini <strong>no tenemos aguijón funcional.</strong>
+                           No picamos, no atacamos, somos completamente inofensivas.</p>
                     </div>
                     <div class="warn-line">
                         <span class="warn-ico">🌸</span>
@@ -1729,7 +1729,7 @@ body.mode-free     .free-only     { display: flex; }
                     <img class="para-flower para-flower-c" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno.png" alt="" style="animation-delay: 3s;">
                     <div class="warn-line">
                         <span class="warn-ico">🤝</span>
-                        <p>Coexistir con nosotras es fácil, seguro y hermoso para todos.</p>
+                        <p>Coexistir con nosotras es seguro y hermoso para todos.</p>
                     </div>
                 </div>
 
@@ -1837,7 +1837,7 @@ body.mode-free     .free-only     { display: flex; }
             </div>
             <div class="menu-card-text">
                 <h3>Impacto</h3>
-                <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
+                <p>¿Cómo impacto tu día a día?<br>Cultivos beneficiados</p>
             </div>
             <span class="menu-card-arrow">▶</span>
         </div>
@@ -1890,7 +1890,7 @@ body.mode-free     .free-only     { display: flex; }
             </div>
             <div class="menu-card-text">
                 <h3>Impacto</h3>
-                <p>¿Cómo puedo impactar tu día a día?<br>Cultivos beneficiados</p>
+                <p>¿Cómo puedo impacto tu día a día?<br>Cultivos beneficiados</p>
             </div>
             <span class="menu-card-arrow">▶</span>
         </div>
@@ -2167,48 +2167,47 @@ body.mode-free     .free-only     { display: flex; }
                             <img class="desc-species-img"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
                                  alt="Tetragonisca angustula">
-                            <p class="desc-species-name">Tetragonisca<br>angustula</p>
+                            <p class="desc-species-name">Género<br>Tetragonisca</p>
                         </div>
                         <div class="desc-species-item">
                             <img class="desc-species-img"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
                                  alt="Scaptotrigona pectoralis">
-                            <p class="desc-species-name">Scaptotrigona<br>pectoralis</p>
+                            <p class="desc-species-name">Género<br>Scaptotrigona</p>
                         </div>
                         <div class="desc-species-item">
                             <img class="desc-species-img"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
                                  alt="Melipona beechii">
-                            <p class="desc-species-name">Melipona<br>beechii</p>
+                            <p class="desc-species-name">Género<br>Melipona</p>
                         </div>
                     </div>
 
                     <div class="desc-divider"></div>
 
                     <p class="desc-body-text">
-                        Mi nombre es Melipona y soy una abeja <strong>sin aguijón</strong>,
-                        originaria de <strong>América Central y América del Sur.</strong>
-                        Pertenezco a una especie única y especial que no se encuentra
-                        en otras partes del mundo.
+                        Somos las ANSA (Abejas Nativas sin aguijón), originarias de <strong>América Central y América del Sur.</strong>
+                        Pertenezco a una tribu única y muy diversa, nativa a latinoamérica. <strong>Nuestra tribu se compone de más de 30 géneros de abejas.</strong> 
+                        Al ser una familia tan grande podemos ser muy diferentes, las meliponini menores miden de 2 - 6 mm mientras que las mayores miden de 8 - 15 mm.
                     </p>
                     <p class="desc-body-text">
-                        Somos abejas muy <strong>tranquilas, pacíficas y dóciles,</strong>
-                        ideales para vivir junto a los humanos sin temor a ser atacados.
+                        Somos abejas muy <strong>tranquilas, pacíficas e inofensivas,</strong>
+                        por razones medioambientales hemos empezado a migrar a espacios verdes urbanos.
                     </p>
                     <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orqu%C3%ADdea%201.png" alt="" style="animation-delay: 1.5s;">
                     <p class="desc-body-text">
                         Vivimos en colonias altamente organizadas donde cada miembro tiene
-                        un rol importante. Trabajamos juntas para mantener nuestra colmena
-                        <strong>saludable, productiva y armoniosa.</strong>
+                        un rol importante. ¡Cuidanos! Trabajamos juntas para mantener el ecosistema
+                        <strong>saludable, equilibrado y productivo.</strong>
                     </p>
                     <p class="desc-body-text">
-                        Producimos una <strong>miel única,</strong> más fluida que la de
-                        otras abejas, con propiedades medicinales especiales valoradas
+                        Nuesta <strong>miel</strong> es muy especial, al ser más pequeñas que las abejas europeas producimos menos,
+                        pero tiene características y propiedades medicinales especiales valoradas
                         desde tiempos ancestrales.
                     </p>
                     <img class="para-flower para-flower-l" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno%20doble.png" alt="" style="animation-delay: 5s;">
                     <p class="desc-body-text">
-                        Los pueblos indígenas de América han trabajado con abejas meliponas
+                        Los pueblos indígenas de América han trabajado con abejas meliponini
                         durante miles de años en una práctica conocida como
                         <strong>"meliponicultura".</strong>
                     </p>
@@ -2275,19 +2274,18 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="cuid-card-body">
 
                     <p class="cuid-body-text">
-                        Para mantener a nuestras abejas saludables es importante
-                        proporcionarles un <strong>ambiente tranquilo y seguro,</strong>
-                        protegido de depredadores como las hormigas, avispas y pájaros.
+                        Para mantenernos saludables es importante
+                        tener <strong>ambiente tranquilo y lleno de flores.</strong>
                     </p>
                     <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%202.png" alt="" style="animation-delay: 2.5s;">
                     <p class="cuid-body-text">
-                        Garantiza que tengan acceso a <strong>flores y plantas diversas</strong>
+                        Procura que tengamos acceso a <strong>diversas flores y plantas nativas</strong>
                         para obtener néctar y polen durante todo el año.
                     </p>
                     <p class="cuid-body-text">
                         <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
                         de nuestras colmenas. Estos productos pueden matar colonias enteras
-                        en cuestión de días.
+                        en cuestión de días. 
                     </p>
                     <img class="para-flower para-flower-l" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Jade.png" alt="" style="animation-delay: 6s;">
                     <p class="cuid-body-text">
