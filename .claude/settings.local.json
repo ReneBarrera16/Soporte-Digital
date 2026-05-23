@@ -14,7 +14,11 @@
       "Bash(Get-ChildItem \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\" -Recurse)",
       "Bash(Select-Object FullName, PSIsContainer)",
       "Bash(Format-Table -AutoSize)",
-      "Bash(Get-ChildItem \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\recursos graficos\\\\\" | Select-Object Name, Length)"
+      "Bash(Get-ChildItem \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\recursos graficos\\\\\" | Select-Object Name, Length)",
+      "Bash(dir \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\RecursosGraficos\\\\Recursos gráficos\\\\Flores, frutites y otres\" /b)",
+      "Bash(findstr /i \"nube\")",
+      "PowerShell(Get-ChildItem \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\RecursosGraficos\\\\Recursos gráficos\\\\Flores, frutites y otres\" | Where-Object { $_.Name -match \"nube|Nube\" } | Select-Object Name)",
+      "Bash(dir \"e:\\\\02-Marlon Rene\\\\Pagina Melipona\\\\Soporte Digital\\\\RecursosGraficos\\\\Recursos gráficos\" /b /s)"
     ]
   }
 }
