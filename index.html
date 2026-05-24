@@ -424,6 +424,8 @@ body.mode-free     .free-only     { display: flex; }
     color: #F5EDD4;
     margin-bottom: 8px;
     line-height: 1;
+    width: 100%;
+    text-align: center;
 }
 .splash-title-top {
     display: block;
@@ -436,9 +438,10 @@ body.mode-free     .free-only     { display: flex; }
 }
 .splash-title-main {
     display: block;
-    font-size: 48px;
+    font-size: 41px;
     font-weight: 700;
     letter-spacing: 0.05em;
+    text-align: center;
 }
 .splash-sub {
     font-family: 'Lexend', sans-serif;
@@ -757,11 +760,19 @@ body.mode-free     .free-only     { display: flex; }
 /* ── MODE SCREEN — TAROT ── */
 #modeScreen { background: #3D2410; }
 
-/* Ocultar sol y nubes en Tu Recorrido y Elige un tema */
+/* Ocultar sol y nubes en pantallas de contenido y navegación */
 #progressScreen .splash-sol,
 #progressScreen .screen-cloud,
 #menuScreen .splash-sol,
-#menuScreen .screen-cloud { display: none; }
+#menuScreen .screen-cloud,
+#impactoScreen .splash-sol,
+#impactoScreen .screen-cloud,
+#descripcionScreen .splash-sol,
+#descripcionScreen .screen-cloud,
+#cuidadosScreen .splash-sol,
+#cuidadosScreen .screen-cloud,
+#completedScreen .splash-sol,
+#completedScreen .screen-cloud { display: none; }
 #modeScreen .s-scroll { position: relative; z-index: 2; }
 
 /* Carta contenedora con flores desbordadas */
@@ -1973,6 +1984,24 @@ body.mode-free     .free-only     { display: flex; }
 
                     <div class="impacto-divider"></div>
 
+                    <!-- Carrusel flores + meliponas -->
+                    <div class="flower-carousel">
+                        <div class="flower-track">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Margarita.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Margarita.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno.png" alt="">
+                            <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png" alt="">
+                        </div>
+                    </div>
+
                     <!-- Sección abejas nativas -->
                     <p class="impacto-section-label">Ahora — ¿Polinización? Sí, abejas ¿verdad?</p>
                     <p class="impacto-body-text">¿Sabías que existe una tribu de abejas nativas de latinoamérica?</p>
@@ -1987,7 +2016,6 @@ body.mode-free     .free-only     { display: flex; }
                     <p class="impacto-body-text">Su rol de polinización <strong>impacta directamente</strong>
                     el desarrollo de las <strong>cosechas</strong> y en consecuencia
                     el <strong>costo de los alimentos.</strong></p>
-                    <img class="para-flower para-flower-r" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%203.png" alt="" style="animation-delay: 1s;">
                     <p class="impacto-body-text">Además de ser <strong>indispensables</strong> para el
                     <strong>equilibrio ecosistémico</strong> de nuestros hábitats.</p>
 
