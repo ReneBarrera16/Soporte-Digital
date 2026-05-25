@@ -13,7 +13,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --green-dark: #3B6D11;
+    --green-dark: #000000;
     --green-mid:  #639922;
     --yellow:     #EF9F27;
     --red:        #C0392B;
@@ -931,8 +931,11 @@ body.mode-free     .free-only     { display: flex; }
 }
 .c-circle img {
     position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
+    width: 50%; height: 50%;
+    object-fit: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .c-circle span { position: relative; z-index: 1; }
 .c-name { font-family: 'Lexend', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
@@ -1267,8 +1270,17 @@ body.mode-free     .free-only     { display: flex; }
 .desc-card-body { padding: 20px 20px 6px; }
 
 /* Grid de 3 especies */
-.desc-species-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px;
+.desc-important-head-ig {
+    font-family: 'Lexend', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 2px 2px 2px; text-align: center;
+}
+.desc-species-grid1 {
+    display: grid; grid-template-columns: repeat(2,1fr); gap: 30px; margin-top: 16px; margin-right: 30px; margin-left: 30px; margin-bottom: 16px;
+}
+.desc-species-grid2 {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 16px; margin-bottom: 16px;
 }
 .desc-species-item {
     background: rgba(61,36,16,0.07);
@@ -1281,8 +1293,12 @@ body.mode-free     .free-only     { display: flex; }
     box-shadow: 0 0 0 2px #C9A84C, 0 4px 12px rgba(0,0,0,0.18);
     background: rgba(61,36,16,0.08);
 }
-.desc-species-name {
-    font-size: 11px; font-weight: 700; color: #3D2410; line-height: 1.35;
+.desc-species-name-tribu {
+    font-size: 15px; font-weight: 700; color: #3D2410; line-height: 1.35;
+    font-style: normal;
+}
+.desc-species-name-genero {
+    font-size: 12px; font-weight: 700; color: #3D2410; line-height: 1.35;
     font-style: italic;
 }
 .desc-divider {
@@ -1495,14 +1511,13 @@ body.mode-free     .free-only     { display: flex; }
 
     <!-- Texto y botón en gradiente inferior -->
     <div class="splash-text-area">
-        <p class="splash-eyebrow">Soporte Digital · Tesis</p>
         <h1 class="splash-title">
             <span class="splash-title-top">ABEJAS</span>
             <span class="splash-title-main">MELIPONINI</span>
         </h1>
         <p class="splash-sub">Impacto, Descripción y Cuidados</p>
         <button class="btn-splash" id="btnRevelar" onclick="revelarCarta()">
-            Revelar ✦
+            ✦ Revelar ✦
         </button>
         <p class="splash-hint">Toca para revelar</p>
     </div>
@@ -1635,7 +1650,7 @@ body.mode-free     .free-only     { display: flex; }
                     </div>
                     <div class="warn-line">
                         <img class="warn-ico"
-                             src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png"
+                             src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Perla.png"
                              alt="">
                         <p>Somos seres vivos muy <strong>ocupados y vitales.</strong>
                            Por favor, <strong>no nos molestes.</strong>
@@ -1902,23 +1917,21 @@ body.mode-free     .free-only     { display: flex; }
                         <div class="carousel-stage">
                             <div class="c-slide active">
                                 <div class="c-circle" style="background:#e8304a;">
-                                    <img src="img/cultivos/fresas.jpg" alt="Fresas" onerror="this.style.display='none'">
-                                    <span>🍓</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Fresa.png" alt="Fresas" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Fresas</p>
                                 <p class="c-desc">El 70% de las fresas del mundo son polinizadas por abejas</p>
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#5c3d2e;">
-                                    <img src="img/cultivos/cafe.jpg" alt="Café" onerror="this.style.display='none'">
-                                    <span>☕</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Café.png" alt="Café" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Café</p>
                                 <p class="c-desc">Las abejas aumentan la fructificación del café del 60% al 90%</p>
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#3b7a35;">
-                                    <img src="img/cultivos/aguacate.jpg" alt="Aguacate" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Aguacate.png" alt="Aguacate" onerror="this.style.display='none'">
                                     <span>🥑</span>
                                 </div>
                                 <p class="c-name">Aguacate</p>
@@ -1926,15 +1939,14 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#d4a800;">
-                                    <img src="img/cultivos/banano.jpg" alt="Banano" onerror="this.style.display='none'">
-                                    <span>🍌</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Banano.png" alt="Banano" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Banano</p>
                                 <p class="c-desc">La polinización hace más eficiente su producción</p>
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#e07040;">
-                                    <img src="img/cultivos/durazno.jpg" alt="Durazno" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Durazno.png" alt="Durazno" onerror="this.style.display='none'">
                                     <span>🍑</span>
                                 </div>
                                 <p class="c-name">Durazno</p>
@@ -1942,7 +1954,7 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#7aaa40;">
-                                    <img src="img/cultivos/pera.jpg" alt="Pera" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pera.png" alt="Pera" onerror="this.style.display='none'">
                                     <span>🍐</span>
                                 </div>
                                 <p class="c-name">Pera</p>
@@ -1950,15 +1962,14 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#e07020;">
-                                    <img src="img/cultivos/mango.jpg" alt="Mango" onerror="this.style.display='none'">
-                                    <span>🥭</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Mango.png" alt="Mango" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Mango</p>
                                 <p class="c-desc">La diversidad de abejas aumenta su calidad en un 60%</p>
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#b89060;">
-                                    <img src="img/cultivos/macadamia.jpg" alt="Macadamia" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Macadamia.png" alt="Macadamia" onerror="this.style.display='none'">
                                     <span>🌰</span>
                                 </div>
                                 <p class="c-name">Macadamia</p>
@@ -1966,8 +1977,7 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#c04070;">
-                                    <img src="img/cultivos/pomarrosa.jpg" alt="Pomarrosa" onerror="this.style.display='none'">
-                                    <span>🌸</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pomarroso.png" alt="Pomarrosa" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Pomarrosa</p>
                                 <p class="c-desc">Uno de los cultivos favoritos de los Meliponinos</p>
@@ -2080,25 +2090,20 @@ body.mode-free     .free-only     { display: flex; }
                 <!-- Cuerpo -->
                 <div class="desc-card-body">
 
-                    <!-- Grid de las 3 especies nativas -->
-                    <div class="desc-species-grid">
+                    <!-- Grid de Tribu Apidae y Tribu Meliponini -->
+                    <div class="desc-important-head-ig"> Familia Apidae </div>
+                    <div class="desc-species-grid1">
                         <div class="desc-species-item">
                             <img class="desc-species-img"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
-                                 alt="Tetragonisca angustula">
-                            <p class="desc-species-name">Género<br>Tetragonisca</p>
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tribu%20Apini.png"
+                                 alt="😳">
+                            <p class="desc-species-name-tribu">Tribu<br>Apini</p>
                         </div>
                         <div class="desc-species-item">
                             <img class="desc-species-img"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
-                                 alt="Scaptotrigona pectoralis">
-                            <p class="desc-species-name">Género<br>Scaptotrigona</p>
-                        </div>
-                        <div class="desc-species-item">
-                            <img class="desc-species-img"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
-                                 alt="Melipona beechii">
-                            <p class="desc-species-name">Género<br>Melipona</p>
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tribu%20Meliponini.png"
+                                 alt="😳">
+                            <p class="desc-species-name-tribu">Tribu<br>Meliponini</p>
                         </div>
                     </div>
 
@@ -2129,6 +2134,26 @@ body.mode-free     .free-only     { display: flex; }
                         Los pueblos indígenas de América han trabajado con abejas meliponini
                         durante miles de años en una práctica conocida como
                         <strong>"meliponicultura".</strong>
+                    <div class="desc-species-grid2">
+                        <div class="desc-species-item">
+                            <img class="desc-species-img"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
+                                 alt="Tetragonisca angustula">
+                            <p class="desc-species-name-genero">Género<br>Tetragonisca</p>
+                        </div>
+                        <div class="desc-species-item">
+                            <img class="desc-species-img"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
+                                 alt="Scaptotrigona pectoralis">
+                            <p class="desc-species-name-genero">Género<br>Scaptotrigona</p>
+                        </div>
+                        <div class="desc-species-item">
+                            <img class="desc-species-img"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
+                                 alt="Melipona beechii">
+                            <p class="desc-species-name-genero">Género<br>Melipona</p>
+                        </div>
+                    </div>
                     </p>
                     <p class="desc-note">Continuemos esta aventura</p>
 
