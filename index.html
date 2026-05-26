@@ -931,9 +931,27 @@ body.mode-free     .free-only     { display: flex; }
     position: relative;
     flex-shrink: 0;
 }
+.c-circle-flores {
+    width: 95px; height: 95px;
+    border-radius: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+    flex-shrink: 0;
+}
 .c-circle img {
     position: absolute; inset: 0;
-    width: 75%; height: 75%;
+    width: 85%; height: 85%;
+    object-fit: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.c-circle-flores img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
     object-fit: contain;
     top: 50%;
     left: 50%;
@@ -1600,7 +1618,7 @@ body.mode-free     .free-only     { display: flex; }
                 <!-- Pie de carta: botón de avance -->
                 <div class="welcome-card-footer">
                     <button class="btn-welcome" onclick="goTo('warningScreen')">
-                        Vamos a curiosear ▶
+                        Vamos a curiosear 
                     </button>
                 </div>
 
@@ -1675,7 +1693,7 @@ body.mode-free     .free-only     { display: flex; }
                 <!-- Pie de carta: botón de avance -->
                 <div class="warn-card-footer">
                     <button class="btn-warn" onclick="goTo('modeScreen')">
-                        ¡Entendido! Vamos a explorar ▶
+                        ¡Entendido! Vamos a explorar 
                     </button>
                 </div>
 
@@ -1939,7 +1957,7 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Aguacate.png" alt="🥑" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Aguacate.png" alt="Aguacate" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Aguacate</p>
                                 <p class="c-desc">Las abejas mejoran la producción de aguacate en un 96%</p>
@@ -1953,14 +1971,14 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Durazno.png" alt="🍑" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Durazno.png" alt="Durazno" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Durazno</p>
                                 <p class="c-desc">La incidencia de Meliponinos aumenta su calidad notablemente</p>
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pera.png" alt="🍐" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pera.png" alt="Pera" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Pera</p>
                                 <p class="c-desc">Más del 65% de estos cultivos los polinizan Meliponinos</p>
@@ -1974,7 +1992,7 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Macadamia.png" alt="🌰" onerror="this.style.display='none'">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Macadamia.png" alt="Macadamia" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Macadamia</p>
                                 <p class="c-desc">Las abejas son sus principales polinizadoras naturales</p>
@@ -2047,7 +2065,7 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="impacto-card-footer">
                     <button class="btn btn-green progress-only"
                             onclick="unlockSection('Descripcion'); goTo('progressScreen')">
-                        Continuar aprendiendo ▶
+                        Continuar aprendiendo
                     </button>
                     <button class="btn btn-outline free-only"
                             onclick="goTo('menuScreen')">
@@ -2167,7 +2185,7 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="desc-card-footer">
                     <button class="btn btn-green progress-only"
                             onclick="unlockSection('Cuidados'); goTo('progressScreen')">
-                        Continuar aprendiendo ▶
+                        Continuar aprendiendo
                     </button>
                     <button class="btn btn-outline free-only"
                             onclick="goTo('menuScreen')">
@@ -2243,34 +2261,40 @@ body.mode-free     .free-only     { display: flex; }
                          ontouchend="plantTouchEnd(event)">
                         <div class="carousel-stage">
                             <div class="c-slide active">
-                                <div class="c-circle"><span>💜</span></div>
+                                <div class="c-circle-flores">
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Lavanda.png" alt="🌺"></div>
                                 <p class="c-name">Lavanda</p>
                                 <p class="c-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle"><span>🌻</span></div>
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Girasol.png" alt="🌺"></div>
                                 <p class="c-name">Girasol</p>
                                 <p class="c-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle"><span>🌺</span></div>
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Lantana.png" alt="🌺"></div>
+                                <p class="c-name">Lantana trifolia</p>
+                                <p class="c-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Maracuya.png" alt="🌺"></div>
                                 <p class="c-name">Maracuyá</p>
                                 <p class="c-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle"><span>💙</span></div>
-                                <p class="c-name">Borraja</p>
-                                <p class="c-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
-                            </div>
-                            <div class="c-slide">
-                                <div class="c-circle"><span>🌸</span></div>
-                                <p class="c-name">Cayena</p>
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Cayeno.png" alt="🌺"></div>
+                                <p class="c-name">Cayeno</p>
                                 <p class="c-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle"><span>🍀</span></div>
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Girasol.png" alt="🌺"></div>
                                 <p class="c-name">Trébol</p>
                                 <p class="c-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
+                            </div>
+                            <div class="c-slide">
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Achiote.png" alt="🌺"></div>
+                                <p class="c-name">Achiote</p>
+                                <p class="c-desc">Nativa de américa tropical, sus flores son de las favoritas</p>
                             </div>
                         </div>
                         <div class="carousel-controls">
@@ -2282,6 +2306,7 @@ body.mode-free     .free-only     { display: flex; }
                                 <span class="c-dot" onclick="plantGoTo(3)"></span>
                                 <span class="c-dot" onclick="plantGoTo(4)"></span>
                                 <span class="c-dot" onclick="plantGoTo(5)"></span>
+                                <span class="c-dot" onclick="plantGoTo(6)"></span>
                             </div>
                             <button class="c-btn" onclick="plantNext()">&#8250;</button>
                         </div>
@@ -2293,7 +2318,7 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="cuid-card-footer">
                     <button class="btn btn-green progress-only"
                             onclick="goTo('completedScreen')">
-                        ¡Completé el recorrido! ▶
+                        ¡Completé el recorrido!
                     </button>
                     <button class="btn btn-outline free-only"
                             onclick="goTo('menuScreen')">
@@ -2327,7 +2352,8 @@ body.mode-free     .free-only     { display: flex; }
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
         <div class="completed-banner">
             <h2>¡Felicitaciones!</h2>
-            <p>Completaste el recorrido 🎉</p>
+            <p>Completaste el recorrido</p>
+            <p>(ﾉ>ω<)ﾉ :｡･:*:･ﾟ’★,｡･:*:･ﾟ’☆^`~~</p>
         </div>
         <div class="card">
             <p class="body-text" style="text-align:center;margin-bottom:0;">
@@ -2360,7 +2386,7 @@ body.mode-free     .free-only     { display: flex; }
             <span class="menu-card-arrow">▶</span>
         </div>
         <button class="btn btn-yellow" onclick="goTo('modeScreen')" style="margin-top:4px;">
-            Volver al inicio ▶
+            Volver al inicio 
         </button>
     </div>
 </div>
@@ -2612,7 +2638,7 @@ function rippleTransition(color, callback) {
     });
 }
 
-/* ── CROP CAROUSEL ── */
+/* ── Carrusel cultivos beneficiados ── */
 let cropIndex = 0, CROP_N = 9, cropTimer = null, cropTouchX = 0;
 
 function cropGoTo(i) {
@@ -2632,8 +2658,8 @@ function stopCropCarousel()  { clearInterval(cropTimer); cropTimer = null; }
 function cropTouchStart(e)   { cropTouchX = e.touches[0].clientX; }
 function cropTouchEnd(e)     { const dx = e.changedTouches[0].clientX - cropTouchX; if (Math.abs(dx) > 40) dx < 0 ? cropNext() : cropPrev(); }
 
-/* ── PLANT CAROUSEL ── */
-let plantIndex = 0, PLANT_N = 6, plantTimer = null, plantTouchX = 0;
+/* ── Carrusel flores cuidados ── */
+let plantIndex = 0, PLANT_N = 7, plantTimer = null, plantTouchX = 0;
 
 function plantGoTo(i) {
     const slides = document.querySelectorAll('.plant-carousel .c-slide');
