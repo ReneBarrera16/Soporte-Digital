@@ -13,7 +13,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --green-dark: #131f0085;
+    --green-dark: #070c00;
     --green-mid:  #639922;
     --yellow:     #EF9F27;
     --red:        #C0392B;
@@ -923,7 +923,7 @@ body.mode-free     .free-only     { display: flex; }
 .c-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
 .c-circle {
     width: 78px; height: 78px;
-    border-radius: 50%;
+    border-radius: 0;
     display: flex; align-items: center; justify-content: center;
     font-size: 36px;
     overflow: hidden;
@@ -933,7 +933,7 @@ body.mode-free     .free-only     { display: flex; }
 }
 .c-circle img {
     position: absolute; inset: 0;
-    width: 50%; height: 50%;
+    width: 75%; height: 75%;
     object-fit: contain;
     top: 50%;
     left: 50%;
@@ -1924,63 +1924,63 @@ body.mode-free     .free-only     { display: flex; }
                          ontouchend="cropTouchEnd(event)">
                         <div class="carousel-stage">
                             <div class="c-slide active">
-                                <div class="c-circle" style="background:#e8304a;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Fresa.png" alt="Fresas" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Fresas</p>
                                 <p class="c-desc">El 70% de las fresas del mundo son polinizadas por abejas</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#5c3d2e;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Café.png" alt="Café" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Café</p>
                                 <p class="c-desc">Las abejas aumentan la fructificación del café del 60% al 90%</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#3b7a35;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Aguacate.png" alt="🥑" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Aguacate</p>
                                 <p class="c-desc">Las abejas mejoran la producción de aguacate en un 96%</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#d4a800;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Banano.png" alt="Banano" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Banano</p>
                                 <p class="c-desc">La polinización hace más eficiente su producción</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#e07040;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Durazno.png" alt="🍑" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Durazno</p>
                                 <p class="c-desc">La incidencia de Meliponinos aumenta su calidad notablemente</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#7aaa40;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pera.png" alt="🍐" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Pera</p>
                                 <p class="c-desc">Más del 65% de estos cultivos los polinizan Meliponinos</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#e07020;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Mango.png" alt="Mango" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Mango</p>
                                 <p class="c-desc">La diversidad de abejas aumenta su calidad en un 60%</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#b89060;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Macadamia.png" alt="🌰" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Macadamia</p>
                                 <p class="c-desc">Las abejas son sus principales polinizadoras naturales</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#c04070;">
+                                <div class="c-circle">
                                     <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pomarroso.png" alt="Pomarrosa" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Pomarrosa</p>
@@ -2243,32 +2243,32 @@ body.mode-free     .free-only     { display: flex; }
                          ontouchend="plantTouchEnd(event)">
                         <div class="carousel-stage">
                             <div class="c-slide active">
-                                <div class="c-circle" style="background:#9b59b6;"><span>💜</span></div>
+                                <div class="c-circle"><span>💜</span></div>
                                 <p class="c-name">Lavanda</p>
                                 <p class="c-desc">Su néctar abundante y aroma dulce la hacen irresistible para nosotras</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#f1c40f;"><span>🌻</span></div>
+                                <div class="c-circle"><span>🌻</span></div>
                                 <p class="c-name">Girasol</p>
                                 <p class="c-desc">Una fuente inagotable de polen rico en proteínas para la colmena</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#e67e22;"><span>🌺</span></div>
+                                <div class="c-circle"><span>🌺</span></div>
                                 <p class="c-name">Maracuyá</p>
                                 <p class="c-desc">Nativa de América, perfecta para nuestra forma de polinizar</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#2980b9;"><span>💙</span></div>
+                                <div class="c-circle"><span>💙</span></div>
                                 <p class="c-name">Borraja</p>
                                 <p class="c-desc">Sus flores azules producen néctar todo el año, ideal para nosotras</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#c0392b;"><span>🌸</span></div>
+                                <div class="c-circle"><span>🌸</span></div>
                                 <p class="c-name">Cayena</p>
                                 <p class="c-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle" style="background:#27ae60;"><span>🍀</span></div>
+                                <div class="c-circle"><span>🍀</span></div>
                                 <p class="c-name">Trébol</p>
                                 <p class="c-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
                             </div>
