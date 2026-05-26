@@ -13,7 +13,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --green-dark: #000000;
+    --green-dark: #131f0085;
     --green-mid:  #639922;
     --yellow:     #EF9F27;
     --red:        #C0392B;
@@ -161,9 +161,9 @@ button { -webkit-user-select: none; user-select: none; touch-action: manipulatio
     transition: transform 0.14s;
 }
 .btn:active { transform: scale(0.97); }
-.btn-yellow  { background: #C9A84C; color: #3d101f; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
-.btn-green   { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
-.btn-outline { background: #C9A84C; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
+.btn-yellow  { background: #fde578; color: #3d101f; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
+.btn-green   { background: #fde578; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
+.btn-outline { background: #fde578; color: #3D2410; border: 2px solid #E8C96A; box-shadow: 0 4px 16px rgba(201,168,76,0.45); }
 
 .progress-only, .free-only { display: none; }
 body.mode-progress .progress-only { display: flex; }
@@ -280,7 +280,7 @@ body.mode-free     .free-only     { display: flex; }
 .splash-mosaic {
     position: absolute; inset: 0;
     background-image:
-        radial-gradient(circle, #C9A84C 1.2px, transparent 1.2px),
+        radial-gradient(circle, #fde578 1.2px, transparent 1.2px),
         radial-gradient(circle, #E8C96A 0.8px, transparent 0.8px);
     background-size: 22px 22px, 11px 11px;
     background-position: 0 0, 11px 11px;
@@ -459,7 +459,7 @@ body.mode-free     .free-only     { display: flex; }
     letter-spacing: 0.09em;
 }
 .btn-splash {
-    background: #C9A84C;
+    background: #fde578;
     color: #3D2410;
     padding: 15px 46px;
     border-radius: 50px;
@@ -563,10 +563,10 @@ body.mode-free     .free-only     { display: flex; }
     content: '';
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, transparent, #C9A84C);
+    background: linear-gradient(to right, transparent, #fde578);
 }
 .welcome-numeral::after {
-    background: linear-gradient(to left, transparent, #C9A84C);
+    background: linear-gradient(to left, transparent, #fde578);
 }
 
 .welcome-card-body h2 {
@@ -593,7 +593,7 @@ body.mode-free     .free-only     { display: flex; }
 /* Separador dorado */
 .welcome-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+    background: linear-gradient(to right, transparent, #fde578, transparent);
     margin: 18px 0;
 }
 
@@ -615,8 +615,9 @@ body.mode-free     .free-only     { display: flex; }
     border-top: 1px solid rgba(201,168,76,0.22);
     text-align: center;
 }
+/* Botón vamos a curiosear 1*/
 .btn-welcome {
-    background: #C9A84C;
+    background: #fde578;
     color: #3D2410;
     padding: 15px 46px;
     border-radius: 50px;
@@ -653,7 +654,7 @@ body.mode-free     .free-only     { display: flex; }
 .warn-tarot-card {
     background: #F5EDD4;
     border-radius: 22px;
-    border: 2px solid #C9A84C;
+    border: 2px solid #fde578;
     box-shadow:
         0 20px 60px rgba(0,0,0,0.52),
         0 0 0 1px rgba(232,201,106,0.25),
@@ -705,9 +706,9 @@ body.mode-free     .free-only     { display: flex; }
     gap: 10px;
 }
 .warn-numeral::before { content: ''; flex: 1; height: 1px;
-    background: linear-gradient(to right, transparent, #C9A84C); }
+    background: linear-gradient(to right, transparent, #fde578); }
 .warn-numeral::after  { content: ''; flex: 1; height: 1px;
-    background: linear-gradient(to left, transparent, #C9A84C); }
+    background: linear-gradient(to left, transparent, #fde578); }
 
 /* Cuerpo: tres puntos de advertencia */
 .warn-body { padding: 14px 24px 6px; }
@@ -743,8 +744,9 @@ body.mode-free     .free-only     { display: flex; }
     border-top: 1px solid rgba(201,168,76,0.22);
     text-align: center;
 }
+/*Botón ¡Entendido vamos a explorar!*/
 .btn-warn {
-    background: #ffcb3c;
+    background: #fde578;
     color: #3D2410;
     padding: 15px 46px;
     border-radius: 50px;
@@ -795,7 +797,7 @@ body.mode-free     .free-only     { display: flex; }
 /* Carta tarot: crema + borde dorado */
 .mode-tarot-card {
     background: #F5EDD4;
-    border: 2.5px solid #C9A84C;
+    border: 2.5px solid #fde578;
     border-radius: 22px;
     overflow: hidden;
     box-shadow: 0 12px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(232,201,106,0.18);
@@ -803,7 +805,7 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Cabecera dorada */
 .mode-card-header {
-    background: linear-gradient(160deg, #C9A84C 0%, #E8C96A 45%, #B8922E 100%);
+    background: linear-gradient(160deg, #db9a38 0%, #fde578 45%, #db9a38 100%);
     padding: 18px 20px 14px;
     text-align: center;
     border-bottom: 1.5px solid rgba(61,36,16,0.15);
@@ -836,7 +838,7 @@ body.mode-free     .free-only     { display: flex; }
 /* Orb de revelar */
 .mode-orb-single {
     width: 108px; height: 108px;
-    background: linear-gradient(135deg, #C9A84C, #E8C96A, #B8922E);
+    background: linear-gradient(135deg, #db9a38 0%, #fde578 45%, #db9a38 100%);
     border-radius: 50%;
     border: 3px solid rgba(61,36,16,0.18);
     display: flex; flex-direction: column;
@@ -873,7 +875,7 @@ body.mode-free     .free-only     { display: flex; }
 }
 .mode-option-card {
     flex: 1;
-    background: linear-gradient(160deg, #C9A84C 0%, #E8C96A 50%, #B8922E 100%);
+    background: linear-gradient(160deg, #db9a38 0%, #fde578 45%, #db9a38 100%);
     border: 2px solid rgba(61,36,16,0.18);
     border-radius: 16px;
     padding: 16px 10px;
@@ -1012,7 +1014,7 @@ body.mode-free     .free-only     { display: flex; }
 .impacto-tarot-card {
     background: #F5EDD4;
     border-radius: 22px;
-    border: 2px solid #C9A84C;
+    border: 2px solid #fde578;
     box-shadow:
         0 20px 60px rgba(0,0,0,0.52),
         0 0 0 1px rgba(232,201,106,0.25),
@@ -1023,7 +1025,7 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Cabecera dorada con numeral */
 .impacto-card-header {
-    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    background: linear-gradient(135deg, #db9a38 0%, #fde578 45%, #db9a38 100%);
     padding: 20px 24px 16px;
     text-align: center;
 }
@@ -1083,7 +1085,7 @@ body.mode-free     .free-only     { display: flex; }
 /* Separador dorado interno */
 .impacto-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+    background: linear-gradient(to right, transparent, #fde578, transparent);
     margin: 16px 0;
 }
 
@@ -1100,7 +1102,7 @@ body.mode-free     .free-only     { display: flex; }
     border: 1px solid rgba(201,168,76,0.35); box-shadow: none;
 }
 #impactoScreen .c-dot { background: rgba(201,168,76,0.32); }
-#impactoScreen .c-dot.active { background: #C9A84C; transform: scale(1.5); }
+#impactoScreen .c-dot.active { background: #fde578; transform: scale(1.5); }
 
 /* Texto de sección */
 .impacto-section-label {
@@ -1112,7 +1114,7 @@ body.mode-free     .free-only     { display: flex; }
     width: 90px; height: 90px;
     border-radius: 50%; object-fit: cover; display: block;
     margin: 0 auto 14px;
-    box-shadow: 0 0 0 3px #C9A84C, 0 6px 20px rgba(0,0,0,0.18);
+    box-shadow: 0 0 0 3px #fde578, 0 6px 20px rgba(0,0,0,0.18);
 }
 .impacto-body-text {
     font-family: 'Lexend', sans-serif;
@@ -1133,7 +1135,7 @@ body.mode-free     .free-only     { display: flex; }
     display: flex; flex-direction: column; gap: 10px;
 }
 .impacto-card-footer .btn-green {
-    background: #C9A84C; color: #3D2410;
+    background: #fde578; color: #3D2410;
     border: 2px solid #E8C96A;
     box-shadow: 0 6px 24px rgba(201,168,76,0.45);
     font-family: 'Lexend', sans-serif; font-weight: 700; letter-spacing: 0.05em;
@@ -1204,7 +1206,7 @@ body.mode-free     .free-only     { display: flex; }
 
 /* Banner completado en carta dorada */
 #completedScreen .completed-banner {
-    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    background: linear-gradient(135deg, #db9a38 0%, #fde578 45%, #db9a38 100%);
     border: 2px solid rgba(61,36,16,0.18);
     box-shadow: 0 8px 32px rgba(201,168,76,0.45);
 }
@@ -1218,7 +1220,7 @@ body.mode-free     .free-only     { display: flex; }
 #completedScreen .body-text { color: rgba(245,237,212,0.75); }
 #completedScreen .body-text strong { color: #F0D060; }
 #completedScreen .btn-yellow {
-    background: #C9A84C; color: #3D2410;
+    background: #fde578; color: #3D2410;
     border: 2px solid #E8C96A;
     box-shadow: 0 6px 24px rgba(201,168,76,0.45);
 }
@@ -1245,13 +1247,13 @@ body.mode-free     .free-only     { display: flex; }
 }
 .desc-tarot-card {
     background: #F5EDD4; border-radius: 22px;
-    border: 2px solid #C9A84C;
+    border: 2px solid #fde578;
     box-shadow: 0 20px 60px rgba(0,0,0,0.52), 0 0 0 1px rgba(232,201,106,0.25),
                 inset 0 1px 0 rgba(255,255,255,0.55);
     overflow: hidden; position: relative; z-index: 2;
 }
 .desc-card-header {
-    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    background: linear-gradient(135deg, #db9a38 0%, #fde578 45%, #db9a38 100% 100%);
     padding: 20px 24px 16px; text-align: center;
 }
 .desc-numeral {
@@ -1283,15 +1285,21 @@ body.mode-free     .free-only     { display: flex; }
     display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 16px; margin-bottom: 16px;
 }
 .desc-species-item {
-    background: rgba(61,36,16,0.07);
+    background: rgba(255, 222, 114, 0.842);
     border-radius: 14px; padding: 10px 6px; text-align: center;
-    border: 1px solid rgba(201,168,76,0.22);
+    border: none;
 }
-.desc-species-img {
-    width: 58px; height: 58px; border-radius: 50%; object-fit: cover;
+.desc-species-img-tribu {
+    width: 75px; height: 75px; border-radius: 0; object-fit: contain;
     display: block; margin: 0 auto 7px;
-    box-shadow: 0 0 0 2px #C9A84C, 0 4px 12px rgba(0,0,0,0.18);
-    background: rgba(61,36,16,0.08);
+    box-shadow: none;
+    background: transparent;
+}
+.desc-species-img-genero {
+    width: 65px; height: 65px; border-radius: 0; object-fit: contain;
+    display: block; margin: 0 auto 7px;
+    box-shadow: none;
+    background: transparent;
 }
 .desc-species-name-tribu {
     font-size: 15px; font-weight: 700; color: #3D2410; line-height: 1.35;
@@ -1303,7 +1311,7 @@ body.mode-free     .free-only     { display: flex; }
 }
 .desc-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+    background: linear-gradient(to right, transparent, #fde578, transparent);
     margin: 14px 0 16px;
 }
 .desc-body-text {
@@ -1320,7 +1328,7 @@ body.mode-free     .free-only     { display: flex; }
     display: flex; flex-direction: column; gap: 10px;
 }
 .desc-card-footer .btn-green {
-    background: #C9A84C; color: #3D2410;
+    background: #fde578; color: #3D2410;
     border: 2px solid #E8C96A;
     box-shadow: 0 6px 24px rgba(201,168,76,0.45);
     font-weight: 700; letter-spacing: 0.05em;
@@ -1349,13 +1357,13 @@ body.mode-free     .free-only     { display: flex; }
 }
 .cuid-tarot-card {
     background: #F5EDD4; border-radius: 22px;
-    border: 2px solid #C9A84C;
+    border: 2px solid #fde578;
     box-shadow: 0 20px 60px rgba(0,0,0,0.52), 0 0 0 1px rgba(232,201,106,0.25),
                 inset 0 1px 0 rgba(255,255,255,0.55);
     overflow: hidden; position: relative; z-index: 2;
 }
 .cuid-card-header {
-    background: linear-gradient(135deg, #B8932A 0%, #E8C96A 50%, #B8932A 100%);
+    background: linear-gradient(135deg, #db9a38 0%, #fde578 45%, #db9a38 100%);
     padding: 20px 24px 16px; text-align: center;
 }
 .cuid-numeral {
@@ -1378,7 +1386,7 @@ body.mode-free     .free-only     { display: flex; }
 .cuid-body-text strong { color: #3D2410; font-weight: 800; }
 .cuid-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+    background: linear-gradient(to right, transparent, #fde578, transparent);
     margin: 14px 0 16px;
 }
 .cuid-section-label {
@@ -1399,7 +1407,7 @@ body.mode-free     .free-only     { display: flex; }
     border: 1px solid rgba(201,168,76,0.35); box-shadow: none;
 }
 #cuidadosScreen .c-dot { background: rgba(201,168,76,0.32); }
-#cuidadosScreen .c-dot.active { background: #C9A84C; transform: scale(1.5); }
+#cuidadosScreen .c-dot.active { background: #fde578; transform: scale(1.5); }
 
 .cuid-card-footer {
     padding: 16px 20px 24px;
@@ -1407,7 +1415,7 @@ body.mode-free     .free-only     { display: flex; }
     display: flex; flex-direction: column; gap: 10px;
 }
 .cuid-card-footer .btn-green {
-    background: #C9A84C; color: #3D2410;
+    background: #fde578; color: #3D2410;
     border: 2px solid #E8C96A;
     box-shadow: 0 6px 24px rgba(201,168,76,0.45);
     font-weight: 700; letter-spacing: 0.05em;
@@ -1931,8 +1939,7 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#3b7a35;">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Aguacate.png" alt="Aguacate" onerror="this.style.display='none'">
-                                    <span>🥑</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Aguacate.png" alt="🥑" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Aguacate</p>
                                 <p class="c-desc">Las abejas mejoran la producción de aguacate en un 96%</p>
@@ -1946,16 +1953,14 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#e07040;">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Durazno.png" alt="Durazno" onerror="this.style.display='none'">
-                                    <span>🍑</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Durazno.png" alt="🍑" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Durazno</p>
                                 <p class="c-desc">La incidencia de Meliponinos aumenta su calidad notablemente</p>
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#7aaa40;">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pera.png" alt="Pera" onerror="this.style.display='none'">
-                                    <span>🍐</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Pera.png" alt="🍐" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Pera</p>
                                 <p class="c-desc">Más del 65% de estos cultivos los polinizan Meliponinos</p>
@@ -1969,8 +1974,7 @@ body.mode-free     .free-only     { display: flex; }
                             </div>
                             <div class="c-slide">
                                 <div class="c-circle" style="background:#b89060;">
-                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Macadamia.png" alt="Macadamia" onerror="this.style.display='none'">
-                                    <span>🌰</span>
+                                    <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Macadamia.png" alt="🌰" onerror="this.style.display='none'">
                                 </div>
                                 <p class="c-name">Macadamia</p>
                                 <p class="c-desc">Las abejas son sus principales polinizadoras naturales</p>
@@ -2094,14 +2098,14 @@ body.mode-free     .free-only     { display: flex; }
                     <div class="desc-important-head-ig"> Familia Apidae </div>
                     <div class="desc-species-grid1">
                         <div class="desc-species-item">
-                            <img class="desc-species-img"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tribu%20Apini.png"
+                            <img class="desc-species-img-tribu"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Tribu%20Apini.png"
                                  alt="😳">
                             <p class="desc-species-name-tribu">Tribu<br>Apini</p>
                         </div>
                         <div class="desc-species-item">
-                            <img class="desc-species-img"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tribu%20Meliponini.png"
+                            <img class="desc-species-img-tribu"
+                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Tribu%20Meliponini.png"
                                  alt="😳">
                             <p class="desc-species-name-tribu">Tribu<br>Meliponini</p>
                         </div>
@@ -2136,19 +2140,19 @@ body.mode-free     .free-only     { display: flex; }
                         <strong>"meliponicultura".</strong>
                     <div class="desc-species-grid2">
                         <div class="desc-species-item">
-                            <img class="desc-species-img"
+                            <img class="desc-species-img-genero"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
                                  alt="Tetragonisca angustula">
                             <p class="desc-species-name-genero">Género<br>Tetragonisca</p>
                         </div>
                         <div class="desc-species-item">
-                            <img class="desc-species-img"
+                            <img class="desc-species-img-genero"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
                                  alt="Scaptotrigona pectoralis">
                             <p class="desc-species-name-genero">Género<br>Scaptotrigona</p>
                         </div>
                         <div class="desc-species-item">
-                            <img class="desc-species-img"
+                            <img class="desc-species-img-genero"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
                                  alt="Melipona beechii">
                             <p class="desc-species-name-genero">Género<br>Melipona</p>
