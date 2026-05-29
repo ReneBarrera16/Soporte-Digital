@@ -36,7 +36,7 @@ html, body {
     color: var(--text);
 }
 
-/* ── SCREEN SYSTEM ── */
+/* Sistema de pantallas */
 #app {
     position: fixed;
     inset: 0;
@@ -59,7 +59,7 @@ html, body {
     pointer-events: auto;
 }
 
-/* ── SCROLLABLE CONTENT AREA ── */
+/* Area de contenido scroleable */
 .s-scroll {
     flex: 1;
     min-height: 0;
@@ -69,7 +69,7 @@ html, body {
 }
 .s-scroll::-webkit-scrollbar { display: none; }
 
-/* ── TOPBAR ── */
+/* Sección superior */
 .topbar {
     display: flex;
     align-items: center;
@@ -96,7 +96,7 @@ html, body {
     flex-shrink: 0;
 }
 
-/* ── BADGE ── */
+/* ícono principal */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -112,7 +112,7 @@ html, body {
 .badge-yellow { background: var(--yellow); color: var(--text); }
 .badge-red    { background: var(--red); }
 
-/* ── CARDS ── */
+/* Cards */
 .card {
     background: var(--white);
     border-radius: var(--r);
@@ -130,17 +130,17 @@ html, body {
 .card-dark p { color: rgba(255,255,255,0.9); }
 .card-dark strong { color: #F0D060; }
 
-/* ── TYPOGRAPHY ── */
+/* Tipografía */
 .body-text {
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.55;
     color: var(--text-soft);
     margin-bottom: 10px;
 }
 .body-text:last-child { margin-bottom: 0; }
 .body-text strong { color: var(--text); }
 
-/* ── BUTTONS ── */
+/* Botones */
 /* Prevents accidental text selection on tap (mobile fix) */
 button { -webkit-user-select: none; user-select: none; touch-action: manipulation; }
 
@@ -205,7 +205,6 @@ body.mode-free     .free-only     { display: flex; }
     width: 30px; height: 30px;
     object-fit: contain;
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
-    font-size: 24px;
     background: transparent;
     transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
                 background 0.28s, box-shadow 0.28s;
@@ -219,14 +218,14 @@ body.mode-free     .free-only     { display: flex; }
     letter-spacing: 0.02em;
 }
 .nav-item.active .nav-icon {
-    background: var(--yellow);
+    background: #d6e78c;
     transform: translateY(-20px);
-    box-shadow: 0 6px 20px rgba(239,159,39,0.55);
+    box-shadow: 0 6px 20px rgba(249, 255, 216, 0.596);
 }
-.nav-item.active .nav-label { color: #F0D060; }
+.nav-item.active .nav-label { color: #e3ffa1; }
 .nav-item.locked-nav { opacity: 0.35; pointer-events: none; }
 
-/* ── MENU CARDS (hub screens) ── */
+/* Menú cartas (hub screens) */
 .menu-card {
     background: var(--white);
     border-radius: var(--r);
@@ -267,10 +266,27 @@ body.mode-free     .free-only     { display: flex; }
     margin-bottom: 3px;
 }
 .menu-card-text p { font-size: 13px; color: var(--text-soft); line-height: 1.4; }
-.menu-card-arrow { font-size: 15px; color: var(--green-mid); }
-.lock-icon { font-size: 19px; }
+.menu-card-arrow 
+{
+    height: 15px; width: 15px
+}
+.menu-card-arrow img 
+{
+    height: 100%; width: 100%; 
+    object-fit: contain;
+    display: block;
+}
+.lock-icon { 
+    height: 15px; width: 15px
+}
 
-/* ── PANTALLA 1 inicio ── */
+.lock-icon img{ 
+    height: 100%; width: 100%; 
+    object-fit: contain;
+    display: block;
+}
+
+/* PANTALLA 1 inicio */
 #splashScreen {
     background: #4f550c;
     overflow: hidden;
@@ -289,7 +305,7 @@ body.mode-free     .free-only     { display: flex; }
     z-index: 0;
 }
 
-/* Sol ambiente — gira continuamente, centrado en la parte superior */
+/* Sol central — gira continuamente, centrado en la parte superior */
 .splash-sol {
     position: absolute;
     top: 10px;
@@ -305,7 +321,7 @@ body.mode-free     .free-only     { display: flex; }
     to   { transform: rotate(360deg); }
 }
 
-/* Nubes — una a cada lado del sol, parcialmente detrás (z-index 3 < sol z-index 4) */
+/* Nubes — una a cada lado del sol, una detrás y otra adelante (z-index 3 < sol z-index 4 < z-index 11) */
 .screen-cloud {
     position: absolute;
     width: 110px;
@@ -314,7 +330,7 @@ body.mode-free     .free-only     { display: flex; }
     top: 20px;
 }
 .screen-cloud-top {
-    /* Nube izquierda: solapa ~45px con el sol */
+    /* Nube izquierda delante del sol */
     top: 55px;
     left: calc(50% - 125px);
     opacity: 0.88;
@@ -323,7 +339,7 @@ body.mode-free     .free-only     { display: flex; }
     animation: cloudDriftA 12s ease-in-out infinite;
 }
 .screen-cloud-bottom {
-    /* Nube derecha: solapa ~45px con el sol */
+    /* Nube derecha detrás */
     top: 15px;
     left: calc(50% + 15px);
     opacity: 0.92;
@@ -339,7 +355,7 @@ body.mode-free     .free-only     { display: flex; }
     50%       { transform: translateX(10px); }
 }
 
-/* Área de carta — centrada con flores desbordadas */
+/* Área de Carta — centrada con flores desbordadas */
 .splash-card-area {
     position: absolute;
     top: 40%;
@@ -371,7 +387,7 @@ body.mode-free     .free-only     { display: flex; }
     transform: rotateY(180deg);
 }
 
-/* Cara delantera y trasera del la tarjeta tarot que gira */
+/* Cara delantera y trasera del la carta que gira */
 .splash-card-front,
 .splash-card-back {
     position: absolute; inset: 0;
@@ -488,7 +504,7 @@ body.mode-free     .free-only     { display: flex; }
 }
 
 /* ── Pantalla 2 ¡Bienvenido! ── */
-#welcomeScreen { background: #bd4c00; }
+#welcomeScreen { background: #91082a; }
 #welcomeScreen .s-scroll { position: relative; z-index: 2; }
 
 /* Carta taror inicial contenedora — anima desde abajo al entrar */
@@ -911,6 +927,15 @@ body.mode-free     .free-only     { display: flex; }
     margin-bottom: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 }
+
+.carouselslay-wrap {
+    border-radius: var(--r);
+    padding: 0px;
+    margin-bottom: 20px;
+    box-shadow: none;
+    width: calc(100% + 60px);
+    margin-left: -30px;
+}
 .carousel-stage { position: relative; height: 192px; }
 .c-slide {
     position: absolute; inset: 0;
@@ -920,9 +945,43 @@ body.mode-free     .free-only     { display: flex; }
     transition: opacity 0.3s, transform 0.3s;
     pointer-events: none;
 }
+.c-slide-three {
+    position: absolute; inset: 0;
+    display: flex;
+    align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.95);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+}
 .c-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.c-slide-three.active { opacity: 1; transform: scale(1); pointer-events: auto; }
 .c-circle {
     width: 78px; height: 78px;
+    border-radius: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    position: relative;
+    flex-shrink: 0;
+}
+.c-slide-especies {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}
+.c-slide-especies-item {
+    flex: 1;
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.c-circle-flores {
+    width: 95px; height: 95px;
     border-radius: 0;
     display: flex; align-items: center; justify-content: center;
     font-size: 36px;
@@ -931,11 +990,11 @@ body.mode-free     .free-only     { display: flex; }
     position: relative;
     flex-shrink: 0;
 }
-.c-circle-flores {
-    width: 95px; height: 95px;
+.c-circle-especies {
+    width: 55px; height: 55px;
     border-radius: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 36px;
+    font-size: 20px;
     overflow: hidden;
     margin-bottom: 10px;
     position: relative;
@@ -967,10 +1026,11 @@ body.mode-free     .free-only     { display: flex; }
 .c-btn {
     width: 30px; height: 30px;
     border-radius: 50%;
-    border: 2px solid var(--green-dark);
-    background: transparent;
-    color: var(--green-dark);
+    border: 2px solid #3D2410;
+    background: #3D2410;
+    color: var(--cream-dark);
     font-size: 20px;
+    margin-top: 10px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; line-height: 1;
     -webkit-tap-highlight-color: transparent;
@@ -979,11 +1039,11 @@ body.mode-free     .free-only     { display: flex; }
 .c-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--cream-dark);
+    background: #c3ce84;
     transition: background 0.28s, transform 0.28s;
     cursor: pointer;
 }
-.c-dot.active { background: var(--yellow); transform: scale(1.5); }
+.c-dot.active { background: #586b03; transform: scale(1.5); }
 
 /* ── DIVIDER TITLE ── */
 .divider-title {
@@ -1100,11 +1160,11 @@ body.mode-free     .free-only     { display: flex; }
 }
 .impacto-stat-context strong { color: #3D2410; font-weight: 800; }
 
-/* Separador dorado interno */
+/* Separador dorado/transparente interno */
 .impacto-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #fde578, transparent);
-    margin: 16px 0;
+    background: transparent;
+    margin: 6px 0;
 }
 
 /* Carrusel dentro de la carta crema */
@@ -1115,29 +1175,23 @@ body.mode-free     .free-only     { display: flex; }
 }
 #impactoScreen .c-name { color: #3D2410; }
 #impactoScreen .c-desc { color: #5A3E28; }
-#impactoScreen .c-btn {
-    background: rgba(201,168,76,0.18); color: #8B4A1A;
-    border: 1px solid rgba(201,168,76,0.35); box-shadow: none;
-}
-#impactoScreen .c-dot { background: rgba(201,168,76,0.32); }
-#impactoScreen .c-dot.active { background: #fde578; transform: scale(1.5); }
 
-/* Texto de sección */
+
+/* Texto de pantalla IMPACTO*/
 .impacto-section-label {
     font-family: 'Lexend', sans-serif;
     font-size: 15px; font-weight: 700; color: #8B4A1A;
     text-align: center; font-style: italic; margin-bottom: 12px;
 }
 .impacto-bee-photo {
-    width: 90px; height: 90px;
-    border-radius: 50%; object-fit: cover; display: block;
+    width: 100px; height: 100px;
+    object-fit: contain; display: block;
     margin: 0 auto 14px;
-    box-shadow: 0 0 0 3px #fde578, 0 6px 20px rgba(0,0,0,0.18);
 }
 .impacto-body-text {
     font-family: 'Lexend', sans-serif;
-    font-size: 16px; line-height: 1.65; color: #5A3E28;
-    margin-bottom: 10px; text-align: center;
+    font-size: 16px; line-height: 1.5; color: #5A3E28;
+    margin-bottom: 10px; text-align: justify;
 }
 .impacto-body-text strong { color: #3D2410; font-weight: 800; }
 .impacto-map {
@@ -1297,14 +1351,25 @@ body.mode-free     .free-only     { display: flex; }
     padding: 2px 2px 2px; text-align: center;
 }
 .desc-species-grid1 {
-    display: grid; grid-template-columns: repeat(2,1fr); gap: 30px; margin-top: 16px; margin-right: 30px; margin-left: 30px; margin-bottom: 16px;
+    display: grid; grid-template-columns: repeat(2,1fr); gap: 30px; margin-top: 16px; margin-right: 30px; margin-left: 30px; margin-bottom: 15px;
 }
 .desc-species-grid2 {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 16px; margin-bottom: 16px;
+    display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 36px; margin-right: 35px; margin-left: 35px; margin-bottom: 25px;
+    width: 86%;
 }
-.desc-species-item {
+.desc-species-item-Apini {
+    background: rgba(236, 126, 52, 0.842);
+    border-radius: 14px; padding: 14px 6px; text-align: center;
+    border: none;
+}
+.desc-species-item-Meliponini {
     background: rgba(255, 222, 114, 0.842);
-    border-radius: 14px; padding: 10px 6px; text-align: center;
+    border-radius: 14px; padding: 14px 6px; text-align: center;
+    border: none;
+}
+.desc-species-item-genero {
+    background: rgba(255, 222, 114, 0.842);
+    border-radius: 14px; padding: 17px 6px; text-align: center;
     border: none;
 }
 .desc-species-img-tribu {
@@ -1314,7 +1379,7 @@ body.mode-free     .free-only     { display: flex; }
     background: transparent;
 }
 .desc-species-img-genero {
-    width: 65px; height: 65px; border-radius: 0; object-fit: contain;
+    width: 95px; height: 95px; border-radius: 0; object-fit: contain;
     display: block; margin: 0 auto 7px;
     box-shadow: none;
     background: transparent;
@@ -1327,13 +1392,18 @@ body.mode-free     .free-only     { display: flex; }
     font-size: 12px; font-weight: 700; color: #3D2410; line-height: 1.35;
     font-style: italic;
 }
+
+/* Separador transparente Descripción */
+
 .desc-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #fde578, transparent);
-    margin: 14px 0 16px;
+    background: transparent;
+    margin: 6px;
 }
+
+/* Texto de pantalla DESCRIPCIÓN */
 .desc-body-text {
-    font-size: 16px; line-height: 1.65; color: #5A3E28; margin-bottom: 10px;
+    font-size: 16px; line-height: 1.5; color: #5A3E28; margin-bottom: 10px; text-align: justify;
 }
 .desc-body-text strong { color: #3D2410; font-weight: 800; }
 .desc-note {
@@ -1398,14 +1468,20 @@ body.mode-free     .free-only     { display: flex; }
     font-size: 24px; font-weight: 900; color: #3D2410; margin: 0;
 }
 .cuid-card-body { padding: 20px 20px 6px; }
+
+/* Texto de pantalla CUIDADOS*/
+
 .cuid-body-text {
-    font-size: 16px; line-height: 1.65; color: #5A3E28; margin-bottom: 10px;
+    font-size: 16px; line-height: 1.5; color: #5A3E28; margin-bottom: 10px; text-align: justify;
 }
 .cuid-body-text strong { color: #3D2410; font-weight: 800; }
+
+/* Separador transparente cuidados*/
+
 .cuid-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #fde578, transparent);
-    margin: 14px 0 16px;
+    background: transparent;
+    margin: 6px;
 }
 .cuid-section-label {
     font-size: 15px; font-weight: 700; color: #8B4A1A;
@@ -1420,12 +1496,7 @@ body.mode-free     .free-only     { display: flex; }
 }
 #cuidadosScreen .c-name { color: #3D2410; }
 #cuidadosScreen .c-desc { color: #5A3E28; }
-#cuidadosScreen .c-btn {
-    background: rgba(201,168,76,0.18); color: #8B4A1A;
-    border: 1px solid rgba(201,168,76,0.35); box-shadow: none;
-}
-#cuidadosScreen .c-dot { background: rgba(201,168,76,0.32); }
-#cuidadosScreen .c-dot.active { background: #fde578; transform: scale(1.5); }
+
 
 .cuid-card-footer {
     padding: 16px 20px 24px;
@@ -1495,19 +1566,18 @@ body.mode-free     .free-only     { display: flex; }
 
 <div id="app">
 
-<!-- ══════════════════════════════════
-     PANTALLA 1 · SPLASH  (Tarot Latinoamericano)
-══════════════════════════════════ -->
+<!-- ═ PANTALLA 1 · Pantalla de presentación, tarjeta giratoria
+═ -->
 <div class="screen active" id="splashScreen">
 
     <!-- Textura de mosaico dorado en CSS -->
     <div class="splash-mosaic"></div>
 
-    <!-- Sol giratorio centrado en la parte superior -->
+    <!-- Sol giratorio centrado - parte superior -->
     <img class="splash-sol"
          src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Sol.png"
          alt="">
-    <!-- Nube superior: empieza desde la izquierda -->
+    <!-- Nube flotante - parte superior izquierda -->
     <img class="screen-cloud screen-cloud-top"
          src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Nube.png"
          alt="">
@@ -1783,8 +1853,9 @@ body.mode-free     .free-only     { display: flex; }
     <div class="topbar">
         <span class="topbar-title">Tu Recorrido</span>
     </div>
+    <div class="impacto-divider"></div>
+    <div class="impacto-divider"></div>
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
-        <span class="badge" style="margin-bottom:14px;">Tu Recorrido de Aprendizaje</span>
 
         <div class="menu-card" id="progImpacto" onclick="goToGuided('impactoScreen')">
             <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
@@ -1794,29 +1865,29 @@ body.mode-free     .free-only     { display: flex; }
                 <h3>Impacto</h3>
                 <p>¿Cómo impacto tu día a día?<br>Cultivos beneficiados</p>
             </div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"> <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
 
         <div class="menu-card locked" id="progDescripcion">
-            <div class="menu-card-img" style="background:rgba(245,237,212,0.12);">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
                 <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png" alt="Descripción">
             </div>
             <div class="menu-card-text">
                 <h3>Descripción</h3>
                 <p>¿Quién soy?<br>Diferencias entre especies</p>
             </div>
-            <span class="menu-card-arrow lock-icon">🔒</span>
+            <span class="menu-card-arrow lock-icon"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Candado.png"></span>
         </div>
 
         <div class="menu-card locked" id="progCuidados">
-            <div class="menu-card-img" style="background:rgba(107,122,46,0.35);">
-                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png" alt="Cuidados">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
+                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orquídea 3.png" alt="Cuidados">
             </div>
             <div class="menu-card-text">
                 <h3>Cuidados</h3>
                 <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
             </div>
-            <span class="menu-card-arrow lock-icon">🔒</span>
+            <span class="menu-card-arrow lock-icon"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Candado.png"></span>
         </div>
     </div>
 </div>
@@ -1838,8 +1909,11 @@ body.mode-free     .free-only     { display: flex; }
     <div class="topbar">
         <span class="topbar-title">Elige un tema</span>
     </div>
+
+        <div class="impacto-divider"></div>
+        <div class="impacto-divider"></div>
+
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
-        <span class="badge" style="margin-bottom:14px;">Elige un tema para aprender</span>
 
         <div class="menu-card" onclick="goToFree('impactoScreen')">
             <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
@@ -1849,29 +1923,29 @@ body.mode-free     .free-only     { display: flex; }
                 <h3>Impacto</h3>
                 <p>¿Cómo puedo impacto tu día a día?<br>Cultivos beneficiados</p>
             </div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
 
         <div class="menu-card" onclick="goToFree('descripcionScreen')">
-            <div class="menu-card-img" style="background:rgba(245,237,212,0.12);">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
                 <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png" alt="Descripción">
             </div>
             <div class="menu-card-text">
                 <h3>Descripción</h3>
                 <p>¿Quién soy?<br>Diferencias entre especies</p>
             </div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
 
         <div class="menu-card" onclick="goToFree('cuidadosScreen')">
-            <div class="menu-card-img" style="background:rgba(107,122,46,0.35);">
-                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png" alt="Cuidados">
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
+                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orquídea 3.png" alt="Cuidados">
             </div>
             <div class="menu-card-text">
                 <h3>Cuidados</h3>
                 <p>¿Cómo puedes cuidarme?<br>Mis plantas favoritas</p>
             </div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
     </div>
 </div>
@@ -2048,14 +2122,14 @@ body.mode-free     .free-only     { display: flex; }
                     </div>
 
                     <!-- Sección abejas nativas -->
-                    <p class="impacto-section-label">Ahora — ¿Polinización? Sí, abejas ¿verdad?</p>
+                    <p class="impacto-section-label">Bueno... ¿Polinización? <br> Sí, abejas ¿verdad?</p> 
                     <p class="impacto-body-text">¿Sabías que existe una tribu de abejas nativas de latinoamérica?</p>
-                    <img class="impacto-bee-photo" src="AbejaMelipona-1.jpg" alt="Abeja Meliponini">
+                    <img class="impacto-bee-photo" src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Tribu Meliponini.png" alt="Abeja Meliponini">
                     <p class="impacto-body-text">Al ser <strong>nativa de latinoamérica</strong> resulta
                     <strong>altamente eficiente</strong> para la
                     <strong>polinización de cultivos nativos.</strong></p>
                     <div class="impacto-map">
-                        <img src="img/mapa-colombia.png" alt="Mapa Colombia"
+                        <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/MapaColombia.png" alt="Mapa Colombia"
                              onerror="this.parentElement.style.display='none'">
                     </div>
                     <p class="impacto-body-text">Su rol de polinización <strong>impacta directamente</strong>
@@ -2066,7 +2140,7 @@ body.mode-free     .free-only     { display: flex; }
 
                 </div>
 
-                <!-- Pie de carta: botones -->
+                <!-- Botón inferior -->
                 <div class="impacto-card-footer">
                     <button class="btn btn-green progress-only"
                             onclick="unlockSection('Descripcion'); goTo('progressScreen')">
@@ -2083,9 +2157,8 @@ body.mode-free     .free-only     { display: flex; }
     </div>
 </div>
 
-<!-- ══════════════════════════════════
-     PANTALLA 7 · DESCRIPCIÓN
-══════════════════════════════════ -->
+<!--  PANTALLA 7 · DESCRIPCIÓN
+══ -->
 <div class="screen" id="descripcionScreen">
 
     <div class="splash-mosaic"></div>
@@ -2118,34 +2191,130 @@ body.mode-free     .free-only     { display: flex; }
                 <div class="desc-card-body">
 
                     <!-- Grid de Tribu Apidae y Tribu Meliponini -->
-                    <div class="desc-important-head-ig"> Familia Apidae </div>
+                    <div class="desc-important-head-ig"> <i>Familia Apidae</i></div>
                     <div class="desc-species-grid1">
-                        <div class="desc-species-item">
+                        <div class="desc-species-item-Apini">
                             <img class="desc-species-img-tribu"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Tribu%20Apini.png"
                                  alt="😳">
-                            <p class="desc-species-name-tribu">Tribu<br>Apini</p>
+                            <p class="desc-species-name-tribu"><i>Tribu<br>Apini</i></p>
                         </div>
-                        <div class="desc-species-item">
+                        <div class="desc-species-item-Meliponini">
                             <img class="desc-species-img-tribu"
                                  src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Tribu%20Meliponini.png"
                                  alt="😳">
-                            <p class="desc-species-name-tribu">Tribu<br>Meliponini</p>
+                            <p class="desc-species-name-tribu"><i>Tribu<br>Meliponini</i></p>
+                        </div>
+                    </div>
+                    <p class="desc-body-text">
+                        Todas las abejas, <strong> con y sin agüijón,</strong>
+                        hacemos parte de la Familia <i>Apidae</i> (subfamilia <i>Apinae</i>), una familia muy grande, en la cuál hay 20 tribus. Nosotras, las Meliponini a 
+                        diferencia de nuestras primas Apini, somos conocidas como <em><strong>(Abejas Nativas Sin Aguijón).</strong></em>  
+                    </p>
+                    <p class="desc-body-text">
+                        Somos originarias de <strong>América Central y América del Sur.</strong>
+                        Evolucionamos sin agüijón junto a los indígenas americanos, en una relación simbiótica. <strong>Nuestra tribu se compone de más de 30 géneros de abejas.</strong> 
+                        Al ser una familia tan grande podemos ser muy diferentes, las meliponini menores miden de 2 - 6 mm mientras que las mayores miden de 8 - 15 mm.
+                    </p>
+                    
+                    <div class="impacto-divider"></div>
+
+                    <!-- Carrusel géneros combos de a 3 -->
+                    <div class="carouselslay-wrap especies-carousel"
+                         ontouchstart="especieTouchStart(event)"
+                         ontouchend="especieTouchEnd(event)">
+                        <div class="carousel-stage">
+                            <div class="c-slide-three active">
+                                <div class="c-slide-especies">
+                                    <div class="desc-species-grid2">
+                                        <div class="desc-species-item-genero">
+                                             <img class="desc-species-img-genero"
+                                            src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
+                                            alt="Tetragonisca angustula">
+                                            <p class="desc-species-name-genero">Género<br>Tetragonisca</p>
+                                            <p class="c-desc">Angelitas</p>
+                                        </div>
+                                        <div class="desc-species-item-genero">
+                                            <img class="desc-species-img-genero"
+                                            src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
+                                            alt="Scaptotrigona pectoralis">
+                                            <p class="desc-species-name-genero">Género<br>Scaptotrigona</p>
+                                            <p class="c-desc">Angelitas</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="c-slide-three">
+                                <div class="c-slide-especies">
+                                    <div class="desc-species-grid2">
+                                        <div class="desc-species-item-genero">
+                                            <img class="desc-species-img-genero"
+                                            src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
+                                            alt="Scaptotrigona pectoralis">
+                                            <p class="desc-species-name-genero">Género<br>Scaptotrigona</p>
+                                            <p class="c-desc">Angelitas</p>
+                                        </div>
+                                        <div class="desc-species-item-genero">
+                                            <img class="desc-species-img-genero"
+                                            src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
+                                            alt="Melipona beechii">
+                                            <p class="desc-species-name-genero">Género<br>Melipona</p>
+                                            <p class="c-desc">Angelitas</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="c-slide-three">
+                                <div class="c-slide-especies">
+                                    <div class="desc-species-grid2">
+                                        <div class="desc-species-item-genero">
+                                            <img class="desc-species-img-genero"
+                                            src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
+                                            alt="Scaptotrigona pectoralis">
+                                            <p class="desc-species-name-genero">Género<br>Scaptotrigona</p>
+                                            <p class="c-desc">Angelitas</p>
+                                        </div>
+                                        <div class="desc-species-item-genero">
+                                            <img class="desc-species-img-genero"
+                                            src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
+                                            alt="Melipona beechii">
+                                            <p class="desc-species-name-genero">Género<br>Melipona</p>
+                                            <p class="c-desc">Angelitas</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="impacto-divider"></div>
+
+                        <div class="carousel-controls">
+                            <button class="c-btn" onclick="especiePrev()">&#8249;</button>
+                            <div class="c-dots" id="especieDots">
+                                <span class="c-dot active" onclick="especieGoTo(0)"></span>
+                                <span class="c-dot" onclick="especieGoTo(1)"></span>
+                                <span class="c-dot" onclick="especieGoTo(2)"></span>
+                            </div>
+                            <button class="c-btn" onclick="especieNext()">&#8250;</button>
                         </div>
                     </div>
 
-                    <div class="desc-divider"></div>
-
                     <p class="desc-body-text">
-                        Somos las ANSA (Abejas Nativas sin aguijón), originarias de <strong>América Central y América del Sur.</strong>
-                        Pertenezco a una tribu única y muy diversa, nativa a latinoamérica. <strong>Nuestra tribu se compone de más de 30 géneros de abejas.</strong> 
-                        Al ser una familia tan grande podemos ser muy diferentes, las meliponini menores miden de 2 - 6 mm mientras que las mayores miden de 8 - 15 mm.
+                        Somos abejas muy <i><strong>tranquilas, pacíficas e inofensivas,</strong></i>
+                        pero por razones medioambientales hemos empezado a migrar a espacios verdes urbanos.
+                    </p>
+                   
+                    <p class="desc-body-text">
+                        <i>¡Cuidanos! Trabajamos juntas para mantener el equilibrio ecosistémico.</i>
                     </p>
                     <p class="desc-body-text">
-                        Somos abejas muy <strong>tranquilas, pacíficas e inofensivas,</strong>
-                        por razones medioambientales hemos empezado a migrar a espacios verdes urbanos.
+                        Nuesta <strong>miel</strong> es muy <strong>especial</strong>, al ser más pequeñas que las abejas <i>Apini</i> producimos menos,
+                        pero tiene características y propiedades medicinales especiales valoradas desde tiempos ancestrales.
                     </p>
-                    <!-- Carrusel infinito flores + abejas -->
+                     <!-- Carrusel infinito flores + abejas -->
                     <div class="flower-carousel">
                         <div class="flower-track">
                             <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Margarita.png" alt="">
@@ -2168,42 +2337,10 @@ body.mode-free     .free-only     { display: flex; }
                         </div>
                     </div>
                     <p class="desc-body-text">
-                        Vivimos en colonias altamente organizadas donde cada miembro tiene
-                        un rol importante. ¡Cuidanos! Trabajamos juntas para mantener el ecosistema
-                        <strong>saludable, equilibrado y productivo.</strong>
-                    </p>
-                    <p class="desc-body-text">
-                        Nuesta <strong>miel</strong> es muy especial, al ser más pequeñas que las abejas europeas producimos menos,
-                        pero tiene características y propiedades medicinales especiales valoradas
-                        desde tiempos ancestrales.
-                    </p>
-                    <p class="desc-body-text">
-                        Los pueblos indígenas de América han trabajado con abejas meliponini
+                        Los pueblos indígenas han trabajado con abejas meliponini
                         durante miles de años en una práctica conocida como
-                        <strong>"meliponicultura".</strong>
-                    <div class="desc-species-grid2">
-                        <div class="desc-species-item">
-                            <img class="desc-species-img-genero"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Tetragonisca%20angustula.png"
-                                 alt="Tetragonisca angustula">
-                            <p class="desc-species-name-genero">Género<br>Tetragonisca</p>
-                        </div>
-                        <div class="desc-species-item">
-                            <img class="desc-species-img-genero"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Scaptotrigona%20pectoralis.png"
-                                 alt="Scaptotrigona pectoralis">
-                            <p class="desc-species-name-genero">Género<br>Scaptotrigona</p>
-                        </div>
-                        <div class="desc-species-item">
-                            <img class="desc-species-img-genero"
-                                 src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png"
-                                 alt="Melipona beechii">
-                            <p class="desc-species-name-genero">Género<br>Melipona</p>
-                        </div>
-                    </div>
+                        <i><strong>"meliponicultura".</strong></i>
                     </p>
-                    <p class="desc-note">Continuemos esta aventura</p>
-
                 </div>
 
                 <!-- Pie de carta: botones -->
@@ -2290,7 +2427,7 @@ body.mode-free     .free-only     { display: flex; }
                     <p class="cuid-body-text">
                         <strong>Nunca</strong> uses pesticidas, herbicidas o insecticidas cerca
                         de nuestras colmenas. Estos productos pueden matar colonias enteras
-                        en cuestión de días.
+                        en cuestión de días. 
                     </p>
                     <p class="cuid-body-text">
                         Proporciona <strong>agua fresca y limpia</strong> cerca de las colmenas.
@@ -2332,7 +2469,7 @@ body.mode-free     .free-only     { display: flex; }
                                 <p class="c-desc">El hibisco tropical es uno de nuestros grandes favoritos del jardín</p>
                             </div>
                             <div class="c-slide">
-                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Girasol.png" alt="🌺"></div>
+                                <div class="c-circle-flores"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Trebol.png" alt="🌺"></div>
                                 <p class="c-name">Trébol</p>
                                 <p class="c-desc">Pequeño pero poderoso, sus flores nos alimentan durante todo el día</p>
                             </div>
@@ -2366,8 +2503,8 @@ body.mode-free     .free-only     { display: flex; }
                         ¡Completé el recorrido!
                     </button>
                     <button class="btn btn-outline free-only"
-                            onclick="goTo('menuScreen')">
-                        Ir al menú
+                            onclick="goTo('completedScreen')">
+                        ¡Completé el recorrido!
                     </button>
                 </div>
 
@@ -2391,9 +2528,9 @@ body.mode-free     .free-only     { display: flex; }
          alt="" style="animation-delay: -4s;">
 
     <div class="topbar">
-        <span class="topbar-title">¡Felicitaciones!</span>
     </div>
-
+    <div class="impacto-divider"></div>
+    <div class="impacto-divider"></div>
     <div class="s-scroll" style="padding:0 16px calc(var(--nav-h) + 24px);">
         <div class="completed-banner">
             <h2>¡Felicitaciones!</h2>
@@ -2408,27 +2545,24 @@ body.mode-free     .free-only     { display: flex; }
         </div>
         <div class="menu-card" onclick="goToGuided('impactoScreen')">
             <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
-                <img src="img/menu-impacto.jpg" alt="Impacto" onerror="this.style.display='none'">
-                <span>🌿</span>
+                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Hiedra.png" alt="Impacto" onerror="this.style.display='none'">
             </div>
             <div class="menu-card-text"><h3>Impacto</h3><p>Revisar</p></div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
         <div class="menu-card" onclick="goToGuided('descripcionScreen')">
-            <div class="menu-card-img" style="background:rgba(245,237,212,0.12);">
-                <img src="img/menu-descripcion.jpg" alt="Descripción" onerror="this.style.display='none'">
-                <span>🐝</span>
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
+                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Melipona%20beechii.png" alt="Descripción" onerror="this.style.display='none'">
             </div>
             <div class="menu-card-text"><h3>Descripción</h3><p>Revisar</p></div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
         <div class="menu-card" onclick="goToGuided('cuidadosScreen')">
-            <div class="menu-card-img" style="background:rgba(107,122,46,0.35);">
-                <img src="img/menu-cuidados.jpg" alt="Cuidados" onerror="this.style.display='none'">
-                <span>🌱</span>
+            <div class="menu-card-img" style="background:rgba(201,168,76,0.25);">
+                <img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orquídea 3.png" alt="Cuidados" onerror="this.style.display='none'">
             </div>
             <div class="menu-card-text"><h3>Cuidados</h3><p>Revisar</p></div>
-            <span class="menu-card-arrow">▶</span>
+            <div class="menu-card-arrow"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png"></div>
         </div>
         <button class="btn btn-yellow" onclick="goTo('modeScreen')" style="margin-top:4px;">
             Volver al inicio 
@@ -2455,7 +2589,7 @@ body.mode-free     .free-only     { display: flex; }
         <span class="nav-label">Descripción</span>
     </div>
     <div class="nav-item" id="navCuidados" onclick="navGoTo('cuidadosScreen')">
-        <div class="nav-icon"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flor%201.png" alt="Cuidados"></div>
+        <div class="nav-icon"><img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Orquídea 3.png" alt="Cuidados"></div>
         <span class="nav-label">Cuidados</span>
     </div>
 </nav>
@@ -2561,7 +2695,7 @@ function unlockSection(sectionId) {
     el.classList.remove('locked');
     el.onclick = () => goToGuided(sectionId.toLowerCase() + 'Screen');
     const arrow = el.querySelector('.lock-icon');
-    if (arrow) { arrow.textContent = '▶'; arrow.classList.remove('lock-icon'); arrow.classList.add('menu-card-arrow'); }
+    if (arrow) { arrow.innerHTML = '<img src="RecursosGraficos/Recursos%20gr%C3%A1ficos/Flores%2C%20frutites%20y%20otres/Flecha.png">'; arrow.classList.remove('lock-icon'); arrow.classList.add('menu-card-arrow'); }
 }
 
 /* ── SCREEN TRANSITION — FADE ── */
@@ -2599,9 +2733,10 @@ function showScreen(id) {
 
     updateBottomNav(id);
 
-    if (id === 'impactoScreen')       { startCropCarousel();  stopPlantCarousel(); }
-    else if (id === 'cuidadosScreen') { startPlantCarousel(); stopCropCarousel();  }
-    else                              { stopCropCarousel();   stopPlantCarousel(); }
+    if (id === 'impactoScreen')       { startCropCarousel();  stopPlantCarousel(); stopEspecieCarousel()}
+    else if (id === 'cuidadosScreen') { startPlantCarousel(); stopCropCarousel();  stopEspecieCarousel()}
+    else if (id === 'descripcionScreen') { startEspecieCarousel() ; stopCropCarousel();  stopPlantCarousel}
+    else                              { stopCropCarousel();   stopPlantCarousel(); stopEspecieCarousel()}
 
     if (id === 'modeScreen') resetModeReveal();
 
@@ -2702,6 +2837,26 @@ function startCropCarousel() { cropGoTo(0); cropResetTimer(); }
 function stopCropCarousel()  { clearInterval(cropTimer); cropTimer = null; }
 function cropTouchStart(e)   { cropTouchX = e.touches[0].clientX; }
 function cropTouchEnd(e)     { const dx = e.changedTouches[0].clientX - cropTouchX; if (Math.abs(dx) > 40) dx < 0 ? cropNext() : cropPrev(); }
+
+/* ── Carrusel especies ── */
+let especieIndex = 0, ESPECIE_N = 3, especieTimer = null, especieTouchX = 0;
+
+function especieGoTo(i) {
+    const slides = document.querySelectorAll('.especies-carousel .c-slide-three');
+    const dots   = document.querySelectorAll('#especieDots .c-dot');
+    slides[especieIndex].classList.remove('active');
+    dots[especieIndex].classList.remove('active');
+    especieIndex = ((i % ESPECIE_N) + ESPECIE_N) % ESPECIE_N;
+    slides[especieIndex].classList.add('active');
+    dots[especieIndex].classList.add('active');
+}
+function especieNext() { especieGoTo(especieIndex + 1); especieResetTimer(); }
+function especiePrev() { especieGoTo(especieIndex - 1); especieResetTimer(); }
+function especieResetTimer() { clearInterval(especieTimer); especieTimer = setInterval(() => especieGoTo(especieIndex + 1), 2800); }
+function startEspecieCarousel() { especieGoTo(0); especieResetTimer(); }
+function stopEspecieCarousel()  { clearInterval(especieTimer); especieTimer = null; }
+function especieTouchStart(e)   { especieTouchX = e.touches[0].clientX; }
+function especieTouchEnd(e)     { const dx = e.changedTouches[0].clientX - especieTouchX; if (Math.abs(dx) > 40) dx < 0 ? especieNext() : especiePrev(); }
 
 /* ── Carrusel flores cuidados ── */
 let plantIndex = 0, PLANT_N = 7, plantTimer = null, plantTouchX = 0;
